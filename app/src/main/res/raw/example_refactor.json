@@ -1,0 +1,606 @@
+{
+  "result": true,
+  "data": [
+    {
+      "id": 5681,
+      "group_id": 1514,
+      "day": "СРЕДА",
+      "week_num": 1,
+      "table": [
+        {
+          "time": "16:40",
+          "subject_name": "",
+          "subject_type": "",
+          "teacher": "",
+          "location": ""
+        },
+        {
+          "time": "8:00",
+          "subject_name": "",
+          "subject_type": "",
+          "teacher": "",
+          "location": ""
+        },
+        {
+          "time": "9:40",
+          "subject_name": "",
+          "subject_type": "",
+          "teacher": "",
+          "location": ""
+        },
+        {
+          "time": "11:30",
+          "subject_name": "СИСТЕМЫ ИСКУССТВЕННОГО ИНТЕЛЛЕКТА И SMART-ТЕХНОЛОГИИ",
+          "subject_type": "лек",
+          "teacher": "Долгова Е.В.",
+          "location": "418 к.А (ЭТФ)"
+        },
+        {
+          "time": "13:20",
+          "subject_name": "ПРОЕКТИРОВАНИЕ АСУ",
+          "subject_type": "лек",
+          "teacher": "Файзрахманов Р.А.",
+          "location": "230 к.А (ЭТФ)"
+        },
+        {
+          "time": "15:00",
+          "subject_name": "",
+          "subject_type": "",
+          "teacher": "",
+          "location": ""
+        }
+      ]
+    },
+    {
+      "id": 5677,
+      "group_id": 1514,
+      "day": "ПОНЕДЕЛЬНИК",
+      "week_num": 1,
+      "table": [
+        {
+          "time": "15:00",
+          "subject_name": "ФУНКЦИОНАЛЬНОЕ И ЛОГИЧЕСКОЕ ПРОГРАММ-НИЕ",
+          "subject_type": "лек",
+          "teacher": "Кузнецов Д.Б.",
+          "location": "414 к.А (ЭТФ)"
+        },
+        {
+          "time": "16:40",
+          "subject_name": "",
+          "subject_type": "",
+          "teacher": "",
+          "location": ""
+        },
+        {
+          "time": "8:00",
+          "subject_name": "",
+          "subject_type": "",
+          "teacher": "",
+          "location": ""
+        },
+        {
+          "time": "9:40",
+          "subject_name": "",
+          "subject_type": "",
+          "teacher": "",
+          "location": ""
+        },
+        {
+          "time": "11:30",
+          "subject_name": "МЕТОДЫ СТАТИСТИЧЕСКОГО АНАЛИЗА ДАННЫХ",
+          "subject_type": "лек",
+          "teacher": "Прозорова Л.Ю.",
+          "location": "418 к.А (ЭТФ)"
+        },
+        {
+          "time": "13:20",
+          "subject_name": "ПРОГРАММИРОВАНИЕ ИНТЕРНЕТ-ПРИЛОЖЕНИЙ",
+          "subject_type": "лек",
+          "teacher": "Курушин Д.С.",
+          "location": "414 к.А (ЭТФ)"
+        }
+      ]
+    },
+    {
+      "id": 5678,
+      "group_id": 1514,
+      "day": "ПОНЕДЕЛЬНИК",
+      "week_num": 2,
+      "table": [
+        {
+          "time": "11:30",
+          "subject_name": "МЕТОДЫ СТАТИСТИЧЕСКОГО АНАЛИЗА ДАННЫХ",
+          "subject_type": "лек",
+          "teacher": "Прозорова Л.Ю.",
+          "location": "418 к.А (ЭТФ)"
+        },
+        {
+          "time": "13:20",
+          "subject_name": "ПРОГРАММИРОВАНИЕ ИНТЕРНЕТ-ПРИЛОЖЕНИЙ",
+          "subject_type": "лек",
+          "teacher": "Курушин Д.С.",
+          "location": "414 к.А (ЭТФ)"
+        },
+        {
+          "time": "15:00",
+          "subject_name": "ФУНКЦИОНАЛЬНОЕ И ЛОГИЧЕСКОЕ ПРОГРАММ-НИЕ",
+          "subject_type": "лек",
+          "teacher": "Кузнецов Д.Б.",
+          "location": "414 к.А (ЭТФ)"
+        },
+        {
+          "time": "16:40",
+          "subject_name": "ФУНКЦИОНАЛЬНОЕ И ЛОГИЧЕСКОЕ ПРОГРАММ-НИЕ",
+          "subject_type": "лаб",
+          "teacher": "Кузнецов Д.Б.",
+          "location": "128 к.А (ЭТФ)"
+        },
+        {
+          "time": "8:00",
+          "subject_name": "",
+          "subject_type": "",
+          "teacher": "",
+          "location": ""
+        },
+        {
+          "time": "9:40",
+          "subject_name": "",
+          "subject_type": "",
+          "teacher": "",
+          "location": ""
+        }
+      ]
+    },
+    {
+      "id": 5679,
+      "group_id": 1514,
+      "day": "ВТОРНИК",
+      "week_num": 1,
+      "table": [
+        {
+          "time": "8:00",
+          "subject_name": "",
+          "subject_type": "",
+          "teacher": "",
+          "location": ""
+        },
+        {
+          "time": "9:40",
+          "subject_name": "СЕТИ И ТЕЛЕКОММУНИКАЦИИ",
+          "subject_type": "лек",
+          "teacher": "Масич Г.Ф.",
+          "location": "416 к.А (ЭТФ)"
+        },
+        {
+          "time": "11:30",
+          "subject_name": "СЕТИ И ТЕЛЕКОММУНИКАЦИИ",
+          "subject_type": "лаб",
+          "teacher": "Масич Г.Ф.",
+          "location": "128 к.А (ЭТФ)"
+        },
+        {
+          "time": "13:20",
+          "subject_name": "",
+          "subject_type": "",
+          "teacher": "",
+          "location": ""
+        },
+        {
+          "time": "15:00",
+          "subject_name": "",
+          "subject_type": "",
+          "teacher": "",
+          "location": ""
+        },
+        {
+          "time": "16:40",
+          "subject_name": "",
+          "subject_type": "",
+          "teacher": "",
+          "location": ""
+        }
+      ]
+    },
+    {
+      "id": 5680,
+      "group_id": 1514,
+      "day": "ВТОРНИК",
+      "week_num": 2,
+      "table": [
+        {
+          "time": "9:40",
+          "subject_name": "СЕТИ И ТЕЛЕКОММУНИКАЦИИ",
+          "subject_type": "лек",
+          "teacher": "Масич Г.Ф.",
+          "location": "416 к.А (ЭТФ)"
+        },
+        {
+          "time": "11:30",
+          "subject_name": "МЕТОДЫ СТАТИСТИЧЕСКОГО АНАЛИЗА ДАННЫХ",
+          "subject_type": "лаб",
+          "teacher": "Прозорова Л.Ю.",
+          "location": "226 к.А (ЭТФ)"
+        },
+        {
+          "time": "13:20",
+          "subject_name": "МЕТОДЫ СТАТИСТИЧЕСКОГО АНАЛИЗА ДАННЫХ",
+          "subject_type": "лаб",
+          "teacher": "Прозорова Л.Ю.",
+          "location": "226 к.А (ЭТФ)"
+        },
+        {
+          "time": "15:00",
+          "subject_name": "",
+          "subject_type": "",
+          "teacher": "",
+          "location": ""
+        },
+        {
+          "time": "16:40",
+          "subject_name": "",
+          "subject_type": "",
+          "teacher": "",
+          "location": ""
+        },
+        {
+          "time": "8:00",
+          "subject_name": "",
+          "subject_type": "",
+          "teacher": "",
+          "location": ""
+        }
+      ]
+    },
+    {
+      "id": 5682,
+      "group_id": 1514,
+      "day": "СРЕДА",
+      "week_num": 2,
+      "table": [
+        {
+          "time": "9:40",
+          "subject_name": "",
+          "subject_type": "",
+          "teacher": "",
+          "location": ""
+        },
+        {
+          "time": "11:30",
+          "subject_name": "",
+          "subject_type": "",
+          "teacher": "",
+          "location": ""
+        },
+        {
+          "time": "13:20",
+          "subject_name": "СИСТЕМЫ ИСКУССТВЕННОГО ИНТЕЛЛЕКТА И SMART-ТЕХНОЛОГИИ",
+          "subject_type": "лаб",
+          "teacher": "Долгова Е.В.",
+          "location": "229 к.А (ЭТФ)"
+        },
+        {
+          "time": "15:00",
+          "subject_name": "СИСТЕМЫ ИСКУССТВЕННОГО ИНТЕЛЛЕКТА И SMART-ТЕХНОЛОГИИ",
+          "subject_type": "лаб",
+          "teacher": "Долгова Е.В.",
+          "location": "229 к.А (ЭТФ)"
+        },
+        {
+          "time": "16:40",
+          "subject_name": "",
+          "subject_type": "",
+          "teacher": "",
+          "location": ""
+        },
+        {
+          "time": "8:00",
+          "subject_name": "",
+          "subject_type": "",
+          "teacher": "",
+          "location": ""
+        }
+      ]
+    },
+    {
+      "id": 5683,
+      "group_id": 1514,
+      "day": "ЧЕТВЕРГ",
+      "week_num": 1,
+      "table": [
+        {
+          "time": "13:20",
+          "subject_name": "",
+          "subject_type": "",
+          "teacher": "",
+          "location": ""
+        },
+        {
+          "time": "15:00",
+          "subject_name": "",
+          "subject_type": "",
+          "teacher": "",
+          "location": ""
+        },
+        {
+          "time": "16:40",
+          "subject_name": "",
+          "subject_type": "",
+          "teacher": "",
+          "location": ""
+        },
+        {
+          "time": "8:00",
+          "subject_name": "",
+          "subject_type": "",
+          "teacher": "",
+          "location": ""
+        },
+        {
+          "time": "9:40",
+          "subject_name": "ИНТЕЛЛЕКТУАЛЬНЫЕ ТЕХНОЛОГИИ АНАЛИЗА ДАННЫХ",
+          "subject_type": "лаб",
+          "teacher": "Мухин О.И.",
+          "location": "230 к.А (ЭТФ)"
+        },
+        {
+          "time": "11:30",
+          "subject_name": "ИНТЕЛЛЕКТУАЛЬНЫЕ ТЕХНОЛОГИИ АНАЛИЗА ДАННЫХ",
+          "subject_type": "лек",
+          "teacher": "Мухин О.И.",
+          "location": "402 к.А (ЭТФ)"
+        }
+      ]
+    },
+    {
+      "id": 5684,
+      "group_id": 1514,
+      "day": "ЧЕТВЕРГ",
+      "week_num": 2,
+      "table": [
+        {
+          "time": "15:00",
+          "subject_name": "",
+          "subject_type": "",
+          "teacher": "",
+          "location": ""
+        },
+        {
+          "time": "16:40",
+          "subject_name": "",
+          "subject_type": "",
+          "teacher": "",
+          "location": ""
+        },
+        {
+          "time": "8:00",
+          "subject_name": "",
+          "subject_type": "",
+          "teacher": "",
+          "location": ""
+        },
+        {
+          "time": "9:40",
+          "subject_name": "",
+          "subject_type": "",
+          "teacher": "",
+          "location": ""
+        },
+        {
+          "time": "11:30",
+          "subject_name": "ИНТЕЛЛЕКТУАЛЬНЫЕ ТЕХНОЛОГИИ АНАЛИЗА ДАННЫХ",
+          "subject_type": "лек",
+          "teacher": "Мухин О.И.",
+          "location": "402 к.А (ЭТФ)"
+        },
+        {
+          "time": "13:20",
+          "subject_name": "",
+          "subject_type": "",
+          "teacher": "",
+          "location": ""
+        }
+      ]
+    },
+    {
+      "id": 5685,
+      "group_id": 1514,
+      "day": "ПЯТНИЦА",
+      "week_num": 1,
+      "table": [
+        {
+          "time": "16:40",
+          "subject_name": "",
+          "subject_type": "",
+          "teacher": "",
+          "location": ""
+        },
+        {
+          "time": "8:00",
+          "subject_name": "",
+          "subject_type": "",
+          "teacher": "",
+          "location": ""
+        },
+        {
+          "time": "9:40",
+          "subject_name": "ПРОГРАММИРОВАНИЕ МОБИЛЬНЫХ УСТРОЙСТВ И ВСТРАИВАЕМЫХ СИСТЕМ",
+          "subject_type": "лек",
+          "teacher": "Курушин Д.С.",
+          "location": "406 к.А (ЭТФ)"
+        },
+        {
+          "time": "11:30",
+          "subject_name": "ПРОГРАММИРОВАНИЕ МОБИЛЬНЫХ УСТРОЙСТВ И ВСТРАИВАЕМЫХ СИСТЕМ",
+          "subject_type": "лаб",
+          "teacher": "Курушин Д.С.",
+          "location": "119 к.А (ЭТФ)"
+        },
+        {
+          "time": "13:20",
+          "subject_name": "ПРОГРАММИРОВАНИЕ ИНТЕРНЕТ-ПРИЛОЖЕНИЙ",
+          "subject_type": "лаб",
+          "teacher": "Курушин Д.С.",
+          "location": "119 к.А (ЭТФ)"
+        },
+        {
+          "time": "15:00",
+          "subject_name": "",
+          "subject_type": "",
+          "teacher": "",
+          "location": ""
+        }
+      ]
+    },
+    {
+      "id": 5686,
+      "group_id": 1514,
+      "day": "ПЯТНИЦА",
+      "week_num": 2,
+      "table": [
+        {
+          "time": "8:00",
+          "subject_name": "",
+          "subject_type": "",
+          "teacher": "",
+          "location": ""
+        },
+        {
+          "time": "9:40",
+          "subject_name": "ПРОГРАММИРОВАНИЕ ИНТЕРНЕТ-ПРИЛОЖЕНИЙ",
+          "subject_type": "лаб",
+          "teacher": "Курушин Д.С.",
+          "location": "119 к.А (ЭТФ)"
+        },
+        {
+          "time": "11:30",
+          "subject_name": "ПРОГРАММИРОВАНИЕ МОБИЛЬНЫХ УСТРОЙСТВ И ВСТРАИВАЕМЫХ СИСТЕМ",
+          "subject_type": "лаб",
+          "teacher": "Курушин Д.С.",
+          "location": "119 к.А (ЭТФ)"
+        },
+        {
+          "time": "13:20",
+          "subject_name": "",
+          "subject_type": "",
+          "teacher": "",
+          "location": ""
+        },
+        {
+          "time": "15:00",
+          "subject_name": "",
+          "subject_type": "",
+          "teacher": "",
+          "location": ""
+        },
+        {
+          "time": "16:40",
+          "subject_name": "",
+          "subject_type": "",
+          "teacher": "",
+          "location": ""
+        }
+      ]
+    },
+    {
+      "id": 5687,
+      "group_id": 1514,
+      "day": "СУББОТА",
+      "week_num": 1,
+      "table": [
+        {
+          "time": "8:00",
+          "subject_name": "",
+          "subject_type": "",
+          "teacher": "",
+          "location": ""
+        },
+        {
+          "time": "9:40",
+          "subject_name": "ПРОЕКТИРОВАНИЕ АСУ",
+          "subject_type": "пр",
+          "teacher": "Архипов А.В.",
+          "location": "229 к.А (ЭТФ)"
+        },
+        {
+          "time": "11:30",
+          "subject_name": "ПРОЕКТИРОВАНИЕ АСУ",
+          "subject_type": "лаб",
+          "teacher": "Архипов А.В.",
+          "location": "229 к.А (ЭТФ)"
+        },
+        {
+          "time": "13:20",
+          "subject_name": "",
+          "subject_type": "",
+          "teacher": "",
+          "location": ""
+        },
+        {
+          "time": "15:00",
+          "subject_name": "",
+          "subject_type": "",
+          "teacher": "",
+          "location": ""
+        },
+        {
+          "time": "16:40",
+          "subject_name": "",
+          "subject_type": "",
+          "teacher": "",
+          "location": ""
+        }
+      ]
+    },
+    {
+      "id": 5688,
+      "group_id": 1514,
+      "day": "СУББОТА",
+      "week_num": 2,
+      "table": [
+        {
+          "time": "16:40",
+          "subject_name": "",
+          "subject_type": "",
+          "teacher": "",
+          "location": ""
+        },
+        {
+          "time": "8:00",
+          "subject_name": "",
+          "subject_type": "",
+          "teacher": "",
+          "location": ""
+        },
+        {
+          "time": "9:40",
+          "subject_name": "ПРОЕКТИРОВАНИЕ АСУ",
+          "subject_type": "пр",
+          "teacher": "Архипов А.В.",
+          "location": "229 к.А (ЭТФ)"
+        },
+        {
+          "time": "11:30",
+          "subject_name": "ПРОЕКТИРОВАНИЕ АСУ",
+          "subject_type": "лаб",
+          "teacher": "Архипов А.В.",
+          "location": "229 к.А (ЭТФ)"
+        },
+        {
+          "time": "13:20",
+          "subject_name": "",
+          "subject_type": "",
+          "teacher": "",
+          "location": ""
+        },
+        {
+          "time": "15:00",
+          "subject_name": "",
+          "subject_type": "",
+          "teacher": "",
+          "location": ""
+        }
+      ]
+    }
+  ],
+  "message": ""
+}

@@ -1,22 +1,29 @@
 package com.leenz.pnrpu;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
-import android.text.format.Time;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.Locale;
-import java.util.concurrent.TimeUnit;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -59,14 +66,68 @@ public class TimetableFragment extends Fragment implements View.OnClickListener 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
         currentDate = new Date();
         calendar.set(2022,9,1,0,0);
         calendar.setFirstDayOfWeek(Calendar.MONDAY);
+
+        // JSON запрос
+        //Пример. Чтение из файла TODO: заменить
+        try {
+            Timetable timetable = readTimeTableJSONFile(getContext());
+            //Генерация интерфейса из класса
+            generateObjects(timetable);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        //
     }
+
+    private void generateObjects(Timetable timetable) {
+
+    }
+
+    private Timetable readTimeTableJSONFile(Context context) throws IOException, JSONException{
+        String jsonText = readText(context, R.raw.example_refactor);
+
+        JSONObject jsonRoot = new JSONObject(jsonText);
+        JSONArray data = jsonRoot.getJSONArray("data");
+        Day[] days = new Day[data.length()];
+
+        for (int i = 0; i < data.length();i++){
+            JSONObject obj = data.getJSONObject(i);
+            JSONArray table = obj.getJSONArray("table");
+            Lesson[] lessons = new Lesson[table.length()];
+            for (int j = 0; j < table.length(); j++) {
+                JSONObject subject = table.getJSONObject(j);
+                String time = subject.getString("time");
+                String subjectName = subject.getString("subject_name");
+                String subjectType = subject.getString("subject_type");
+                String teacher = subject.getString("teacher");
+                String location = subject.getString("location");
+                lessons[j] = new Lesson(time,subjectName,subjectType,teacher,location);
+            }
+            int id = obj.getInt("id");
+            int groupId = obj.getInt("group_id");
+            days[i] = new Day(id, groupId, obj.getString("day"), obj.getInt("week_num"),lessons);
+        }
+        Timetable result = new Timetable(days);
+        return result;
+    }
+
+    private String readText(Context context, int resId) throws IOException{
+        InputStream is = context.getResources().openRawResource(resId);
+        BufferedReader br = new BufferedReader(new InputStreamReader(is));
+        StringBuilder sb = new StringBuilder();
+        String s = null;
+        while((s = br.readLine()) != null){
+            sb.append(s);
+            sb.append("\n");
+        }
+        return sb.toString();
+    }
+
     private View rootView;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
