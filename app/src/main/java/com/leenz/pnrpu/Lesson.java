@@ -1,11 +1,11 @@
 package com.leenz.pnrpu;
 
 public class Lesson {
-    private String time;
-    private String subjectName;
-    private String subjectType;
-    private String teacherName;
-    private String location;
+    private final String time;
+    private final String subjectName;
+    private final String subjectType;
+    private final String teacherName;
+    private final String location;
 
     public Lesson(String time, String subjectName, String subjectType, String teacherName, String location) {
         this.time = time;

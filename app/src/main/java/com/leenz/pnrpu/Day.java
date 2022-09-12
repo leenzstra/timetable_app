@@ -1,11 +1,11 @@
 package com.leenz.pnrpu;
 
 public class Day {
-    private int id;
-    private int groupId;
-    private String dayName;
-    private int weekNum;
-    private Lesson[] lessons;
+    private final int id;
+    private final int groupId;
+    private final String dayName;
+    private final int weekNum;
+    private final Lesson[] lessons;
 
     public Day(int id, int groupId, String dayName, int weekNum, Lesson[] lessons) {
         this.id = id;

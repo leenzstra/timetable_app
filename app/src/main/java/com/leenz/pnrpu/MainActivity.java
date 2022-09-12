@@ -37,9 +37,9 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.timetable:
                     replaceFragment(timetableFragment);
                     break;
-                case R.id.professor:
-                    replaceFragment(professorFragment);
-                    break;
+//                case R.id.professor:
+//                    replaceFragment(professorFragment);
+//                    break;
             }
             return true;
         });

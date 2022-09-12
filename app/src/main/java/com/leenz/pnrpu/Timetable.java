@@ -1,7 +1,7 @@
 package com.leenz.pnrpu;
 
 public class Timetable {
-    private Day[] days;
+    private final Day[] days;
 
     public Timetable(Day[] days) {
         this.days = days;
