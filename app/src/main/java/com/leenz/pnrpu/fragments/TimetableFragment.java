@@ -1,4 +1,4 @@
-package com.leenz.pnrpu;
+package com.leenz.pnrpu.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -7,13 +7,17 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.GestureDetector;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.leenz.pnrpu.adapters.LessonAdapter;
+import com.leenz.pnrpu.R;
+import com.leenz.pnrpu.models.Day;
+import com.leenz.pnrpu.models.Lesson;
+import com.leenz.pnrpu.models.Timetable;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -23,9 +27,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.sql.Time;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;

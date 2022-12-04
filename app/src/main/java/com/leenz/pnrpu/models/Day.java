@@ -1,4 +1,4 @@
-package com.leenz.pnrpu;
+package com.leenz.pnrpu.models;
 
 public class Day {
     private final int id;

@@ -1,4 +1,4 @@
-package com.leenz.pnrpu;
+package com.leenz.pnrpu.adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,9 +8,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.leenz.pnrpu.R;
+import com.leenz.pnrpu.models.Lesson;
+
 public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.ViewHolder> {
 
-    private Lesson[] lessons;
+    private final Lesson[] lessons;
 
     public LessonAdapter(Lesson[] lessons) {
         this.lessons = lessons;

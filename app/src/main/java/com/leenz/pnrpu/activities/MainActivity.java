@@ -1,23 +1,16 @@
-package com.leenz.pnrpu;
+package com.leenz.pnrpu.activities;
 
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
+import com.leenz.pnrpu.fragments.ProfessorFragment;
+import com.leenz.pnrpu.R;
+import com.leenz.pnrpu.fragments.TimetableFragment;
 import com.leenz.pnrpu.databinding.ActivityMainBinding;
-
-import org.json.JSONObject;
 
 
 public class MainActivity extends AppCompatActivity {
