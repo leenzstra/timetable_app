@@ -1,8 +1,11 @@
 package com.leenz.pnrpu.adapters;
 
+import android.annotation.SuppressLint;
+import android.transition.TransitionManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,6 +17,8 @@ import com.leenz.pnrpu.models.Lesson;
 public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.ViewHolder> {
 
     private final Lesson[] lessons;
+    private int mExpandedPosition=-1;
+    private ViewGroup parent;
 
     public LessonAdapter(Lesson[] lessons) {
         this.lessons = lessons;
@@ -22,10 +27,12 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.ViewHolder
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        this.parent = parent;
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.lesson_view,parent,false);
         return new ViewHolder(view);
     }
 
+    @SuppressLint("RecyclerView")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.getTimeView().setText(lessons[position].getTime());
@@ -33,6 +40,17 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.ViewHolder
         holder.getSubjectTypeView().setText(lessons[position].getSubjectType());
         holder.getLocationView().setText(lessons[position].getLocation());
         holder.getTeacherNameView().setText(lessons[position].getTeacherName());
+        final boolean isExpanded = position == mExpandedPosition;
+        holder.detailsView.setVisibility(isExpanded ? View.VISIBLE:View.GONE);
+        holder.itemView.setActivated(isExpanded);
+        holder.itemView.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                mExpandedPosition = isExpanded ? -1: position;
+                TransitionManager.beginDelayedTransition(parent);
+                notifyDataSetChanged();
+            }
+        });
     }
 
     @Override
@@ -42,6 +60,7 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.ViewHolder
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
         private final TextView timeView;
+        private final LinearLayout detailsView;
         private final TextView subjectNameView;
         private final TextView subjectTypeView;
         private final TextView teacherNameView;
@@ -49,6 +68,7 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.ViewHolder
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             timeView = itemView.findViewById(R.id.timeTV);
+            detailsView = itemView.findViewById(R.id.details_linear_layout);
             subjectNameView = itemView.findViewById(R.id.subjectNameTV);
             subjectTypeView = itemView.findViewById(R.id.subjectTypeTV);
             teacherNameView = itemView.findViewById(R.id.teacherTV);
@@ -75,5 +95,7 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.ViewHolder
         public TextView getLocationView() {
             return locationView;
         }
+
+        public LinearLayout getDetailsView() { return detailsView; }
     }
 }
