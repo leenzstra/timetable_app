@@ -1,32 +1,27 @@
 package com.leenz.pnrpu.fragments;
 
-import android.content.Context;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.leenz.pnrpu.adapters.LessonAdapter;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.leenz.pnrpu.R;
+import com.leenz.pnrpu.adapters.LessonAdapter;
 import com.leenz.pnrpu.models.Day;
 import com.leenz.pnrpu.models.Lesson;
 import com.leenz.pnrpu.models.Timetable;
+import com.leenz.pnrpu.utils.JSONReader;
 
-import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -83,10 +78,8 @@ public class TimetableFragment extends Fragment implements View.OnClickListener 
         // JSON запрос
         //Пример. Чтение из файла TODO: заменить
         try {
-           timetable = readTimeTableJSONFile(getContext());
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
+           timetable = JSONReader.readTimeTableJSONFile(getContext());
+        } catch (IOException | JSONException e) {
             e.printStackTrace();
         }
         //
@@ -95,7 +88,7 @@ public class TimetableFragment extends Fragment implements View.OnClickListener 
     private LayoutInflater layoutInflater;
     private void generateObjects(Timetable timetable) {
         Day currDay = getCurrentDay(timetable);
-        RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.timetableRecyclerView);
+        RecyclerView recyclerView = rootView.findViewById(R.id.timetableRecyclerView);
         if(currDay != null){
 //            RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.timetableRecyclerView);
             Lesson[] lessons = sortLessons(currDay.getLessons());
@@ -141,78 +134,13 @@ public class TimetableFragment extends Fragment implements View.OnClickListener 
         cal.setTime(currentDate);
         int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
         for (Day curDay : timetable.getDays()) {
-            if(getDayOfWeekNumberFromString(curDay.getDayName()) == dayOfWeek
+            if(curDay.getDayOfWeekNumber() == dayOfWeek
                     && curDay.getWeekNum() == currentWeekNumber){
                 result = curDay;
                 break;
             }
         }
         return result;
-    }
-
-    private int getDayOfWeekNumberFromString(String dayName){
-        int curDayOfWeek = 7;
-        switch (dayName) {
-            case "ПОНЕДЕЛЬНИК":
-                curDayOfWeek = 1;
-                break;
-            case "ВТОРНИК":
-                curDayOfWeek = 2;
-                break;
-            case "СРЕДА":
-                curDayOfWeek = 3;
-                break;
-            case "ЧЕТВЕРГ":
-                curDayOfWeek = 4;
-                break;
-            case "ПЯТНИЦА":
-                curDayOfWeek = 5;
-                break;
-            case "СУББОТА":
-                curDayOfWeek = 6;
-                break;
-        }
-        return curDayOfWeek;
-    }
-
-    private Timetable readTimeTableJSONFile(Context context) throws IOException, JSONException{
-        String jsonText = readText(context, R.raw.example_refactor);
-
-        JSONObject jsonRoot = new JSONObject(jsonText);
-        JSONArray data = jsonRoot.getJSONArray("data");
-        Day[] days = new Day[data.length()];
-
-        for (int i = 0; i < data.length();i++){
-            JSONObject obj = data.getJSONObject(i);
-            JSONArray table = obj.getJSONArray("table");
-            Lesson[] lessons = new Lesson[table.length()];
-            for (int j = 0; j < table.length(); j++) {
-                JSONObject subject = table.getJSONObject(j);
-                String time = subject.getString("time");
-                String subjectName = subject.getString("subject_name");
-                String subjectType = subject.getString("subject_type");
-                String teacher = subject.getString("teacher");
-                String location = subject.getString("location");
-                lessons[j] = new Lesson(time,subjectName,subjectType,teacher,location);
-            }
-            int id = obj.getInt("id");
-            int groupId = obj.getInt("group_id");
-            days[i] = new Day(id, groupId, obj.getString("day"), obj.getInt("week_num"),lessons);
-        }
-        Timetable result = new Timetable(days);
-        return result;
-    }
-
-    private String readText(Context context, int resId) throws IOException{
-        InputStream is = context.getResources().openRawResource(resId);
-        BufferedReader br = new BufferedReader(new InputStreamReader(is));
-        StringBuilder sb = new StringBuilder();
-        String s = null;
-        while((s = br.readLine()) != null){
-            sb.append(s);
-            sb.append("\n");
-        }
-        return sb.toString();
     }
 
     private View rootView;
@@ -222,8 +150,8 @@ public class TimetableFragment extends Fragment implements View.OnClickListener 
         rootView = inflater.inflate(R.layout.fragment_timetable, container, false);
         layoutInflater = inflater;
         // DatePicker
-        Button prevButton = (Button) rootView.findViewById(R.id.previousDayButton);
-        Button nextButton = (Button) rootView.findViewById(R.id.nextDayButton);
+        Button prevButton = rootView.findViewById(R.id.previousDayButton);
+        Button nextButton = rootView.findViewById(R.id.nextDayButton);
         prevButton.setOnClickListener(this::onPrevButtonClick);
         nextButton.setOnClickListener(this::onNextButtonClick);
         updateDateTextView();
@@ -235,8 +163,8 @@ public class TimetableFragment extends Fragment implements View.OnClickListener 
     }
 
     private void updateDateTextView(){
-        TextView currentDateTV = (TextView) rootView.findViewById(R.id.monthYearTV);
-        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.YY", Locale.getDefault());
+        TextView currentDateTV = rootView.findViewById(R.id.monthYearTV);
+        @SuppressLint("WeekBasedYear") SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yy", Locale.getDefault());
         String currentDateString = sdf.format(currentDate);
 
 //        long diffInMilles = Math.abs(currentDate.getTime() - calendar.getTime().getTime());
@@ -247,7 +175,7 @@ public class TimetableFragment extends Fragment implements View.OnClickListener 
         int currentWeekOfYear = tempCalendar.get(Calendar.WEEK_OF_YEAR);
         currentWeekNumber = 1 + Math.abs((currentWeekOfYear - septemberWeekOfYear))% 2;
         Day currentDay = getCurrentDay(timetable);
-        String currentDayName = "ВОСКРЕСЕНЬЕ";
+        String currentDayName = getString(R.string.default_day_string);
         if(currentDay != null) {
             currentDayName = currentDay.getDayName();
         }
