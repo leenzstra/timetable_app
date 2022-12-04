@@ -4,34 +4,59 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TimetableFragment">
+    android:background="@color/design_default_color_surface"
+    tools:context=".fragments.TimetableFragment">
 
-        <Button
-            android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/timetableRecyclerView"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/previousDayButton"
-            android:layout_marginTop="22dp"
-            android:layout_gravity="start"
-            android:layout_marginStart="24dp"
-            android:text="@string/navigate_before_text"
-            android:onClick="previousDayAction"/>
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/monthYearTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="28dp"
-        android:text="@string/currentDateText" />
+        <FrameLayout
+            android:id="@+id/datePickerFrameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
 
-    <Button
-        android:id="@+id/nextDayButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:layout_marginTop="22dp"
-        android:layout_marginEnd="24dp"
-        android:text="@string/navigate_next_text"
-        android:onClick="nextDayAction"/>
+            <Button
+                android:id="@+id/previousDayButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginStart="24dp"
+                android:layout_marginBottom="22dp"
+                android:onClick="previousDayAction"
+                android:text="@string/navigate_before_text" />
+
+            <TextView
+                android:id="@+id/monthYearTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                style="@style/lobsterStyle"
+                android:layout_marginBottom="28dp"
+                android:text="@string/currentDateText" />
+
+            <Button
+                android:id="@+id/nextDayButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginBottom="22dp"
+                android:layout_marginEnd="24dp"
+                android:onClick="nextDayAction"
+                android:text="@string/navigate_next_text" />
+
+        </FrameLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

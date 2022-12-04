@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">timetable_test</string>
+    <string name="app_name">Расписание</string>
     <string name="title_activity_main">MainActivity</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -16,5 +16,11 @@
     <string name="navigate_next_text">Вперёд</string>
     <string name="currentDateText">08.09.22</string>
     <string name="timetable_bottom_nav_bar_text">Расписание</string>
-    <string name="professor_bottom_nav_bar_text">Преподователи</string>
+    <string name="professor_bottom_nav_bar_text">Преподаватели</string>
+    <string name="subjectNameTV_placeholder">Название предмета</string>
+    <string name="locationTV_placeholder">Номер кабинета</string>
+    <string name="teacherTV_placeholder">Имя преподавателя</string>
+    <string name="subjectTypeTV_placeholder">Тип предмета</string>
+    <string name="timeTV_placeholder">Время</string>
+    <string name="professor_fragment_placeholder_text">Professor Fragment</string>
 </resources>
