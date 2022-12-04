@@ -34,4 +34,29 @@ public class Day {
     public int getGroupId() {
         return groupId;
     }
+
+    public int getDayOfWeekNumber(){
+        int curDayOfWeek = 0;
+        switch (dayName) {
+            case "ПОНЕДЕЛЬНИК":
+                curDayOfWeek = 2;
+                break;
+            case "ВТОРНИК":
+                curDayOfWeek = 3;
+                break;
+            case "СРЕДА":
+                curDayOfWeek = 4;
+                break;
+            case "ЧЕТВЕРГ":
+                curDayOfWeek = 5;
+                break;
+            case "ПЯТНИЦА":
+                curDayOfWeek = 6;
+                break;
+            case "СУББОТА":
+                curDayOfWeek = 7;
+                break;
+        }
+        return curDayOfWeek;
+    }
 }

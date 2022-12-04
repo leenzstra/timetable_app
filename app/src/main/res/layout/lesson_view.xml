@@ -1,64 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="4dp"
+    android:layout_margin="0dp"
     android:background="@drawable/lessons_layout_bg"
-    style="@style/lobsterStyle">
-    <TextView
-        style="@style/lobsterStyle"
-        android:id="@+id/subjectNameTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/subjectNameTV_placeholder"
-        app:layout_constraintStart_toEndOf="@id/timeTV"
-        app:layout_constraintTop_toTopOf="parent" />
+    android:orientation="vertical"
+    android:stateListAnimator="@animator/lesson_selection">
 
-    <TextView
-        style="@style/lobsterStyle"
-        android:id="@+id/locationTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="@string/locationTV_placeholder"
-        app:layout_constraintStart_toStartOf="@id/subjectNameTV"
-        app:layout_constraintTop_toBottomOf="@id/subjectNameTV" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/timeTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?attr/textAppearanceHeadline5"
+            android:text="@string/timeTV_placeholder" />
 
-    <TextView
-        style="@style/lobsterStyle"
-        android:id="@+id/teacherTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="@string/teacherTV_placeholder"
-        app:layout_constraintStart_toEndOf="@+id/locationTV"
-        app:layout_constraintTop_toBottomOf="@+id/subjectTypeTV" />
+        <TextView
+            android:id="@+id/subjectNameTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/subjectNameTV_placeholder"
+            android:textAppearance="?attr/textAppearanceHeadline5" />
+    </LinearLayout>
 
-    <TextView
-        style="@style/lobsterStyle"
-        android:id="@+id/subjectTypeTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/subjectTypeTV_placeholder"
-        app:layout_constraintStart_toEndOf="@+id/subjectNameTV"
-        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        android:id="@+id/details_linear_layout"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <TextView
-        style="@style/lobsterStyle"
-        android:id="@+id/timeTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:text="@string/timeTV_placeholder"
-        app:layout_constraintBottom_toTopOf="@id/locationTV"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/subjectNameTV"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/teacherTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/teacherTV_placeholder"
+            android:layout_marginHorizontal="@dimen/fab_margin"
+            android:layout_marginTop="@dimen/fab_margin"/>
+        <TextView
+            android:id="@+id/locationTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/locationTV_placeholder"
+            android:layout_marginHorizontal="@dimen/fab_margin"/>
+        <TextView
+            android:id="@+id/subjectTypeTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/subjectTypeTV_placeholder"
+            android:layout_marginBottom="@dimen/fab_margin"
+            android:layout_marginHorizontal="@dimen/fab_margin"/>
+    </LinearLayout>
+
+</LinearLayout>

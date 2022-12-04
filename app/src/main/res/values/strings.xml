@@ -23,4 +23,5 @@
     <string name="subjectTypeTV_placeholder">Тип предмета</string>
     <string name="timeTV_placeholder">Время</string>
     <string name="professor_fragment_placeholder_text">Professor Fragment</string>
+    <string name="default_day_string">ВОСКРЕСЕНЬЕ</string>
 </resources>
