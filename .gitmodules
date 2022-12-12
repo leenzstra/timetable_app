@@ -1,0 +1,3 @@
+[submodule "timetable_server"]
+	path = timetable_server
+	url = https://github.com/leenzstra/timetable_server.git
