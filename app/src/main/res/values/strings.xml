@@ -30,9 +30,4 @@
     <string name="groupSharedPreferencesPath">groupId</string>
     <string name="professor_mark_string">Оценка</string>
     <string name="professor_review_string">Отзыв</string>
-
-    <string name="chooseGroupButton">Выбрать группу</string>
-    <string name="groupNameTVPlaceholder">GroupName</string>
-    <string name="groupSearchQueryHint">Название группы…</string>
-    <string name="groupSharedPreferencesPath">groupId</string>
 </resources>
