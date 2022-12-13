@@ -1,23 +1,26 @@
 package com.leenz.pnrpu.models;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-
-@Getter
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
 public class Professor {
-    @JsonProperty("id")
-    public Integer id;
-    @JsonProperty("name")
-    public String name;
-    @JsonProperty("department")
-    public String direction;
-    @JsonProperty("position")
-    public String position;
+    private final int image;
+    private final String name;
+    private final String department;
+    private final String position;
+
+    public Professor(int img, String name, String department, String position) {
+        this.image = img;
+        this.name = name;
+        this.department = department;
+        this.position = position;
+    }
+    public int getImage() {
+        return image;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDepartment() { return department; }
+    public String getPosition() { return position; }
+
 }
