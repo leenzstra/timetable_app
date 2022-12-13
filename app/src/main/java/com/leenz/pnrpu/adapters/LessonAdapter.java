@@ -35,7 +35,7 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.ViewHolder
     @SuppressLint("RecyclerView")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.getTimeView().setText(lessons[position].getTime());
+        holder.getTimeView().setText(lessons[position].getTimeString());
         holder.getSubjectNameView().setText(lessons[position].getSubjectName());
         holder.getSubjectTypeView().setText(lessons[position].getSubjectType());
         holder.getLocationView().setText(lessons[position].getLocation());

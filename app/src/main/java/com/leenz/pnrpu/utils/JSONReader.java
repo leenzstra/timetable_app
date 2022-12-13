@@ -12,10 +12,12 @@ import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.StatusLi
 import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.client.ClientProtocolException;
 import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.client.HttpClient;
 import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.client.methods.HttpGet;
+import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.client.utils.URIBuilder;
 import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.impl.client.DefaultHttpClient;
 import com.leenz.pnrpu.R;
 import com.leenz.pnrpu.models.Day;
 import com.leenz.pnrpu.models.Group;
+import com.leenz.pnrpu.models.Professor;
 import com.leenz.pnrpu.models.Timetable;
 
 import org.json.JSONArray;
@@ -26,6 +28,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -59,6 +66,29 @@ public class JSONReader {
         return sb.toString();
     }
 
+    private static String encodeValue(String value) throws UnsupportedEncodingException {
+        return URLEncoder.encode(value, StandardCharsets.UTF_8.toString());
+    }
+
+    public static Timetable getTimetable(String group, String type) throws IOException, JSONException {
+        URL baseUrl = new URL("http://192.168.0.106:3000/timetable/timetables/");
+        URL url = new URL(baseUrl, encodeValue(group) + "/" + encodeValue(type));
+
+        JSONObject root = getJSONObjectByUrl(url.toString());
+        try {
+            JSONArray data = root.getJSONArray("data");
+            System.out.println(data);
+            ObjectMapper objectMapper = new ObjectMapper();
+            Day[] daysArray = objectMapper.readValue(data.toString(), Day[].class);
+            System.out.println("bebra");
+//            System.out.println(daysArray[0].toString());
+            return new Timetable(daysArray);
+        } catch (JSONException | JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public static List<Group> getGroupList(){
         JSONObject root = getJSONObjectByUrl("http://192.168.0.106:3000/timetable/groups/");
         try {
@@ -66,6 +96,19 @@ public class JSONReader {
             ObjectMapper objectMapper = new ObjectMapper();
             Group[] groupArray = objectMapper.readValue(data.toString(), Group[].class);
             return Arrays.stream(groupArray).collect(Collectors.toList());
+        } catch (JSONException | JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static List<Professor> getProfessorList(){
+        JSONObject root = getJSONObjectByUrl("http://192.168.0.106:3000/teachers");
+        try {
+            JSONArray data = root.getJSONArray("data");
+            ObjectMapper objectMapper = new ObjectMapper();
+            Professor[] professorArray = objectMapper.readValue(data.toString(), Professor[].class);
+            return Arrays.stream(professorArray).collect(Collectors.toList());
         } catch (JSONException | JsonProcessingException e) {
             e.printStackTrace();
         }

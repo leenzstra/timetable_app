@@ -78,7 +78,7 @@ public class TimetableFragment extends Fragment implements View.OnClickListener 
         // JSON запрос
         //Пример. Чтение из файла TODO: заменить
         try {
-           timetable = JSONReader.readTimeTableJSONFile(getContext());
+           timetable = JSONReader.getTimetable("АСУ-19-1б", "Бакалавр (осенний, до смены)");
         } catch (IOException | JSONException e) {
             e.printStackTrace();
         }
@@ -91,7 +91,8 @@ public class TimetableFragment extends Fragment implements View.OnClickListener 
         RecyclerView recyclerView = rootView.findViewById(R.id.timetableRecyclerView);
         if(currDay != null){
 //            RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.timetableRecyclerView);
-            Lesson[] lessons = sortLessons(currDay.getLessons());
+//            Lesson[] lessons = sortLessons(currDay.getLessons());
+            Lesson[] lessons = currDay.getLessons();
             recyclerView.setAdapter(new LessonAdapter(lessons));
             recyclerView.setLayoutManager(new LinearLayoutManager(layoutInflater.getContext()));
         }
@@ -100,33 +101,6 @@ public class TimetableFragment extends Fragment implements View.OnClickListener 
         }
     }
 
-    private Lesson[] sortLessons(Lesson[] lessons){
-        Lesson[] result = new Lesson[lessons.length];
-        for (Lesson less: lessons
-             ) {
-            switch (less.getTime()){
-                case "8:00":
-                    result[0] = less;
-                    break;
-                case "9:40":
-                    result[1] = less;
-                    break;
-                case "11:30":
-                    result[2] = less;
-                    break;
-                case "13:20":
-                    result[3] = less;
-                    break;
-                case "15:00":
-                    result[4] = less;
-                    break;
-                case "16:40":
-                    result[5] = less;
-                    break;
-            }
-        }
-        return result;
-    }
 
     private Day getCurrentDay(Timetable timetable){
         Day result = null;
