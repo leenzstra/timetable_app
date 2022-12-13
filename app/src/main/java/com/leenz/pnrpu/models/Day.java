@@ -1,39 +1,31 @@
 package com.leenz.pnrpu.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+@Getter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Day {
-    private final int id;
-    private final int groupId;
-    private final String dayName;
-    private final int weekNum;
-    private final Lesson[] lessons;
+    @JsonProperty("id")
+    private int id;
 
-    public Day(int id, int groupId, String dayName, int weekNum, Lesson[] lessons) {
-        this.id = id;
-        this.groupId = groupId;
-        this.dayName = dayName;
-        this.weekNum = weekNum;
-        this.lessons = lessons;
-    }
+    @JsonProperty("group_id")
+    private int groupId;
 
-    public String getDayName() {
-        return dayName;
-    }
+    @JsonProperty("day")
+    private String dayName;
 
-    public int getWeekNum() {
-        return weekNum;
-    }
+    @JsonProperty("week_num")
+    private int weekNum;
 
-    public Lesson[] getLessons() {
-        return lessons;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public int getGroupId() {
-        return groupId;
-    }
+    @JsonProperty("table")
+    private Lesson[] lessons;
 
     public int getDayOfWeekNumber(){
         int curDayOfWeek = 0;

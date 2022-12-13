@@ -1,36 +1,30 @@
 package com.leenz.pnrpu.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+@Getter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Lesson {
-    private final String time;
-    private final String subjectName;
-    private final String subjectType;
-    private final String teacherName;
-    private final String location;
+    @JsonProperty("time")
+    private String time;
 
-    public Lesson(String time, String subjectName, String subjectType, String teacherName, String location) {
-        this.time = time;
-        this.subjectName = subjectName;
-        this.subjectType = subjectType;
-        this.teacherName = teacherName;
-        this.location = location;
-    }
-    public String getTime() {
-        return time;
-    }
+    @JsonProperty("subject_name")
+    private String subjectName;
 
-    public String getSubjectName() {
-        return subjectName;
-    }
+    @JsonProperty("subject_type")
+    private String subjectType;
 
-    public String getSubjectType() {
-        return subjectType;
-    }
+    @JsonProperty("teacher")
+    private String teacherName;
 
-    public String getTeacherName() {
-        return teacherName;
-    }
+    @JsonProperty("location")
+    private String location;
 
-    public String getLocation() {
-        return location;
-    }
 }
