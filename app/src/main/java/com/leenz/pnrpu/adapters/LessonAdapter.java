@@ -43,14 +43,14 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.ViewHolder
         final boolean isExpanded = position == mExpandedPosition;
         holder.detailsView.setVisibility(isExpanded ? View.VISIBLE:View.GONE);
         holder.itemView.setActivated(isExpanded);
-        holder.itemView.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
+        if(!holder.getSubjectNameView().getText().equals("")){
+            holder.itemView.setOnClickListener(v -> {
                 mExpandedPosition = isExpanded ? -1: position;
                 TransitionManager.beginDelayedTransition(parent);
                 notifyDataSetChanged();
-            }
-        });
+            });
+        }
+
     }
 
     @Override

@@ -74,19 +74,25 @@ public class TimetableFragment extends Fragment implements View.OnClickListener 
         currentDate = new Date();
         calendar.set(2022,9,1,0,0);
         calendar.setFirstDayOfWeek(Calendar.MONDAY);
+        setTimetableByGroupName("АСУ-19-1б");
+    }
 
-        // JSON запрос
-        //Пример. Чтение из файла TODO: заменить
+    public void setTimetableByGroupName(String groupName){
         try {
-           timetable = JSONReader.getTimetable("АСУ-19-1б", "Бакалавр (осенний, до смены)");
+            Timetable tmpTimetable = JSONReader.getTimetable(groupName, "Бакалавр (осенний, до смены)");
+            if(tmpTimetable != null){
+                timetable = tmpTimetable;
+                generateObjects(timetable);
+            }
+
         } catch (IOException | JSONException e) {
             e.printStackTrace();
         }
-        //
     }
 
     private LayoutInflater layoutInflater;
     private void generateObjects(Timetable timetable) {
+        if(rootView == null) return;
         Day currDay = getCurrentDay(timetable);
         RecyclerView recyclerView = rootView.findViewById(R.id.timetableRecyclerView);
         if(currDay != null){

@@ -4,7 +4,7 @@
     <item android:title="@string/timetable_bottom_nav_bar_text"
           android:id="@+id/timetable"
           android:icon="@drawable/ic_baseline_timetable_24"/>
-<!--    <item android:title="@string/professor_bottom_nav_bar_text"-->
-<!--          android:id="@+id/professor"-->
-<!--          android:icon="@drawable/ic_baseline_professor_24"/>-->
+    <item android:title="@string/professor_bottom_nav_bar_text"
+          android:id="@+id/professor"
+          android:icon="@drawable/ic_baseline_professor_24"/>
 </menu>
