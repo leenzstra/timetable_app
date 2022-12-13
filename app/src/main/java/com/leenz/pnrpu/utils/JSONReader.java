@@ -1,10 +1,21 @@
 package com.leenz.pnrpu.utils;
 
 import android.content.Context;
+import android.os.AsyncTask;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.firebase.crashlytics.buildtools.reloc.org.apache.commons.io.output.ByteArrayOutputStream;
+import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.HttpResponse;
+import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.HttpStatus;
+import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.StatusLine;
+import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.client.ClientProtocolException;
+import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.client.HttpClient;
+import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.client.methods.HttpGet;
+import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.impl.client.DefaultHttpClient;
 import com.leenz.pnrpu.R;
 import com.leenz.pnrpu.models.Day;
-import com.leenz.pnrpu.models.Lesson;
+import com.leenz.pnrpu.models.Group;
 import com.leenz.pnrpu.models.Timetable;
 
 import org.json.JSONArray;
@@ -15,6 +26,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import lombok.SneakyThrows;
+
 
 public class JSONReader {
     public static Timetable readTimeTableJSONFile(Context context) throws IOException, JSONException {
@@ -22,26 +39,12 @@ public class JSONReader {
 
         JSONObject jsonRoot = new JSONObject(jsonText);
         JSONArray data = jsonRoot.getJSONArray("data");
-        Day[] days = new Day[data.length()];
 
-        for (int i = 0; i < data.length();i++){
-            JSONObject obj = data.getJSONObject(i);
-            JSONArray table = obj.getJSONArray("table");
-            Lesson[] lessons = new Lesson[table.length()];
-            for (int j = 0; j < table.length(); j++) {
-                JSONObject subject = table.getJSONObject(j);
-                String time = subject.getString("time");
-                String subjectName = subject.getString("subject_name");
-                String subjectType = subject.getString("subject_type");
-                String teacher = subject.getString("teacher");
-                String location = subject.getString("location");
-                lessons[j] = new Lesson(time,subjectName,subjectType,teacher,location);
-            }
-            int id = obj.getInt("id");
-            int groupId = obj.getInt("group_id");
-            days[i] = new Day(id, groupId, obj.getString("day"), obj.getInt("week_num"),lessons);
-        }
-        return new Timetable(days);
+        ObjectMapper objectMapper = new ObjectMapper();
+        Day[] daysArray = objectMapper.readValue(data.toString(), Day[].class);
+
+        return new Timetable(daysArray);
+
     }
 
     private static String readText(Context context, int resId) throws IOException{
@@ -54,5 +57,59 @@ public class JSONReader {
             sb.append("\n");
         }
         return sb.toString();
+    }
+
+    public static List<Group> getGroupList(){
+        JSONObject root = getJSONObjectByUrl("http://192.168.0.106:3000/timetable/groups/");
+        try {
+            JSONArray data = root.getJSONArray("data");
+            ObjectMapper objectMapper = new ObjectMapper();
+            Group[] groupArray = objectMapper.readValue(data.toString(), Group[].class);
+            return Arrays.stream(groupArray).collect(Collectors.toList());
+        } catch (JSONException | JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @SneakyThrows
+    private static JSONObject getJSONObjectByUrl(String urlString){
+        AsyncTask<String, String, String> t = new RequestTask().execute(urlString);
+        return new JSONObject(t.get());
+    }
+
+    static class RequestTask extends AsyncTask<String, String, String> {
+
+        @Override
+        protected String doInBackground(String... uri) {
+            HttpClient httpclient = new DefaultHttpClient();
+            HttpResponse response;
+            String responseString = null;
+            try {
+                response = httpclient.execute(new HttpGet(uri[0]));
+                StatusLine statusLine = response.getStatusLine();
+                if(statusLine.getStatusCode() == HttpStatus.SC_OK){
+                    ByteArrayOutputStream out = new ByteArrayOutputStream();
+                    response.getEntity().writeTo(out);
+                    responseString = out.toString();
+                    out.close();
+                } else{
+                    //Closes the connection.
+                    response.getEntity().getContent().close();
+                    throw new IOException(statusLine.getReasonPhrase());
+                }
+            } catch (ClientProtocolException e) {
+                //TODO Handle problems..
+            } catch (IOException e) {
+                //TODO Handle problems..
+            }
+            return responseString;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            //Do anything with response..
+        }
     }
 }
