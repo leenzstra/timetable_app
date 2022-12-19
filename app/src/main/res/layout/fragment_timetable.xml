@@ -149,10 +149,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
-                app:layout_constraintBottom_toTopOf="@id/bottomBar"
-                app:layout_constraintStart_toStartOf="parent"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:orientation="horizontal">
+                app:layout_constraintStart_toStartOf="parent">
 
                 <LinearLayout
                     android:id="@+id/linearIconButton"
@@ -240,138 +240,139 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <FrameLayout
-                android:id="@+id/bottomBar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent">
+<!--            <FrameLayout-->
+<!--                android:id="@+id/bottomBar"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent">-->
 
-                <LinearLayout
-                    android:id="@+id/linearRowperson"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="@dimen/_12pxv"
-                    android:layout_marginBottom="@dimen/_16pxv"
-                    android:orientation="horizontal"
-                    android:baselineAligned="false">
+<!--                <LinearLayout-->
+<!--                    android:id="@+id/linearRowperson"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_marginTop="@dimen/_12pxv"-->
+<!--                    android:layout_marginBottom="@dimen/_16pxv"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    android:baselineAligned="false">-->
 
-                    <LinearLayout
-                        android:id="@+id/linearItem"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_8pxv"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
+<!--                    <LinearLayout-->
+<!--                        android:id="@+id/linearItem"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="@dimen/_8pxv"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:orientation="vertical">-->
 
-                        <ImageView
-                            android:id="@+id/imagePerson"
-                            android:layout_width="@dimen/_16pxh"
-                            android:layout_height="@dimen/_16pxh"
-                            android:layout_gravity="center"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/img_person"
-                            tools:ignore="ContentDescription"
-                            tools:src="@drawable/img_person" />
+<!--                        <ImageView-->
+<!--                            android:id="@+id/imagePerson"-->
+<!--                            android:layout_width="@dimen/_16pxh"-->
+<!--                            android:layout_height="@dimen/_16pxh"-->
+<!--                            android:layout_gravity="center"-->
+<!--                            android:scaleType="fitXY"-->
+<!--                            android:src="@drawable/img_person"-->
+<!--                            tools:ignore="ContentDescription"-->
+<!--                            tools:src="@drawable/img_person" />-->
 
-                        <TextView
-                            android:id="@+id/professorsButtonLabelTV"
-                            style="@style/txtRobotomedium12_1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/_2pxh"
-                            android:layout_marginTop="@dimen/_15pxv"
-                            android:layout_marginEnd="@dimen/_2pxh"
-                            android:ellipsize="end"
-                            android:gravity="center_horizontal"
-                            android:letterSpacing="0.03"
-                            android:lineSpacingExtra="@dimen/_1pxh"
-                            android:singleLine="true"
-                            android:text="@{timetablepageVM.timetablepageModel.professorsLabel}"
-                            tools:text="@string/lbl5" />
-                    </LinearLayout>
+<!--                        <TextView-->
+<!--                            android:id="@+id/professorsButtonLabelTV"-->
+<!--                            style="@style/txtRobotomedium12_1"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginStart="@dimen/_2pxh"-->
+<!--                            android:layout_marginTop="@dimen/_15pxv"-->
+<!--                            android:layout_marginEnd="@dimen/_2pxh"-->
+<!--                            android:ellipsize="end"-->
+<!--                            android:gravity="center_horizontal"-->
+<!--                            android:letterSpacing="0.03"-->
+<!--                            android:lineSpacingExtra="@dimen/_1pxh"-->
+<!--                            android:singleLine="true"-->
+<!--                            android:text="@{timetablepageVM.timetablepageModel.professorsLabel}"-->
+<!--                            tools:text="@string/lbl5" />-->
+<!--                    </LinearLayout>-->
 
-                    <LinearLayout
-                        android:id="@+id/linearItem1"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/_2pxv"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
+<!--                    <LinearLayout-->
+<!--                        android:id="@+id/linearItem1"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginBottom="@dimen/_2pxv"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:orientation="vertical">-->
 
-                        <FrameLayout
-                            android:id="@+id/frameIcon"
-                            style="@style/groupStyleblue_2"
-                            android:layout_width="@dimen/_64pxh"
-                            android:layout_height="@dimen/_32pxv"
-                            android:layout_gravity="center_horizontal">
+<!--                        <FrameLayout-->
+<!--                            android:id="@+id/frameIcon"-->
+<!--                            style="@style/groupStyleblue_2"-->
+<!--                            android:layout_width="@dimen/_64pxh"-->
+<!--                            android:layout_height="@dimen/_32pxv"-->
+<!--                            android:layout_gravity="center_horizontal">-->
 
-                            <ImageView
-                                android:id="@+id/imageVector"
-                                android:layout_width="@dimen/_16pxh"
-                                android:layout_height="@dimen/_20pxh"
-                                android:layout_gravity="center"
-                                android:layout_marginTop="@dimen/_5pxv"
-                                android:layout_marginBottom="@dimen/_6pxv"
-                                android:scaleType="fitXY"
-                                android:src="@drawable/img_vector"
-                                tools:ignore="ContentDescription"
-                                tools:src="@drawable/img_vector" />
-                        </FrameLayout>
+<!--                            <ImageView-->
+<!--                                android:id="@+id/imageVector"-->
+<!--                                android:layout_width="@dimen/_16pxh"-->
+<!--                                android:layout_height="@dimen/_20pxh"-->
+<!--                                android:layout_gravity="center"-->
+<!--                                android:layout_marginTop="@dimen/_5pxv"-->
+<!--                                android:layout_marginBottom="@dimen/_6pxv"-->
+<!--                                android:scaleType="fitXY"-->
+<!--                                android:src="@drawable/img_vector"-->
+<!--                                tools:ignore="ContentDescription"-->
+<!--                                tools:src="@drawable/img_vector" />-->
+<!--                        </FrameLayout>-->
 
-                        <TextView
-                            android:id="@+id/timetableButtonLabelTV"
-                            style="@style/txtRobotomedium12_1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/_2pxh"
-                            android:layout_marginTop="@dimen/_5pxv"
-                            android:layout_marginEnd="@dimen/_2pxh"
-                            android:ellipsize="end"
-                            android:gravity="center_horizontal"
-                            android:letterSpacing="0.03"
-                            android:lineSpacingExtra="@dimen/_1pxh"
-                            android:singleLine="true"
-                            android:text="@{timetablepageVM.timetablepageModel.timetableLabel}"
-                            tools:text="@string/lbl" />
-                    </LinearLayout>
+<!--                        <TextView-->
+<!--                            android:id="@+id/timetableButtonLabelTV"-->
+<!--                            style="@style/txtRobotomedium12_1"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginStart="@dimen/_2pxh"-->
+<!--                            android:layout_marginTop="@dimen/_5pxv"-->
+<!--                            android:layout_marginEnd="@dimen/_2pxh"-->
+<!--                            android:ellipsize="end"-->
+<!--                            android:gravity="center_horizontal"-->
+<!--                            android:letterSpacing="0.03"-->
+<!--                            android:lineSpacingExtra="@dimen/_1pxh"-->
+<!--                            android:singleLine="true"-->
+<!--                            android:text="@{timetablepageVM.timetablepageModel.timetableLabel}"-->
+<!--                            tools:text="@string/lbl" />-->
+<!--                    </LinearLayout>-->
 
-                    <LinearLayout
-                        android:id="@+id/linearItem2"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_9pxv"
-                        android:layout_marginBottom="@dimen/_2pxv"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
+<!--                    <LinearLayout-->
+<!--                        android:id="@+id/linearItem2"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="@dimen/_9pxv"-->
+<!--                        android:layout_marginBottom="@dimen/_2pxv"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:orientation="vertical">-->
 
-                        <ImageView
-                            android:id="@+id/imageVectorOne"
-                            android:layout_width="@dimen/_18pxh"
-                            android:layout_height="@dimen/_13pxh"
-                            android:layout_gravity="center"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/img_vector_gray_911"
-                            tools:ignore="ContentDescription"
-                            tools:src="@drawable/img_vector_gray_911" />
+<!--                        <ImageView-->
+<!--                            android:id="@+id/imageVectorOne"-->
+<!--                            android:layout_width="@dimen/_18pxh"-->
+<!--                            android:layout_height="@dimen/_13pxh"-->
+<!--                            android:layout_gravity="center"-->
+<!--                            android:scaleType="fitXY"-->
+<!--                            android:src="@drawable/img_vector_gray_911"-->
+<!--                            tools:ignore="ContentDescription"-->
+<!--                            tools:src="@drawable/img_vector_gray_911" />-->
 
-                        <TextView
-                            android:id="@+id/menuButtonLabelTV"
-                            style="@style/txtRobotomedium12_1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/_2pxh"
-                            android:layout_marginTop="@dimen/_15pxv"
-                            android:layout_marginEnd="@dimen/_2pxh"
-                            android:ellipsize="end"
-                            android:gravity="center_horizontal"
-                            android:letterSpacing="0.03"
-                            android:lineSpacingExtra="@dimen/_1pxh"
-                            android:singleLine="true"
-                            android:text="@{timetablepageVM.timetablepageModel.menuLabel}"
-                            tools:text="@string/lbl6" />
-                    </LinearLayout>
-                </LinearLayout>
-            </FrameLayout>
+<!--                        <TextView-->
+<!--                            android:id="@+id/menuButtonLabelTV"-->
+<!--                            style="@style/txtRobotomedium12_1"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginStart="@dimen/_2pxh"-->
+<!--                            android:layout_marginTop="@dimen/_15pxv"-->
+<!--                            android:layout_marginEnd="@dimen/_2pxh"-->
+<!--                            android:ellipsize="end"-->
+<!--                            android:gravity="center_horizontal"-->
+<!--                            android:letterSpacing="0.03"-->
+<!--                            android:lineSpacingExtra="@dimen/_1pxh"-->
+<!--                            android:singleLine="true"-->
+<!--                            android:text="@{timetablepageVM.timetablepageModel.menuLabel}"-->
+<!--                            tools:text="@string/lbl6" />-->
+<!--                    </LinearLayout>-->
+<!--                </LinearLayout>-->
+<!--            </FrameLayout>-->
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 

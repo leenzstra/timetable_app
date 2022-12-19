@@ -97,18 +97,18 @@ public class MainActivity extends AppCompatActivity {
 //        });
 
 
-//        activityMainBinding.bottomNavigationView.setOnItemSelectedListener(item -> {
-//
-//            switch (item.getItemId()){
-//                case R.id.timetable:
-//                    replaceFragment(timetableFragment);
-//                    break;
-//                case R.id.professor:
-//                    replaceFragment(professorFragment);
-//                    break;
-//            }
-//            return true;
-//        });
+        activityMainBinding.bottomNavigation.setOnItemSelectedListener(item -> {
+
+            switch (item.getItemId()){
+                case R.id.timetable:
+                    replaceFragment(timetableFragment);
+                    break;
+                case R.id.professor:
+                    replaceFragment(professorFragment);
+                    break;
+            }
+            return true;
+        });
 
 
     }
@@ -119,13 +119,13 @@ public class MainActivity extends AppCompatActivity {
     public void replaceFragment(Fragment fragment){
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.coordinatorLayout,fragment);
+        fragmentTransaction.replace(R.id.frame_layout,fragment);
         fragmentTransaction.commit();
     }
     public void pushFragment(Fragment fragment){
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.coordinatorLayout,fragment);
+        fragmentTransaction.replace(R.id.frame_layout,fragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
