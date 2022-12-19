@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.leenz.pnrpu.R;
-import com.leenz.pnrpu.models.Lesson;
+import com.leenz.pnrpu.models.timetablemodels.Lesson;
 
 public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.ViewHolder> {
 

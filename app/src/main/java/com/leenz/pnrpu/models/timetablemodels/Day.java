@@ -1,4 +1,4 @@
-package com.leenz.pnrpu.models;
+package com.leenz.pnrpu.models.timetablemodels;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

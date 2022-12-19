@@ -4,26 +4,19 @@ import static android.app.PendingIntent.getActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.os.Bundle;
-import android.os.Parcelable;
-import android.transition.TransitionManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.leenz.pnrpu.R;
 import com.leenz.pnrpu.activities.MainActivity;
 import com.leenz.pnrpu.fragments.ProfessorSingleFragment;
-import com.leenz.pnrpu.models.Professor;
+import com.leenz.pnrpu.models.timetablemodels.Professor;
 
 public class ProfessorAdapter extends RecyclerView.Adapter<ProfessorAdapter.ViewHolder> {
 

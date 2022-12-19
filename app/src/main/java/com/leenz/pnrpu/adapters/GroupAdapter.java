@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.leenz.pnrpu.R;
 import com.leenz.pnrpu.activities.MainActivity;
-import com.leenz.pnrpu.models.Group;
+import com.leenz.pnrpu.models.timetablemodels.Group;
 
 import java.util.List;
 

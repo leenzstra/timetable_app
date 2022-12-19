@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable name="teacherpageModel" type="com.leenz.pnrpu.models.pagesmodels.TeacherpageModel"/>
+    </data>
+    <LinearLayout android:gravity="start"
+        android:id="@+id/linearTeacherCard"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/_12pxh"
+        android:layout_marginStart="@dimen/_21pxh"
+        android:layout_marginTop="@dimen/_5pxv"
+        android:layout_width="match_parent"
+        android:orientation="horizontal" style="@style/groupStylewhite_1">
+        <View
+            android:background="@drawable/rectangle_bg_bluegray_100_radius_20"
+            android:id="@+id/viewEllipseOne"
+            android:layout_height="@dimen/_40pxh"
+            android:layout_marginBottom="@dimen/_19pxv"
+            android:layout_marginStart="@dimen/_9pxh"
+            android:layout_marginTop="@dimen/_19pxv" android:layout_width="@dimen/_40pxh"/>
+        <LinearLayout android:gravity="start"
+            android:id="@+id/linearColumnfourteen"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_9pxv"
+            android:layout_marginStart="@dimen/_17pxh"
+            android:layout_marginTop="@dimen/_8pxv"
+            android:layout_weight="0.83"
+            android:layout_width="0dp" android:orientation="vertical">
+            <TextView android:ellipsize="end"
+                android:id="@+id/professorNameTV"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_10pxh"
+                android:layout_width="match_parent"
+                android:letterSpacing="0.01"
+                android:lineSpacingExtra="@dimen/_1pxh"
+                android:singleLine="true"
+                android:text="@{teacherpageModel.professorName}"
+                style="@style/txtRobotoromanmedium15" tools:text="@string/msg3"/>
+            <TextView android:ellipsize="end"
+                android:id="@+id/professorPositionTV"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_10pxh"
+                android:layout_marginTop="@dimen/_1pxv"
+                android:layout_width="wrap_content"
+                android:letterSpacing="0.01"
+                android:lineSpacingExtra="@dimen/_1pxh"
+                android:singleLine="true"
+                android:text="@{teacherpageModel.professorPosition}"
+                style="@style/txtRobotoromanregular12" tools:text="@string/lbl7"/>
+            <TextView android:id="@+id/professorsDepartmentTV"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_10pxh"
+                android:layout_marginTop="@dimen/_5pxv"
+                android:layout_width="match_parent"
+                android:letterSpacing="0.01"
+                android:lineSpacingExtra="@dimen/_2pxh"
+                android:text="@{teacherpageModel.professorsDepartment}"
+                style="@style/txtRobotoromanregular11" tools:text="@string/msg4"/>
+        </LinearLayout>
+        <ImageView android:id="@+id/imageArrowright"
+            android:layout_height="@dimen/_11pxh"
+            android:layout_marginBottom="@dimen/_33pxv"
+            android:layout_marginEnd="@dimen/_11pxh"
+            android:layout_marginStart="@dimen/_17pxh"
+            android:layout_marginTop="@dimen/_33pxv"
+            android:layout_width="@dimen/_6pxh"
+            android:scaleType="fitXY"
+            android:src="@drawable/img_arrowright_gray_912"
+            tools:ignore="ContentDescription" tools:src="@drawable/img_arrowright_gray_912"/>
+    </LinearLayout>
+</layout>

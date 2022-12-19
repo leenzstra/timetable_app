@@ -9,11 +9,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import com.leenz.pnrpu.R;
 import com.leenz.pnrpu.adapters.ProfessorAdapter;
-import com.leenz.pnrpu.models.Professor;
+import com.leenz.pnrpu.models.timetablemodels.Professor;
 
 /**
  * A simple {@link Fragment} subclass.

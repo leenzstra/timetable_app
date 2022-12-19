@@ -14,9 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.leenz.pnrpu.R;
 import com.leenz.pnrpu.adapters.LessonAdapter;
-import com.leenz.pnrpu.models.Day;
-import com.leenz.pnrpu.models.Lesson;
-import com.leenz.pnrpu.models.Timetable;
+import com.leenz.pnrpu.models.timetablemodels.Day;
+import com.leenz.pnrpu.models.timetablemodels.Lesson;
+import com.leenz.pnrpu.models.timetablemodels.Timetable;
 import com.leenz.pnrpu.utils.JSONReader;
 
 import org.json.JSONException;

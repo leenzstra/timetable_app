@@ -21,7 +21,7 @@ import com.leenz.pnrpu.adapters.GroupAdapter;
 import com.leenz.pnrpu.databinding.ActivityMainBinding;
 import com.leenz.pnrpu.fragments.ProfessorFragment;
 import com.leenz.pnrpu.fragments.TimetableFragment;
-import com.leenz.pnrpu.models.Group;
+import com.leenz.pnrpu.models.timetablemodels.Group;
 import com.leenz.pnrpu.utils.JSONReader;
 
 import java.util.ArrayList;

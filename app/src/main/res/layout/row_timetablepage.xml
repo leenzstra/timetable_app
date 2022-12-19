@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable name="timetablepageRowModel" type="com.leenz.pnrpu.models.pagesmodels.TimetablepageRowModel"/>
+    </data>
+    <LinearLayout android:id="@+id/linearTimetableCard"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent" android:orientation="horizontal">
+        <androidx.appcompat.widget.AppCompatButton
+            android:ellipsize="end" android:gravity="center"
+            android:id="@+id/btn8Zero"
+            android:layout_height="@dimen/_33pxv"
+            android:layout_marginBottom="@dimen/_17pxv"
+            android:layout_marginTop="@dimen/_23pxv"
+            android:layout_width="@dimen/_63pxh"
+            android:letterSpacing="0.01"
+            android:lineSpacingExtra="@dimen/_1pxh"
+            android:paddingBottom="@dimen/_9pxv"
+            android:paddingEnd="@dimen/_17pxh"
+            android:paddingStart="@dimen/_17pxh"
+            android:paddingTop="@dimen/_9pxv" android:singleLine="true"
+            android:text="@string/lbl_8_00" android:textAllCaps="false"
+            style="@style/btnSolidRounded" tools:text="@string/lbl_8_00"/>
+        <LinearLayout android:gravity="start"
+            android:id="@+id/linearSubjectCard"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_6pxh"
+            android:layout_weight="0.8" android:layout_width="0dp"
+            android:orientation="vertical" style="@style/groupStylewhite_1">
+            <LinearLayout android:id="@+id/linearRowone"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_4pxh"
+                android:layout_marginStart="@dimen/_7pxh"
+                android:layout_marginTop="@dimen/_5pxv"
+                android:layout_width="match_parent" android:orientation="horizontal">
+                <TextView android:id="@+id/lessonNameTV"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.81"
+                    android:layout_width="0dp"
+                    android:letterSpacing="0.01"
+                    android:lineSpacingExtra="@dimen/_6pxh"
+                    android:text="@{timetablepageRowModel.lessonName}"
+                    style="@style/txtRobotoromanmedium14" tools:text="@string/msg2"/>
+                <TextView android:ellipsize="end"
+                    android:id="@+id/lessonTypeTV"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_12pxv"
+                    android:layout_marginStart="@dimen/_42pxh"
+                    android:layout_marginTop="@dimen/_5pxv"
+                    android:layout_weight="0.19"
+                    android:layout_width="0dp"
+                    android:letterSpacing="0.0"
+                    android:paddingBottom="@dimen/_3pxv"
+                    android:paddingEnd="@dimen/_9pxh"
+                    android:paddingStart="@dimen/_9pxh"
+                    android:paddingTop="@dimen/_3pxv"
+                    android:singleLine="true"
+                    android:text="@{timetablepageRowModel.lessonType}"
+                    style="@style/txtSolidRounded" tools:text="@string/lbl2"/>
+            </LinearLayout>
+            <LinearLayout android:gravity="start"
+                android:id="@+id/linearRowellipseone"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_6pxv"
+                android:layout_marginEnd="@dimen/_10pxh"
+                android:layout_marginStart="@dimen/_7pxh"
+                android:layout_marginTop="@dimen/_2pxv"
+                android:layout_width="match_parent" android:orientation="horizontal">
+                <View
+                    android:background="@drawable/rectangle_bg_bluegray_100_radius_12"
+                    android:id="@+id/viewEllipseOne"
+                    android:layout_height="@dimen/_24pxh" android:layout_width="@dimen/_24pxh"/>
+                <TextView android:ellipsize="end"
+                    android:id="@+id/lessonProfessorNameTV"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_4pxv"
+                    android:layout_marginStart="@dimen/_7pxh"
+                    android:layout_marginTop="@dimen/_7pxv"
+                    android:layout_width="wrap_content"
+                    android:letterSpacing="0.01"
+                    android:lineSpacingExtra="@dimen/_1pxh"
+                    android:singleLine="true"
+                    android:text="@{timetablepageRowModel.lessonProfessorName}"
+                    style="@style/txtRobotoromanmedium12" tools:text="@string/lbl3"/>
+                <ImageView android:id="@+id/imageEllipse961"
+                    android:layout_height="@dimen/_2pxh"
+                    android:layout_marginBottom="@dimen/_10pxv"
+                    android:layout_marginStart="@dimen/_15pxh"
+                    android:layout_marginTop="@dimen/_10pxv"
+                    android:layout_width="@dimen/_2pxh"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/img_ellipse961"
+                    tools:ignore="ContentDescription" tools:src="@drawable/img_ellipse961"/>
+                <TextView android:ellipsize="end"
+                    android:id="@+id/lessonLocationTV"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_6pxv"
+                    android:layout_marginStart="@dimen/_15pxh"
+                    android:layout_marginTop="@dimen/_5pxv"
+                    android:layout_width="wrap_content"
+                    android:letterSpacing="0.01"
+                    android:lineSpacingExtra="@dimen/_1pxh"
+                    android:singleLine="true"
+                    android:text="@{timetablepageRowModel.lessonLocation}"
+                    style="@style/txtRobotoromanmedium12" tools:text="@string/lbl_201"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</layout>

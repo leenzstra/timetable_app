@@ -12,13 +12,12 @@ import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.StatusLi
 import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.client.ClientProtocolException;
 import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.client.HttpClient;
 import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.client.methods.HttpGet;
-import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.client.utils.URIBuilder;
 import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.impl.client.DefaultHttpClient;
 import com.leenz.pnrpu.R;
-import com.leenz.pnrpu.models.Day;
-import com.leenz.pnrpu.models.Group;
-import com.leenz.pnrpu.models.Professor;
-import com.leenz.pnrpu.models.Timetable;
+import com.leenz.pnrpu.models.timetablemodels.Day;
+import com.leenz.pnrpu.models.timetablemodels.Group;
+import com.leenz.pnrpu.models.timetablemodels.Professor;
+import com.leenz.pnrpu.models.timetablemodels.Timetable;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,7 +28,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
