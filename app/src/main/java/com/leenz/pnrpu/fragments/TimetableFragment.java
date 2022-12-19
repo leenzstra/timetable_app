@@ -79,7 +79,7 @@ public class TimetableFragment extends Fragment implements View.OnClickListener 
 
     public void setTimetableByGroupName(String groupName){
         try {
-            Timetable tmpTimetable = JSONReader.getTimetable(groupName, "Бакалавр (осенний, до смены)");
+            Timetable tmpTimetable = JSONReader.getTimetable(groupName, "Бакалавр (осенний, после смены)");
             if(tmpTimetable != null){
                 timetable = tmpTimetable;
                 generateObjects(timetable);
