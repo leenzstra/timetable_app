@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
@@ -94,7 +95,7 @@ public class TimetableFragment extends Fragment implements View.OnClickListener 
     private void generateObjects(Timetable timetable) {
         if(rootView == null) return;
         Day currDay = getCurrentDay(timetable);
-        RecyclerView recyclerView = rootView.findViewById(R.id.timetableRecyclerView);
+        RecyclerView recyclerView = rootView.findViewById(R.id.recyclerTimetablepage);
         if(currDay != null){
 //            RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.timetableRecyclerView);
 //            Lesson[] lessons = sortLessons(currDay.getLessons());
@@ -130,8 +131,8 @@ public class TimetableFragment extends Fragment implements View.OnClickListener 
         rootView = inflater.inflate(R.layout.fragment_timetable, container, false);
         layoutInflater = inflater;
         // DatePicker
-        Button prevButton = rootView.findViewById(R.id.previousDayButton);
-        Button nextButton = rootView.findViewById(R.id.nextDayButton);
+        ImageButton prevButton = rootView.findViewById(R.id.btnArrowleft);
+        ImageButton nextButton = rootView.findViewById(R.id.btnArrowright);
         prevButton.setOnClickListener(this::onPrevButtonClick);
         nextButton.setOnClickListener(this::onNextButtonClick);
         updateDateTextView();
@@ -143,7 +144,7 @@ public class TimetableFragment extends Fragment implements View.OnClickListener 
     }
 
     private void updateDateTextView(){
-        TextView currentDateTV = rootView.findViewById(R.id.monthYearTV);
+        TextView currentDateTV = rootView.findViewById(R.id.dateTV);
         @SuppressLint("WeekBasedYear") SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yy", Locale.getDefault());
         String currentDateString = sdf.format(currentDate);
 

@@ -58,7 +58,7 @@ public class ProfessorFragment extends Fragment {
     }
     private LayoutInflater layoutInflater;
     private void generateObjects() {
-        RecyclerView recyclerView = rootView.findViewById(R.id.professorRecyclerView);
+        RecyclerView recyclerView = rootView.findViewById(R.id.recyclerProfessorpage);
 
 //      RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.timetableRecyclerView);
         Professor[] professors = new Professor[4];

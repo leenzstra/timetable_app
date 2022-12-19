@@ -66,49 +66,49 @@ public class MainActivity extends AppCompatActivity {
         replaceFragment(timetableFragment);
         groupList = JSONReader.getGroupList();
         sharedPreferences = this.getSharedPreferences("currentGroup", Context.MODE_PRIVATE);
-        groupSearchLayout = rootView.findViewById(R.id.groupSearchLayout);
-        groupSearchView = rootView.findViewById(R.id.groupSearchView);
-        groupSearchRecyclerView = rootView.findViewById(R.id.groupSearchRecyclerView);
-        groupSearchRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        groupSearchButton = rootView.findViewById(R.id.groupChooseButton);
-        groupSearchView.setOnQueryTextListener(new OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                filter(query);
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                filter(newText);
-                return false;
-            }
-        });
-
-
-        searchGroupAdapter = new GroupAdapter(groupList, sharedPreferences);
-        groupSearchRecyclerView.setAdapter(searchGroupAdapter);
-        groupSearchButton.setOnClickListener(v -> {
-            if(groupSearchLayout.getVisibility() == View.GONE){
-                groupSearchLayout.setVisibility(View.VISIBLE);
-            }else{
-                groupSearchLayout.setVisibility(View.GONE);
-            }
-        });
+//        groupSearchLayout = rootView.findViewById(R.id.groupSearchLayout);
+//        groupSearchView = rootView.findViewById(R.id.groupSearchView);
+//        groupSearchRecyclerView = rootView.findViewById(R.id.recyclerTimetablepage);
+//        groupSearchRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+//        groupSearchButton = rootView.findViewById(R.id.groupChooseButton);
+//        groupSearchView.setOnQueryTextListener(new OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String query) {
+//                filter(query);
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String newText) {
+//                filter(newText);
+//                return false;
+//            }
+//        });
 
 
-        activityMainBinding.bottomNavigationView.setOnItemSelectedListener(item -> {
+//        searchGroupAdapter = new GroupAdapter(groupList, sharedPreferences);
+//        groupSearchRecyclerView.setAdapter(searchGroupAdapter);
+//        groupSearchButton.setOnClickListener(v -> {
+//            if(groupSearchLayout.getVisibility() == View.GONE){
+//                groupSearchLayout.setVisibility(View.VISIBLE);
+//            }else{
+//                groupSearchLayout.setVisibility(View.GONE);
+//            }
+//        });
 
-            switch (item.getItemId()){
-                case R.id.timetable:
-                    replaceFragment(timetableFragment);
-                    break;
-                case R.id.professor:
-                    replaceFragment(professorFragment);
-                    break;
-            }
-            return true;
-        });
+
+//        activityMainBinding.bottomNavigationView.setOnItemSelectedListener(item -> {
+//
+//            switch (item.getItemId()){
+//                case R.id.timetable:
+//                    replaceFragment(timetableFragment);
+//                    break;
+//                case R.id.professor:
+//                    replaceFragment(professorFragment);
+//                    break;
+//            }
+//            return true;
+//        });
 
 
     }
@@ -119,13 +119,13 @@ public class MainActivity extends AppCompatActivity {
     public void replaceFragment(Fragment fragment){
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.frame_Layout,fragment);
+        fragmentTransaction.replace(R.id.coordinatorLayout,fragment);
         fragmentTransaction.commit();
     }
     public void pushFragment(Fragment fragment){
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.frame_Layout,fragment);
+        fragmentTransaction.replace(R.id.coordinatorLayout,fragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }

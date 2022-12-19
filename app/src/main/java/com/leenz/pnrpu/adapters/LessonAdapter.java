@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.leenz.pnrpu.R;
 import com.leenz.pnrpu.models.timetablemodels.Lesson;
 
+import java.util.Objects;
+
 public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.ViewHolder> {
 
     private final Lesson[] lessons;
@@ -28,28 +30,30 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.ViewHolder
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         this.parent = parent;
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.lesson_view,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_timetablepage,parent,false);
         return new ViewHolder(view);
     }
 
     @SuppressLint("RecyclerView")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+
         holder.getTimeView().setText(lessons[position].getTimeString());
         holder.getSubjectNameView().setText(lessons[position].getSubjectName());
         holder.getSubjectTypeView().setText(lessons[position].getSubjectType());
         holder.getLocationView().setText(lessons[position].getLocation());
         holder.getTeacherNameView().setText(lessons[position].getTeacherName());
-        final boolean isExpanded = position == mExpandedPosition;
-        holder.detailsView.setVisibility(isExpanded ? View.VISIBLE:View.GONE);
-        holder.itemView.setActivated(isExpanded);
-        if(!holder.getSubjectNameView().getText().equals("")){
-            holder.itemView.setOnClickListener(v -> {
-                mExpandedPosition = isExpanded ? -1: position;
-                TransitionManager.beginDelayedTransition(parent);
-                notifyDataSetChanged();
-            });
-        }
+        final boolean isLessonExists = !Objects.equals(lessons[position].getSubjectName(), "");
+        holder.teacherAvatarCircle.setVisibility(isLessonExists ? View.VISIBLE : View.GONE);
+        holder.subjectTypeView.setVisibility(isLessonExists ? View.VISIBLE : View.GONE);
+//        holder.itemView.setActivated(isExpanded);
+//        if(!holder.getSubjectNameView().getText().equals("")){
+//            holder.itemView.setOnClickListener(v -> {
+//                mExpandedPosition = isExpanded ? -1: position;
+//                TransitionManager.beginDelayedTransition(parent);
+//                notifyDataSetChanged();
+//            });
+//        }
 
     }
 
@@ -65,14 +69,17 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.ViewHolder
         private final TextView subjectTypeView;
         private final TextView teacherNameView;
         private final TextView locationView;
+        private final View teacherAvatarCircle;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            timeView = itemView.findViewById(R.id.timeTV);
-            detailsView = itemView.findViewById(R.id.details_linear_layout);
-            subjectNameView = itemView.findViewById(R.id.subjectNameTV);
-            subjectTypeView = itemView.findViewById(R.id.subjectTypeTV);
-            teacherNameView = itemView.findViewById(R.id.teacherTV);
-            locationView = itemView.findViewById(R.id.locationTV);
+            timeView = itemView.findViewById(R.id.timeButton);
+            detailsView = itemView.findViewById(R.id.linearSubjectCard);
+            subjectNameView = itemView.findViewById(R.id.lessonNameTV);
+            subjectTypeView = itemView.findViewById(R.id.lessonTypeTV);
+            teacherNameView = itemView.findViewById(R.id.lessonProfessorNameTV);
+            locationView = itemView.findViewById(R.id.lessonLocationTV);
+            teacherAvatarCircle = itemView.findViewById(R.id.teacherAvatarCircle);
         }
 
 
@@ -97,5 +104,9 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.ViewHolder
         }
 
         public LinearLayout getDetailsView() { return detailsView; }
+
+        public View getAvatarView() {
+            return teacherAvatarCircle;
+        }
     }
 }

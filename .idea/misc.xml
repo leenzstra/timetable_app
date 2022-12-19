@@ -3,6 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/leenz/AndroidStudioProjects/timetable_app/app/src/main/res/layout/activity_main.xml" value="0.17135416666666667" />
+        <entry key="..\:/Users/leenz/AndroidStudioProjects/timetable_app/app/src/main/res/layout/fragment_professor.xml" value="0.2" />
+        <entry key="..\:/Users/leenz/AndroidStudioProjects/timetable_app/app/src/main/res/layout/fragment_professor_single.xml" value="0.2" />
+        <entry key="..\:/Users/leenz/AndroidStudioProjects/timetable_app/app/src/main/res/layout/fragment_timetable.xml" value="0.176" />
+        <entry key="..\:/Users/leenz/AndroidStudioProjects/timetable_app/app/src/main/res/layout/group_view.xml" value="0.17864583333333334" />
+        <entry key="..\:/Users/leenz/AndroidStudioProjects/timetable_app/app/src/main/res/layout/lesson_view.xml" value="0.17864583333333334" />
+        <entry key="..\:/Users/leenz/AndroidStudioProjects/timetable_app/app/src/main/res/layout/professor_view.xml" value="0.264" />
+        <entry key="..\:/Users/leenz/AndroidStudioProjects/timetable_app/app/src/main/res/layout/row_professorpage.xml" value="0.1" />
+        <entry key="..\:/Users/leenz/AndroidStudioProjects/timetable_app/app/src/main/res/layout/row_timetablepage.xml" value="0.2" />
+        <entry key="..\:/Users/leenz/AndroidStudioProjects/timetable_app/app/src/main/res/menu/bottom_nav_menu.xml" value="0.2" />
         <entry key="..\:/Users/leenz/AndroidStudioProjects/timetable_test/app/src/main/res/layout/activity_main.xml" value="0.1693840579710145" />
         <entry key="..\:/Users/leenz/AndroidStudioProjects/timetable_test/app/src/main/res/layout/content_main.xml" value="0.1" />
         <entry key="..\:/Users/leenz/AndroidStudioProjects/timetable_test/app/src/main/res/layout/fragment_first.xml" value="0.1693840579710145" />
@@ -14,7 +24,6 @@
         <entry key="..\:/Users/marks/AndroidStudioProjects/timetable_app/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/marks/AndroidStudioProjects/timetable_app/app/src/main/res/layout/fragment_professor.xml" value="0.15096251266464034" />
         <entry key="..\:/Users/marks/AndroidStudioProjects/timetable_app/app/src/main/res/layout/fragment_timetable.xml" value="0.25" />
-        <entry key="..\:/Users/marks/AndroidStudioProjects/timetable_app/app/src/main/res/layout/group_view.xml" value="0.1762917933130699" />
         <entry key="..\:/Users/marks/AndroidStudioProjects/timetable_app/app/src/main/res/layout/lesson_view.xml" value="0.5" />
         <entry key="..\:/Users/marks/AndroidStudioProjects/timetable_app/app/src/main/res/layout/sample_lesson_view.xml" value="0.3026041666666667" />
         <entry key="..\:/Users/marks/AndroidStudioProjects/timetable_app/app/src/main/res/menu/bottom_nav_menu.xml" value="0.33" />

@@ -68,13 +68,13 @@ public class ProfessorSingleFragment extends Fragment {
         // Inflate the layout for this fragment
 
         rootView = inflater.inflate(R.layout.fragment_professor_single, container, false);
-        TextView myAwesomeTextView = (TextView)rootView.findViewById(R.id.singleProfessorName);
+        TextView myAwesomeTextView = (TextView)rootView.findViewById(R.id.professorNameTV);
         myAwesomeTextView.setText(mParam1);
 
-        myAwesomeTextView = (TextView)rootView.findViewById(R.id.singleProfessorPosition);
+        myAwesomeTextView = (TextView)rootView.findViewById(R.id.professorPositionTV);
         myAwesomeTextView.setText(mParam2);
 
-        myAwesomeTextView = (TextView)rootView.findViewById(R.id.singleProfessorDepartment);
+        myAwesomeTextView = (TextView)rootView.findViewById(R.id.professorsDepartmentTV);
         myAwesomeTextView.setText(mParam3);
         return  rootView;
     }
