@@ -1,38 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable name="timetablepageRowModel" type="com.leenz.pnrpu.models.pagesmodels.TimetablepageRowModel"/>
     </data>
-    <LinearLayout android:id="@+id/linearTimetableCard"
+    <androidx.constraintlayout.widget.ConstraintLayout android:id="@+id/linearTimetableCard"
         android:layout_height="wrap_content"
         android:layout_width="match_parent" android:orientation="horizontal">
         <androidx.appcompat.widget.AppCompatButton
             android:ellipsize="end" android:gravity="center"
-            android:id="@+id/btn8Zero"
+            android:id="@+id/timeButton"
             android:layout_height="@dimen/_33pxv"
-            android:layout_marginBottom="@dimen/_17pxv"
-            android:layout_marginTop="@dimen/_23pxv"
             android:layout_width="@dimen/_63pxh"
             android:letterSpacing="0.01"
             android:lineSpacingExtra="@dimen/_1pxh"
-            android:paddingBottom="@dimen/_9pxv"
-            android:paddingEnd="@dimen/_17pxh"
-            android:paddingStart="@dimen/_17pxh"
-            android:paddingTop="@dimen/_9pxv" android:singleLine="true"
-            android:text="@string/lbl_8_00" android:textAllCaps="false"
-            style="@style/btnSolidRounded" tools:text="@string/lbl_8_00"/>
-        <LinearLayout android:gravity="start"
+            android:singleLine="true"
+            android:text="@string/lbl_8_00"
+            android:textAllCaps="false"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            style="@style/btnSolidRounded"
+            tools:text="@string/lbl_8_00"/>
+        <LinearLayout
+            android:gravity="center"
             android:id="@+id/linearSubjectCard"
             android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/timeButton"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginStart="@dimen/_6pxh"
             android:layout_weight="0.8" android:layout_width="0dp"
             android:orientation="vertical" style="@style/groupStylewhite_1">
-            <LinearLayout android:id="@+id/linearRowone"
+            <LinearLayout android:id="@+id/lessonNameRowLayout"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/_4pxh"
                 android:layout_marginStart="@dimen/_7pxh"
                 android:layout_marginTop="@dimen/_5pxv"
-                android:layout_width="match_parent" android:orientation="horizontal">
+                android:layout_width="match_parent"
+                android:orientation="horizontal">
                 <TextView android:id="@+id/lessonNameTV"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.81"
@@ -65,7 +73,8 @@
                 android:layout_marginEnd="@dimen/_10pxh"
                 android:layout_marginStart="@dimen/_7pxh"
                 android:layout_marginTop="@dimen/_2pxv"
-                android:layout_width="match_parent" android:orientation="horizontal">
+                android:layout_width="match_parent"
+                android:orientation="horizontal">
                 <View
                     android:background="@drawable/rectangle_bg_bluegray_100_radius_12"
                     android:id="@+id/viewEllipseOne"
@@ -92,6 +101,7 @@
                     android:src="@drawable/img_ellipse961"
                     tools:ignore="ContentDescription" tools:src="@drawable/img_ellipse961"/>
                 <TextView android:ellipsize="end"
+                    android:gravity="center_vertical"
                     android:id="@+id/lessonLocationTV"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/_6pxv"
@@ -105,5 +115,5 @@
                     style="@style/txtRobotoromanmedium12" tools:text="@string/lbl_201"/>
             </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

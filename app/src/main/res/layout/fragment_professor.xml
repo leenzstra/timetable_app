@@ -5,7 +5,7 @@
     <data>
         <variable name="teacherpageVM" type="com.leenz.pnrpu.viewmodels.TeacherpageVM"/>
     </data>
-    <LinearLayout android:gravity="start"
+    <androidx.constraintlayout.widget.ConstraintLayout android:gravity="start"
         android:id="@+id/linearColumnstatusbar"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
@@ -14,7 +14,9 @@
             android:id="@+id/linearTeacherPage"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:orientation="vertical" style="@style/groupStylewhite_A700">
+            android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="parent"
+            style="@style/groupStylewhite_A700">
             <View android:background="@color/white_A700"
                 android:id="@+id/viewStatusbar"
                 android:layout_gravity="start"
@@ -28,11 +30,11 @@
                     android:ellipsize="end" android:gravity="center"
                     android:id="@+id/btn191"
                     android:layout_gravity="center_horizontal"
-                    android:layout_height="@dimen/_40pxv"
+                    android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/_16pxh"
                     android:layout_marginStart="@dimen/_16pxh"
                     android:layout_marginTop="@dimen/_12pxv"
-                    android:layout_width="@dimen/_119pxh"
+                    android:layout_width="wrap_content"
                     android:letterSpacing="0.01"
                     android:lineSpacingExtra="@dimen/_1pxh"
                     android:paddingBottom="@dimen/_13pxv"
@@ -66,103 +68,27 @@
                 android:layout_width="match_parent"
                 android:orientation="vertical"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                itemSpace="@{@dimen/_4pxh}" tools:itemCount="6" tools:listitem="@layout/row_professorpage"/>
-            <LinearLayout android:gravity="start"
-                android:id="@+id/linearTeacherCard"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_12pxh"
-                android:layout_marginStart="@dimen/_21pxh"
-                android:layout_marginTop="@dimen/_5pxv"
-                android:layout_width="match_parent"
-                android:orientation="horizontal" style="@style/groupStylewhite_1">
-                <View
-                    android:background="@drawable/rectangle_bg_bluegray_100_radius_20"
-                    android:id="@+id/viewEllipseOne"
-                    android:layout_height="@dimen/_40pxh"
-                    android:layout_marginBottom="@dimen/_19pxv"
-                    android:layout_marginStart="@dimen/_9pxh"
-                    android:layout_marginTop="@dimen/_19pxv" android:layout_width="@dimen/_40pxh"/>
-                <LinearLayout android:gravity="start"
-                    android:id="@+id/linearColumnfourteen"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/_9pxv"
-                    android:layout_marginStart="@dimen/_17pxh"
-                    android:layout_marginTop="@dimen/_8pxv"
-                    android:layout_weight="0.83"
-                    android:layout_width="0dp" android:orientation="vertical">
-                    <TextView android:ellipsize="end"
-                        android:id="@+id/professorNameTV"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/_10pxh"
-                        android:layout_width="match_parent"
-                        android:letterSpacing="0.01"
-                        android:lineSpacingExtra="@dimen/_1pxh"
-                        android:singleLine="true"
-                        android:text="@{teacherpageVM.teacherpageModel.professorName}"
-                        style="@style/txtRobotoromanmedium15" tools:text="@string/msg3"/>
-                    <TextView android:ellipsize="end"
-                        android:id="@+id/professorPositionTV"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/_10pxh"
-                        android:layout_marginTop="@dimen/_1pxv"
-                        android:layout_width="wrap_content"
-                        android:letterSpacing="0.01"
-                        android:lineSpacingExtra="@dimen/_1pxh"
-                        android:singleLine="true"
-                        android:text="@{teacherpageVM.teacherpageModel.professorPosition}"
-                        style="@style/txtRobotoromanregular12" tools:text="@string/lbl7"/>
-                    <TextView android:id="@+id/professorsDepartmentTV"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/_10pxh"
-                        android:layout_marginTop="@dimen/_5pxv"
-                        android:layout_width="match_parent"
-                        android:letterSpacing="0.01"
-                        android:lineSpacingExtra="@dimen/_2pxh"
-                        android:text="@{teacherpageVM.teacherpageModel.professorsDepartment}"
-                        style="@style/txtRobotoromanregular11" tools:text="@string/msg4"/>
-                </LinearLayout>
-                <ImageView android:id="@+id/imageArrowright"
-                    android:layout_height="@dimen/_11pxh"
-                    android:layout_marginBottom="@dimen/_33pxv"
-                    android:layout_marginEnd="@dimen/_11pxh"
-                    android:layout_marginStart="@dimen/_17pxh"
-                    android:layout_marginTop="@dimen/_33pxv"
-                    android:layout_width="@dimen/_6pxh"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/img_arrowright_gray_912"
-                    tools:ignore="ContentDescription" tools:src="@drawable/img_arrowright_gray_912"/>
-            </LinearLayout>
-            <LinearLayout android:gravity="center_horizontal"
-                android:id="@+id/linearHome"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_82pxv"
-                android:layout_width="match_parent"
-                android:orientation="vertical" style="@style/groupStylegray_100">
-                <View
-                    android:background="@drawable/rectangle_bg_gray_908_radius_2"
-                    android:id="@+id/lineHome"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_height="@dimen/_4pxv"
-                    android:layout_marginBottom="@dimen/_8pxv"
-                    android:layout_marginEnd="@dimen/_144pxh"
-                    android:layout_marginStart="@dimen/_144pxh"
-                    android:layout_marginTop="@dimen/_8pxv" android:layout_width="@dimen/_72pxh"/>
-            </LinearLayout>
+                tools:itemCount="6" tools:listitem="@layout/row_professorpage"/>
         </LinearLayout>
         <FrameLayout android:id="@+id/frameBottombar"
             android:layout_height="wrap_content"
-            android:layout_width="match_parent" style="@style/groupStylegray_100">
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="match_parent"
+            style="@style/groupStylegray_100">
             <LinearLayout android:id="@+id/linearRowperson"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="@dimen/_16pxv"
                 android:layout_marginTop="@dimen/_12pxv"
-                android:layout_width="match_parent" android:orientation="horizontal">
+                android:layout_width="match_parent" android:orientation="horizontal"
+                android:baselineAligned="false">
                 <LinearLayout android:id="@+id/linearItem"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" android:layout_width="0dp" android:orientation="vertical">
                     <FrameLayout android:id="@+id/frameIcon"
                         android:layout_height="@dimen/_32pxv"
-                        android:layout_width="@dimen/_64pxh" style="@style/groupStyleblue_2">
+                        android:layout_width="@dimen/_64pxh"
+                        android:layout_gravity="center"
+                        style="@style/groupStyleblue_2">
                         <ImageView android:id="@+id/imagePerson"
                             android:layout_gravity="center"
                             android:layout_height="@dimen/_16pxh"
@@ -241,5 +167,5 @@
                 </LinearLayout>
             </LinearLayout>
         </FrameLayout>
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
