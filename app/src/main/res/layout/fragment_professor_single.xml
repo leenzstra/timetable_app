@@ -40,8 +40,8 @@
 
                     <ImageView
                         android:id="@+id/imageView"
-                        android:layout_width="132dp"
-                        android:layout_height="109dp"
+                        android:layout_width="150dp"
+                        android:layout_height="163dp"
 
                         android:layout_marginTop="32dp"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -80,6 +80,7 @@
                         android:text="Department"
                         android:textColor="#ffffff"
                         android:textSize="18dp"
+                        android:textAlignment="center"
                         app:layout_constraintEnd_toEndOf="@+id/singleProfessorPosition"
                         app:layout_constraintStart_toStartOf="@+id/singleProfessorPosition"
                         app:layout_constraintTop_toBottomOf="@+id/singleProfessorPosition" />
