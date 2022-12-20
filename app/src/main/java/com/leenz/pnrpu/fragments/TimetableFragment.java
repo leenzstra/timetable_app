@@ -96,6 +96,8 @@ public class TimetableFragment extends Fragment implements View.OnClickListener 
     private void generateObjects(Timetable timetable) {
         if(rootView == null) return;
         Day currDay = getCurrentDay(timetable);
+        TextView weekNumTV = rootView.findViewById(R.id.weekNumberTV);
+        weekNumTV.setText(currDay.getWeekNum() + " неделя");
         RecyclerView recyclerView = rootView.findViewById(R.id.recyclerTimetablepage);
         if(currDay != null){
 //            RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.timetableRecyclerView);

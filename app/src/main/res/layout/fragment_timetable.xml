@@ -112,7 +112,7 @@
                         android:ellipsize="end"
                         android:lineSpacingExtra="@dimen/_1pxh"
                         android:singleLine="true"
-                        android:text="@{timetablepageVM.timetablepageModel.timetableLabel}"
+                        android:text="@string/TimetablePageHeader"
                         tools:text="@string/lbl" />
 
                     <TextView
@@ -151,6 +151,7 @@
                 android:gravity="center"
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 

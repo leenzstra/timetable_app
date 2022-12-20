@@ -26,42 +26,19 @@ import java.util.List;
  * create an instance of this fragment.
  */
 public class ProfessorFragment extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-
     public ProfessorFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ProfessorFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ProfessorFragment newInstance(String param1, String param2) {
-        ProfessorFragment fragment = new ProfessorFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+    public static ProfessorFragment newInstance() {
+        return new ProfessorFragment();
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-        }
     }
+
     private LayoutInflater layoutInflater;
     private void generateObjects() throws JSONException, IOException {
         RecyclerView recyclerView = rootView.findViewById(R.id.recyclerProfessorpage);

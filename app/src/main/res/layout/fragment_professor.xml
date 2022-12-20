@@ -56,7 +56,7 @@
                     android:layout_width="wrap_content"
                     android:lineSpacingExtra="@dimen/_1pxh"
                     android:singleLine="true"
-                    android:text="@{teacherpageVM.teacherpageModel.professorsLabel}"
+                    android:text="@string/professorPageHeader"
                     style="@style/txtRobotoromanmedium24" tools:text="@string/lbl5"/>
             </LinearLayout>
             <androidx.recyclerview.widget.RecyclerView
@@ -70,102 +70,6 @@
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:itemCount="6" tools:listitem="@layout/row_professorpage"/>
         </LinearLayout>
-        <FrameLayout android:id="@+id/frameBottombar"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_width="match_parent"
-            style="@style/groupStylegray_100">
-            <LinearLayout android:id="@+id/linearRowperson"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="@dimen/_16pxv"
-                android:layout_marginTop="@dimen/_12pxv"
-                android:layout_width="match_parent" android:orientation="horizontal"
-                android:baselineAligned="false">
-                <LinearLayout android:id="@+id/linearItem"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" android:layout_width="0dp" android:orientation="vertical">
-                    <FrameLayout android:id="@+id/frameIcon"
-                        android:layout_height="@dimen/_32pxv"
-                        android:layout_width="@dimen/_64pxh"
-                        android:layout_gravity="center"
-                        style="@style/groupStyleblue_2">
-                        <ImageView android:id="@+id/imagePerson"
-                            android:layout_gravity="center"
-                            android:layout_height="@dimen/_16pxh"
-                            android:layout_marginBottom="@dimen/_8pxv"
-                            android:layout_marginTop="@dimen/_8pxv"
-                            android:layout_width="@dimen/_16pxh"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/img_person"
-                            tools:ignore="ContentDescription" tools:src="@drawable/img_person"/>
-                    </FrameLayout>
-                    <TextView android:ellipsize="end"
-                        android:gravity="center_horizontal"
-                        android:id="@+id/professorsButtonLabelTV"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/_2pxh"
-                        android:layout_marginStart="@dimen/_2pxh"
-                        android:layout_marginTop="@dimen/_7pxv"
-                        android:layout_width="match_parent"
-                        android:letterSpacing="0.03"
-                        android:lineSpacingExtra="@dimen/_1pxh"
-                        android:singleLine="true"
-                        android:text="@{teacherpageVM.teacherpageModel.professorsLabel}"
-                        style="@style/txtRobotomedium12_1" tools:text="@string/lbl5"/>
-                </LinearLayout>
-                <LinearLayout android:id="@+id/linearItem1"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/_2pxv"
-                    android:layout_marginTop="@dimen/_5pxv"
-                    android:layout_weight="1" android:layout_width="0dp" android:orientation="vertical">
-                    <ImageView android:id="@+id/imageVector"
-                        android:layout_gravity="center"
-                        android:layout_height="@dimen/_20pxh"
-                        android:layout_width="@dimen/_16pxh"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/img_vector"
-                        tools:ignore="ContentDescription" tools:src="@drawable/img_vector"/>
-                    <TextView android:ellipsize="end"
-                        android:gravity="center_horizontal"
-                        android:id="@+id/timetableButtonLabelTV"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/_2pxh"
-                        android:layout_marginStart="@dimen/_2pxh"
-                        android:layout_marginTop="@dimen/_12pxv"
-                        android:layout_width="match_parent"
-                        android:letterSpacing="0.03"
-                        android:lineSpacingExtra="@dimen/_1pxh"
-                        android:singleLine="true"
-                        android:text="@{teacherpageVM.teacherpageModel.timetableButtonLabel}"
-                        style="@style/txtRobotomedium12_1" tools:text="@string/lbl"/>
-                </LinearLayout>
-                <LinearLayout android:id="@+id/linearItem2"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/_2pxv"
-                    android:layout_marginTop="@dimen/_9pxv"
-                    android:layout_weight="1" android:layout_width="0dp" android:orientation="vertical">
-                    <ImageView android:id="@+id/imageVectorOne"
-                        android:layout_gravity="center"
-                        android:layout_height="@dimen/_13pxh"
-                        android:layout_width="@dimen/_18pxh"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/img_vector_gray_911"
-                        tools:ignore="ContentDescription" tools:src="@drawable/img_vector_gray_911"/>
-                    <TextView android:ellipsize="end"
-                        android:gravity="center_horizontal"
-                        android:id="@+id/menuButtonLabelTV"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/_2pxh"
-                        android:layout_marginStart="@dimen/_2pxh"
-                        android:layout_marginTop="@dimen/_15pxv"
-                        android:layout_width="match_parent"
-                        android:letterSpacing="0.03"
-                        android:lineSpacingExtra="@dimen/_1pxh"
-                        android:singleLine="true"
-                        android:text="@{teacherpageVM.teacherpageModel.menuButtonLabel}"
-                        style="@style/txtRobotomedium12_1" tools:text="@string/lbl6"/>
-                </LinearLayout>
-            </LinearLayout>
-        </FrameLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

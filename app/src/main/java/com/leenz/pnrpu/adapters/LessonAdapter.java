@@ -44,8 +44,9 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.ViewHolder
         holder.getLocationView().setText(lessons[position].getLocation());
         holder.getTeacherNameView().setText(lessons[position].getTeacherName());
         final boolean isLessonExists = !Objects.equals(lessons[position].getSubjectName(), "");
-        holder.teacherAvatarCircle.setVisibility(isLessonExists ? View.VISIBLE : View.GONE);
-        holder.subjectTypeView.setVisibility(isLessonExists ? View.VISIBLE : View.GONE);
+        holder.detailsView.setVisibility(isLessonExists ? View.VISIBLE : View.INVISIBLE);
+//        holder.subjectTypeView.setVisibility(isLessonExists ? View.VISIBLE : View.GONE);
+
 //        holder.itemView.setActivated(isExpanded);
 //        if(!holder.getSubjectNameView().getText().equals("")){
 //            holder.itemView.setOnClickListener(v -> {

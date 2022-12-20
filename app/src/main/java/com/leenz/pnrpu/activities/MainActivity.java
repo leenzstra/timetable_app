@@ -66,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
         replaceFragment(timetableFragment);
         groupList = JSONReader.getGroupList();
         sharedPreferences = this.getSharedPreferences("currentGroup", Context.MODE_PRIVATE);
+
+//        getActionBar().setDisplayHomeAsUpEnabled(true);
 //        groupSearchLayout = rootView.findViewById(R.id.groupSearchLayout);
 //        groupSearchView = rootView.findViewById(R.id.groupSearchView);
 //        groupSearchRecyclerView = rootView.findViewById(R.id.recyclerTimetablepage);

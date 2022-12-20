@@ -96,15 +96,18 @@
                     android:singleLine="true"
                     android:text="@{timetablepageRowModel.lessonProfessorName}"
                     style="@style/txtRobotoromanmedium12" tools:text="@string/lbl3"/>
-                <ImageView android:id="@+id/imageEllipse961"
-                    android:layout_height="@dimen/_2pxh"
-                    android:layout_marginBottom="@dimen/_10pxv"
+
+                <ImageView
+                    android:id="@+id/dotElement"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_15pxh"
                     android:layout_marginTop="@dimen/_10pxv"
-                    android:layout_width="@dimen/_2pxh"
+                    android:layout_marginBottom="@dimen/_10pxv"
                     android:scaleType="fitXY"
                     android:src="@drawable/img_ellipse961"
-                    tools:ignore="ContentDescription" tools:src="@drawable/img_ellipse961"/>
+                    tools:ignore="ContentDescription"
+                    tools:src="@drawable/img_ellipse961" />
                 <TextView android:ellipsize="end"
                     android:gravity="center_vertical"
                     android:id="@+id/lessonLocationTV"

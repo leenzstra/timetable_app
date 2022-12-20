@@ -64,4 +64,7 @@
     <string name="lbl">Расписание</string>
     <string name="lbl12">Кафедра</string>
     <string name="lbl_19_1">РИС–19–1б</string>
+    <string name="professorSinglePageHeader">Преподаватель</string>
+    <string name="professorPageHeader">Преподаватели</string>
+    <string name="TimetablePageHeader">Расписание</string>
 </resources>
