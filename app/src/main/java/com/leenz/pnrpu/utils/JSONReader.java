@@ -6,17 +6,24 @@ import android.os.AsyncTask;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.firebase.crashlytics.buildtools.reloc.org.apache.commons.io.output.ByteArrayOutputStream;
+import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.HttpEntity;
 import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.HttpResponse;
 import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.HttpStatus;
 import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.StatusLine;
 import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.client.ClientProtocolException;
 import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.client.HttpClient;
 import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.client.methods.HttpGet;
+import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.client.methods.HttpPost;
+import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.entity.ContentType;
+import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.entity.StringEntity;
 import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.impl.client.DefaultHttpClient;
 import com.leenz.pnrpu.R;
+import com.leenz.pnrpu.models.payloadmodels.SetMarkBody;
 import com.leenz.pnrpu.models.timetablemodels.Day;
 import com.leenz.pnrpu.models.timetablemodels.Group;
 import com.leenz.pnrpu.models.timetablemodels.Professor;
+import com.leenz.pnrpu.models.timetablemodels.ProfessorEvaluation;
+import com.leenz.pnrpu.models.timetablemodels.Response;
 import com.leenz.pnrpu.models.timetablemodels.Timetable;
 
 import org.json.JSONArray;
@@ -72,10 +79,10 @@ public class JSONReader {
     }
 
     public static Timetable getTimetable(String group, String type) throws IOException, JSONException {
-        URL baseUrl = new URL("http://192.168.1.3:3000/timetable/timetables/");
+        URL baseUrl = new URL(host+"/timetable/timetables/");
         URL url = new URL(baseUrl, encodeValue(group) + "/" + encodeValue(type));
 
-        JSONObject root = getJSONObjectByUrl(url.toString());
+        JSONObject root = getRequest(url.toString());
         try {
             JSONArray data = root.getJSONArray("data");
             System.out.println(data);
@@ -90,7 +97,7 @@ public class JSONReader {
     }
 
     public static List<Group> getGroupList(){
-        JSONObject root = getJSONObjectByUrl("http://192.168.1.3:3000/timetable/groups/");
+        JSONObject root = getRequest(host+"/timetable/groups/");
         try {
             JSONArray data = root.getJSONArray("data");
             ObjectMapper objectMapper = new ObjectMapper();
@@ -102,11 +109,11 @@ public class JSONReader {
         return null;
     }
 
-    public static List<Professor> getProfessorList(String group) throws IOException, JSONException{
-        URL baseUrl = new URL("http://192.168.1.3:3000/teachers/group/");
+    public static List<Professor> getProfessorList(String group) throws IOException {
+        URL baseUrl = new URL(host+"/teachers/group/");
         URL url = new URL(baseUrl, encodeValue(group));
 
-        JSONObject root = getJSONObjectByUrl(url.toString());
+        JSONObject root = getRequest(url.toString());
         try {
             JSONArray data = root.getJSONArray("data");
             ObjectMapper objectMapper = new ObjectMapper();
@@ -118,13 +125,48 @@ public class JSONReader {
         return null;
     }
 
+    public static ProfessorEvaluation getProfessorEvaluation(int teacher_id) throws IOException {
+        URL baseUrl = new URL(host+"/teachers/eval/");
+        URL url = new URL(baseUrl, Integer.toString(teacher_id));
+
+        JSONObject root = getRequest(url.toString());
+        try {
+            JSONArray data = root.getJSONArray("data");
+            ObjectMapper objectMapper = new ObjectMapper();
+            return objectMapper.readValue(data.toString(), ProfessorEvaluation.class);
+        } catch (JSONException | JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static Response setMark(SetMarkBody payload) throws IOException {
+        URL url = new URL(host+"/teachers/set_mark/");
+        ObjectMapper mapper = new ObjectMapper();
+        String json = mapper.writeValueAsString(payload);
+
+        JSONObject response = postRequest(url.toString(), json);
+        try {
+            return mapper.readValue(response.toString(), Response.class);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     @SneakyThrows
-    private static JSONObject getJSONObjectByUrl(String urlString){
-        AsyncTask<String, String, String> t = new RequestTask().execute(urlString);
+    private static JSONObject getRequest(String urlString){
+        AsyncTask<String, String, String> t = new GetRequestTask().execute(urlString);
         return new JSONObject(t.get());
     }
 
-    public static class RequestTask extends AsyncTask<String, String, String> {
+    @SneakyThrows
+    private static JSONObject postRequest(String url, String payload){
+        AsyncTask<String, Void, String> t = new PostRequestTask().execute(url, payload);
+        return new JSONObject(t.get());
+    }
+
+    public static class GetRequestTask extends AsyncTask<String, String, String> {
 
         @Override
         protected String doInBackground(String... uri) {
@@ -158,4 +200,48 @@ public class JSONReader {
             //Do anything with response..
         }
     }
+
+    public static class PostRequestTask extends AsyncTask<String, Void, String> {
+
+        // params[0] - url, params[1] - json
+        @Override
+        protected String doInBackground(String... params) {
+            HttpClient httpclient = new DefaultHttpClient();
+            HttpResponse response;
+            String responseString = null;
+
+            try {
+                HttpPost post = new HttpPost(params[0]);
+                HttpEntity stringEntity = new StringEntity(params[1], ContentType.APPLICATION_JSON);
+                post.setEntity(stringEntity);
+
+                response = httpclient.execute(post);
+                StatusLine statusLine = response.getStatusLine();
+                if(statusLine.getStatusCode() == HttpStatus.SC_OK){
+                    ByteArrayOutputStream out = new ByteArrayOutputStream();
+                    response.getEntity().writeTo(out);
+                    responseString = out.toString();
+                    out.close();
+                } else{
+                    //Closes the connection.
+                    response.getEntity().getContent().close();
+                    throw new IOException(statusLine.getReasonPhrase());
+                }
+            } catch (ClientProtocolException e) {
+                //TODO Handle problems..
+            } catch (IOException e) {
+                //TODO Handle problems..
+            }
+            return responseString;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            //Do anything with response..
+        }
+
+    }
+
+
 }
