@@ -27,4 +27,13 @@
     <style name="Theme.Timetable_test.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.Timetable_test.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="App.Custom.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/blue_50</item>
+    </style>
+
+    <style name="BottomNavigation" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="itemActiveIndicatorStyle">@style/App.Custom.Indicator</item>
+        <item name="rippleColor">@color/blue_50</item>
+    </style>
 </resources>
