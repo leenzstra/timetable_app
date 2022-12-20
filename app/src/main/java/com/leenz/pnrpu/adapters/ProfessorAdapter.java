@@ -28,9 +28,8 @@ import java.util.concurrent.ExecutionException;
 public class ProfessorAdapter extends RecyclerView.Adapter<ProfessorAdapter.ViewHolder> {
 
     private final List<Professor> professors;
-    //private int mExpandedPosition=-1;
     private ViewGroup parent;
-    private Context mContext;
+    private final Context mContext;
 
 
     public ProfessorAdapter(List<Professor> professors, Context context) {
@@ -66,20 +65,10 @@ public class ProfessorAdapter extends RecyclerView.Adapter<ProfessorAdapter.View
                 holder.getImageView().setImageBitmap(ImageUtil.getCroppedBitmap(professors.get(position).getImageBmp()));
             }
         }
-        else{
-            //holder.getImageView().setImageResource(R.drawable.ic_baseline_professor_24);
-        }
-
         holder.getNameView().setText(professors.get(position).getName());
-        //holder.getDepartmentView().setText(professors.get(position).getDepartment());
         holder.getPositionView().setText(professors.get(position).getPosition());
 
-        holder.itemView.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                fragmentJump(item);
-            }
-        });
+        holder.itemView.setOnClickListener(v -> fragmentJump(item));
     }
     private void fragmentJump(Professor mItemSelected) {
         ProfessorSingleFragment mFragment = ProfessorSingleFragment.newInstance(mItemSelected.getImageBmp(), mItemSelected.getName(), mItemSelected.getPosition(), mItemSelected.getDepartment(), mItemSelected.getId());
@@ -96,14 +85,12 @@ public class ProfessorAdapter extends RecyclerView.Adapter<ProfessorAdapter.View
     public static class ViewHolder extends RecyclerView.ViewHolder{
         private final ImageView imageView;
         private final TextView nameView;
-        //private final TextView departmentView;
         private final TextView positionView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.professorImage);
             nameView = itemView.findViewById(R.id.professorNameTV);
-            //departmentView = itemView.findViewById(R.id.professorDepartment);
             positionView = itemView.findViewById(R.id.professorPositionTV);
         }
         public ImageView getImageView() {
@@ -114,12 +101,8 @@ public class ProfessorAdapter extends RecyclerView.Adapter<ProfessorAdapter.View
             return nameView;
         }
 
-//        public TextView getDepartmentView() {
-//            return departmentView;
-//        }
         public TextView getPositionView() {
             return positionView;
         }
-
     }
 }

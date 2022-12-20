@@ -17,7 +17,6 @@ import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.client.m
 import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.entity.ContentType;
 import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.entity.StringEntity;
 import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.impl.client.DefaultHttpClient;
-import com.leenz.pnrpu.R;
 import com.leenz.pnrpu.models.payloadmodels.SetMarkBody;
 import com.leenz.pnrpu.models.timetablemodels.Comment;
 import com.leenz.pnrpu.models.timetablemodels.Day;
@@ -50,19 +49,6 @@ import lombok.SneakyThrows;
 public class JSONReader {
 
     public static String host = "http://192.168.1.3:3000";
-
-    public static Timetable readTimeTableJSONFile(Context context) throws IOException, JSONException {
-        String jsonText = readText(context, R.raw.example_refactor);
-
-        JSONObject jsonRoot = new JSONObject(jsonText);
-        JSONArray data = jsonRoot.getJSONArray("data");
-
-        ObjectMapper objectMapper = new ObjectMapper();
-        Day[] daysArray = objectMapper.readValue(data.toString(), Day[].class);
-
-        return new Timetable(daysArray);
-
-    }
 
     private static String readText(Context context, int resId) throws IOException {
         InputStream is = context.getResources().openRawResource(resId);
@@ -116,11 +102,11 @@ public class JSONReader {
         URL url = new URL(baseUrl, encodeValue(groupName));
         String[] result = null;
         JSONObject root = getRequest(url.toString());
-        try{
+        try {
             JSONArray data = root.getJSONArray("data");
             Integer len = data.length();
             result = new String[len];
-            for (int i = 0; i < len; i++){
+            for (int i = 0; i < len; i++) {
                 JSONObject item = data.getJSONObject(i);
                 result[i] = item.getString("name");
             }
@@ -228,13 +214,11 @@ public class JSONReader {
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-            //Do anything with response..
         }
     }
 
     public static class PostRequestTask extends AsyncTask<String, Void, String> {
 
-        // params[0] - url, params[1] - json
         @Override
         protected String doInBackground(String... params) {
             HttpClient httpclient = new DefaultHttpClient();
@@ -269,8 +253,6 @@ public class JSONReader {
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-            //Do anything with response..
         }
-
     }
 }

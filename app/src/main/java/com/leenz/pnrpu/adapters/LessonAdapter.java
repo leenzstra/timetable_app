@@ -19,7 +19,6 @@ import java.util.Objects;
 public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.ViewHolder> {
 
     private final Lesson[] lessons;
-    private int mExpandedPosition=-1;
     private ViewGroup parent;
 
     public LessonAdapter(Lesson[] lessons) {
@@ -30,7 +29,7 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.ViewHolder
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         this.parent = parent;
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_timetablepage,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_timetablepage, parent, false);
         return new ViewHolder(view);
     }
 
@@ -45,17 +44,6 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.ViewHolder
         holder.getTeacherNameView().setText(lessons[position].getTeacherName());
         final boolean isLessonExists = !Objects.equals(lessons[position].getSubjectName(), "");
         holder.detailsView.setVisibility(isLessonExists ? View.VISIBLE : View.INVISIBLE);
-//        holder.subjectTypeView.setVisibility(isLessonExists ? View.VISIBLE : View.GONE);
-
-//        holder.itemView.setActivated(isExpanded);
-//        if(!holder.getSubjectNameView().getText().equals("")){
-//            holder.itemView.setOnClickListener(v -> {
-//                mExpandedPosition = isExpanded ? -1: position;
-//                TransitionManager.beginDelayedTransition(parent);
-//                notifyDataSetChanged();
-//            });
-//        }
-
     }
 
     @Override
@@ -63,7 +51,7 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.ViewHolder
         return lessons.length;
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder{
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView timeView;
         private final LinearLayout detailsView;
         private final TextView subjectNameView;
@@ -102,12 +90,6 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.ViewHolder
 
         public TextView getLocationView() {
             return locationView;
-        }
-
-        public LinearLayout getDetailsView() { return detailsView; }
-
-        public View getAvatarView() {
-            return teacherAvatarCircle;
         }
     }
 }

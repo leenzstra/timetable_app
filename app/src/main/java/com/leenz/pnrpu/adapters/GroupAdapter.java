@@ -18,11 +18,7 @@ import java.util.List;
 public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ViewHolder> {
     private ViewGroup parent;
     private List<Group> groups;
-    private SharedPreferences sharedPreferences;
-
-    public GroupAdapter(List<Group> groups) {
-        this.groups = groups;
-    }
+    private final SharedPreferences sharedPreferences;
 
     public GroupAdapter(List<Group> groups, SharedPreferences sharedPreferences) {
         this.groups = groups;
@@ -33,15 +29,15 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ViewHolder> 
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         this.parent = parent;
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.group_view,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.group_view, parent, false);
         view.setOnClickListener(v -> {
-            if(sharedPreferences != null){
+            if (sharedPreferences != null) {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 TextView groupTV = v.findViewById(R.id.groupNameTV);
                 String groupName = groupTV.getText().toString();
                 editor.putString("groupName", groupName);
                 editor.apply();
-                MainActivity ctx = (MainActivity)parent.getContext();
+                MainActivity ctx = (MainActivity) parent.getContext();
                 ctx.setSelectedGroupName(groupName);
             }
         });
@@ -63,7 +59,7 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ViewHolder> 
         notifyDataSetChanged();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder{
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView groupNameView;
 
         public ViewHolder(@NonNull View itemView) {

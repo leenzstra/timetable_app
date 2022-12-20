@@ -7,12 +7,10 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
-import androidx.appcompat.widget.SearchView.OnQueryTextListener;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -24,29 +22,14 @@ import com.leenz.pnrpu.fragments.TimetableFragment;
 import com.leenz.pnrpu.models.timetablemodels.Group;
 import com.leenz.pnrpu.utils.JSONReader;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
-    SearchView groupSearchView;
-    RecyclerView groupSearchRecyclerView;
-    FloatingActionButton groupSearchButton;
-
-    public ConstraintLayout getGroupSearchLayout() {
-        return groupSearchLayout;
-    }
-
-    ConstraintLayout groupSearchLayout;
     List<Group> groupList;
     View rootView;
-    GroupAdapter searchGroupAdapter;
     ActivityMainBinding activityMainBinding;
     SharedPreferences sharedPreferences;
-
-    public String getSelectedGroupName() {
-        return selectedGroupName;
-    }
 
     public void setSelectedGroupName(String selectedGroupName) {
         this.selectedGroupName = selectedGroupName;
@@ -73,40 +56,6 @@ public class MainActivity extends AppCompatActivity {
         timetableFragment = new TimetableFragment(sharedPreferences);
         professorFragment = new ProfessorFragment();
         replaceFragment(timetableFragment);
-
-
-//        getActionBar().setDisplayHomeAsUpEnabled(true);
-//        groupSearchLayout = rootView.findViewById(R.id.groupSearchLayout);
-//        groupSearchView = rootView.findViewById(R.id.groupSearchView);
-//        groupSearchRecyclerView = rootView.findViewById(R.id.recyclerTimetablepage);
-//        groupSearchRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-//        groupSearchButton = rootView.findViewById(R.id.groupChooseButton);
-//        groupSearchView.setOnQueryTextListener(new OnQueryTextListener() {
-//            @Override
-//            public boolean onQueryTextSubmit(String query) {
-//                filter(query);
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean onQueryTextChange(String newText) {
-//                filter(newText);
-//                return false;
-//            }
-//        });
-
-
-//        searchGroupAdapter = new GroupAdapter(groupList, sharedPreferences);
-//        groupSearchRecyclerView.setAdapter(searchGroupAdapter);
-//        groupSearchButton.setOnClickListener(v -> {
-//            if(groupSearchLayout.getVisibility() == View.GONE){
-//                groupSearchLayout.setVisibility(View.VISIBLE);
-//            }else{
-//                groupSearchLayout.setVisibility(View.GONE);
-//            }
-//        });
-
-
         activityMainBinding.bottomNavigation.setOnItemSelectedListener(item -> {
 
             switch (item.getItemId()){
@@ -119,8 +68,6 @@ public class MainActivity extends AppCompatActivity {
             }
             return true;
         });
-
-
     }
 
     private TimetableFragment timetableFragment;
@@ -139,7 +86,4 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
-
-
-
 }

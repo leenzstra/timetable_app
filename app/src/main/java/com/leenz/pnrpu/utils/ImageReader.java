@@ -20,9 +20,8 @@ public class ImageReader {
                 URL url = new URL(urlString[0]);
 
                 Bitmap bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-                return  bmp;
-            }
-            catch (Exception e){
+                return bmp;
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             return null;

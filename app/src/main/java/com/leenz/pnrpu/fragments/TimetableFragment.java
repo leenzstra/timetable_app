@@ -43,11 +43,6 @@ import java.util.Locale;
 
 import lombok.Getter;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link TimetableFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class TimetableFragment extends Fragment implements View.OnClickListener {
 
     // TODO: Rename parameter arguments, choose names that match
@@ -69,7 +64,7 @@ public class TimetableFragment extends Fragment implements View.OnClickListener 
         sharedPreferences = null;
     }
 
-    public TimetableFragment(SharedPreferences sharedPreferences){
+    public TimetableFragment(SharedPreferences sharedPreferences) {
         this.sharedPreferences = sharedPreferences;
     }
 
@@ -87,29 +82,29 @@ public class TimetableFragment extends Fragment implements View.OnClickListener 
         super.onCreate(savedInstanceState);
         //TODO: изменить HardCode на автоматическое определение.
         currentDate = new Date();
-        calendar.set(2022,9,1,0,0);
+        calendar.set(2022, 9, 1, 0, 0);
         calendar.setFirstDayOfWeek(Calendar.MONDAY);
         setTimetableByGroupNameAndTimetableType("АСУ-19-1б", "Бакалавр (осенний, после смены)");
     }
 
-    public void setTimetableByGroupName(String groupName){
+    public void setTimetableByGroupName(String groupName) {
         setTimetableByGroupNameAndTimetableType(groupName, selectedTimetableType);
     }
 
-    public void setTimetableByTimetableType(String timetableByTimetableType){
+    public void setTimetableByTimetableType(String timetableByTimetableType) {
         setTimetableByGroupNameAndTimetableType(selectedGroupName, timetableByTimetableType);
     }
 
-    public void setTimetableByGroupNameAndTimetableType(String groupName, String timetableType){
+    public void setTimetableByGroupNameAndTimetableType(String groupName, String timetableType) {
         try {
             Timetable tmpTimetable = JSONReader.getTimetable(groupName, timetableType);
 
-            if(tmpTimetable != null){
+            if (tmpTimetable != null) {
                 timetable = tmpTimetable;
                 generateObjects(timetable);
-                if(groupName != null)
+                if (groupName != null)
                     selectedGroupName = groupName;
-                if(timetableType != null)
+                if (timetableType != null)
                     selectedTimetableType = timetableType;
                 updateGroupNameAndTimetableTextViews();
             }
@@ -124,27 +119,27 @@ public class TimetableFragment extends Fragment implements View.OnClickListener 
     private String selectedTimetableType;
 
     private void updateGroupNameAndTimetableTextViews() {
-        if(selectedGroupTV != null)
+        if (selectedGroupTV != null)
             selectedGroupTV.setText(selectedGroupName);
-        if(selectedTimetableTypeTV != null)
+        if (selectedTimetableTypeTV != null)
             selectedTimetableTypeTV.setText(selectedTimetableType);
     }
 
     private LayoutInflater layoutInflater;
+
     private void generateObjects(Timetable timetable) {
-        if(rootView == null) return;
+        if (rootView == null) return;
         Day currDay = getCurrentDay(timetable);
 
         RecyclerView recyclerView = rootView.findViewById(R.id.recyclerTimetablepage);
-        if(currDay != null){
+        if (currDay != null) {
             Lesson[] lessons = currDay.getLessons();
             recyclerView.setAdapter(new LessonAdapter(lessons));
             recyclerView.setLayoutManager(new LinearLayoutManager(layoutInflater.getContext()));
 
             TextView weekNumTV = rootView.findViewById(R.id.weekNumberTV);
             weekNumTV.setText(currDay.getWeekNum() + " неделя");
-        }
-        else{
+        } else {
             recyclerView.setAdapter(new LessonAdapter(new Lesson[0]));
 
             TextView weekNumTV = rootView.findViewById(R.id.weekNumberTV);
@@ -153,21 +148,23 @@ public class TimetableFragment extends Fragment implements View.OnClickListener 
     }
 
 
-    private Day getCurrentDay(Timetable timetable){
+    private Day getCurrentDay(Timetable timetable) {
         Day result = null;
         Calendar cal = Calendar.getInstance();
         cal.setTime(currentDate);
         int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
         for (Day curDay : timetable.getDays()) {
-            if(curDay.getDayOfWeekNumber() == dayOfWeek
-                    && curDay.getWeekNum() == currentWeekNumber){
+            if (curDay.getDayOfWeekNumber() == dayOfWeek
+                    && curDay.getWeekNum() == currentWeekNumber) {
                 result = curDay;
                 break;
             }
         }
         return result;
     }
+
     private View rootView;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -204,7 +201,7 @@ public class TimetableFragment extends Fragment implements View.OnClickListener 
             SearchView sv = popupView.findViewById(R.id.groupSelectSearchView);
 
             rv.setAdapter(searchGroupAdapter);
-            PopupWindow pw = new PopupWindow(popupView,width,height,focusable);
+            PopupWindow pw = new PopupWindow(popupView, width, height, focusable);
             sv.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
                 @Override
                 public boolean onQueryTextSubmit(String query) {
@@ -229,8 +226,7 @@ public class TimetableFragment extends Fragment implements View.OnClickListener 
                 }
             });
 
-            pw.showAsDropDown(v,0,0, Gravity.CENTER_HORIZONTAL);
-//            pw.showAtLocation(v, Gravity.CENTER, 0,0);
+            pw.showAsDropDown(v, 0, 0, Gravity.CENTER_HORIZONTAL);
             popupView.setOnTouchListener((v1, event) -> {
                 pw.dismiss();
                 return true;
@@ -251,8 +247,8 @@ public class TimetableFragment extends Fragment implements View.OnClickListener 
                 TimetableTypeAdapter adapter = new TimetableTypeAdapter(timetableTypes);
                 rv.setAdapter(adapter);
 
-                PopupWindow pw = new PopupWindow(popupView,width,height,focusable);
-                pw.showAsDropDown(v, 0,0, Gravity.CENTER_HORIZONTAL);
+                PopupWindow pw = new PopupWindow(popupView, width, height, focusable);
+                pw.showAsDropDown(v, 0, 0, Gravity.CENTER_HORIZONTAL);
                 popupView.setOnTouchListener(new View.OnTouchListener() {
                     @Override
                     public boolean onTouch(View v, MotionEvent event) {
@@ -268,7 +264,8 @@ public class TimetableFragment extends Fragment implements View.OnClickListener 
             }
         }
     };
-    private void updateDateTextView(){
+
+    private void updateDateTextView() {
         TextView currentDateTV = rootView.findViewById(R.id.dateTV);
         TextView todayTV = rootView.findViewById(R.id.todayStringTV);
         @SuppressLint("WeekBasedYear") SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yy", Locale.getDefault());
@@ -279,10 +276,10 @@ public class TimetableFragment extends Fragment implements View.OnClickListener 
         tempCalendar.setFirstDayOfWeek(Calendar.MONDAY);
         tempCalendar.setTime(currentDate);
         int currentWeekOfYear = tempCalendar.get(Calendar.WEEK_OF_YEAR);
-        currentWeekNumber = 1 + Math.abs((currentWeekOfYear - septemberWeekOfYear))% 2;
+        currentWeekNumber = 1 + Math.abs((currentWeekOfYear - septemberWeekOfYear)) % 2;
         Day currentDay = getCurrentDay(timetable);
         String currentDayName = getString(R.string.default_day_string);
-        if(currentDay != null) {
+        if (currentDay != null) {
             currentDayName = currentDay.getDayName();
         }
         currentDateTV.setText(currentDateString);
@@ -296,7 +293,7 @@ public class TimetableFragment extends Fragment implements View.OnClickListener 
         setNextDay();
     }
 
-    private void setNextDay(){
+    private void setNextDay() {
         Calendar cal = Calendar.getInstance();
         cal.setTime(currentDate);
         cal.add(Calendar.DATE, 1);
@@ -310,7 +307,7 @@ public class TimetableFragment extends Fragment implements View.OnClickListener 
         setPreviousDay();
     }
 
-    private void setPreviousDay(){
+    private void setPreviousDay() {
         Calendar cal = Calendar.getInstance();
         cal.setTime(currentDate);
         cal.add(Calendar.DATE, -1);

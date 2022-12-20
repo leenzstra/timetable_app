@@ -11,12 +11,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal">
+
         <TextView
             android:id="@+id/timeTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?attr/textAppearanceHeadline5"
-            android:text="@string/timeTV_placeholder" />
+            android:text="@string/timeTV_placeholder"
+            android:textAppearance="?attr/textAppearanceHeadline5" />
 
         <TextView
             android:id="@+id/subjectNameTV"
@@ -29,31 +30,33 @@
 
     <LinearLayout
         android:id="@+id/details_linear_layout"
-        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="gone">
 
         <TextView
             android:id="@+id/teacherTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/teacherTV_placeholder"
             android:layout_marginHorizontal="@dimen/fab_margin"
-            android:layout_marginTop="@dimen/fab_margin"/>
+            android:layout_marginTop="@dimen/fab_margin"
+            android:text="@string/teacherTV_placeholder" />
+
         <TextView
             android:id="@+id/locationTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/locationTV_placeholder"
-            android:layout_marginHorizontal="@dimen/fab_margin"/>
+            android:layout_marginHorizontal="@dimen/fab_margin"
+            android:text="@string/locationTV_placeholder" />
+
         <TextView
             android:id="@+id/subjectTypeTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/subjectTypeTV_placeholder"
+            android:layout_marginHorizontal="@dimen/fab_margin"
             android:layout_marginBottom="@dimen/fab_margin"
-            android:layout_marginHorizontal="@dimen/fab_margin"/>
+            android:text="@string/subjectTypeTV_placeholder" />
     </LinearLayout>
 
 </LinearLayout>

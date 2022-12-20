@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,8 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.leenz.pnrpu.R;
 import com.leenz.pnrpu.models.timetablemodels.Comment;
-
-import java.util.Objects;
 
 public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHolder> {
     private final Comment[] comments;
@@ -27,7 +24,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
     @Override
     public CommentAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         this.parent = parent;
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_comment,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_comment, parent, false);
         return new CommentAdapter.ViewHolder(view);
     }
 
@@ -44,7 +41,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
         return comments.length;
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder{
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView commentSection;
         private final TextView markTextView;
 
@@ -54,7 +51,6 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
             markTextView = itemView.findViewById(R.id.markTV);
         }
 
-
         public TextView getCommentSection() {
             return commentSection;
         }
@@ -62,6 +58,5 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
         public TextView getMarkTextView() {
             return markTextView;
         }
-
     }
 }
