@@ -50,7 +50,7 @@ public class ProfessorFragment extends Fragment {
 //        professors[2] = new Professor(R.drawable.ic_baseline_professor_24,"CCCCCCCC", "жопа3", "яяяяяя");
 //        professors[3] = new Professor(R.drawable.ic_baseline_professor_24,"DDDDDDDD", "жопа4", "чччччч");
 
-        List<Professor> professors = JSONReader.getProfessorList("АСУ-19-1б");
+        List<Professor> professors = JSONReader.getProfessorList("РИС-19-1б");
 
         recyclerView.setAdapter(new ProfessorAdapter(professors, this.getActivity()));
         recyclerView.setLayoutManager(new LinearLayoutManager(layoutInflater.getContext()));

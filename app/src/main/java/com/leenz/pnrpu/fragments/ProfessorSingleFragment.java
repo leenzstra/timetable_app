@@ -12,6 +12,8 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,7 +27,17 @@ import android.widget.TextView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.leenz.pnrpu.R;
 import com.leenz.pnrpu.activities.MainActivity;
+import com.leenz.pnrpu.adapters.CommentAdapter;
+import com.leenz.pnrpu.adapters.ProfessorAdapter;
+import com.leenz.pnrpu.models.timetablemodels.Professor;
+import com.leenz.pnrpu.models.timetablemodels.ProfessorEvaluation;
 import com.leenz.pnrpu.utils.ImageUtil;
+import com.leenz.pnrpu.utils.JSONReader;
+
+import org.json.JSONException;
+
+import java.io.IOException;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -40,12 +52,14 @@ public class ProfessorSingleFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
     private static final String ARG_PARAM3 = "param3";
     private static final String ARG_PARAM4 = "param4";
+    private static final String ARG_PARAM5 = "param5";
 
     // TODO: Rename and change types of parameters
     private Bitmap mParam1;
     private String mParam2;
     private String mParam3;
     private String mParam4;
+    private Integer mParam5;
 
     public ProfessorSingleFragment() {
         // Required empty public constructor
@@ -60,7 +74,7 @@ public class ProfessorSingleFragment extends Fragment {
      * @return A new instance of fragment ProfessorSingleFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ProfessorSingleFragment newInstance(Bitmap param1, String param2, String param3, String param4) {
+    public static ProfessorSingleFragment newInstance(Bitmap param1, String param2, String param3, String param4, Integer param5) {
         ProfessorSingleFragment fragment = new ProfessorSingleFragment();
         Bundle args = new Bundle();
 
@@ -68,6 +82,7 @@ public class ProfessorSingleFragment extends Fragment {
         args.putString(ARG_PARAM2, param2);
         args.putString(ARG_PARAM3, param3);
         args.putString(ARG_PARAM4, param4);
+        args.putInt(ARG_PARAM5, param5);
 
 
         fragment.setArguments(args);
@@ -82,6 +97,7 @@ public class ProfessorSingleFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
             mParam3 = getArguments().getString(ARG_PARAM3);
             mParam4 = getArguments().getString(ARG_PARAM4);
+            mParam5 = getArguments().getInt(ARG_PARAM5);
         }
 
     }
@@ -120,7 +136,7 @@ public class ProfessorSingleFragment extends Fragment {
         // Inflate the layout for this fragment
 
         rootView = inflater.inflate(R.layout.fragment_professor_single, container, false);
-
+        layoutInflater = inflater;
 
         openDialog = rootView.findViewById(R.id.openDialogButton);
 
@@ -148,6 +164,26 @@ public class ProfessorSingleFragment extends Fragment {
 
         myAwesomeTextView = (TextView)rootView.findViewById(R.id.teacherInfoDepartmentTV);
         myAwesomeTextView.setText(mParam4);
+
+        try {
+            generateObjects();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         return  rootView;
+    }
+
+    private LayoutInflater layoutInflater;
+    private void generateObjects() throws JSONException, IOException {
+        RecyclerView recyclerView = rootView.findViewById(R.id.commentsRecycleView);
+
+        ProfessorEvaluation professorEval = JSONReader.getProfessorEvaluation(mParam5);
+
+        recyclerView.setAdapter(new CommentAdapter(professorEval.getComments()));
+        recyclerView.setLayoutManager(new LinearLayoutManager(layoutInflater.getContext()));
+
     }
 }

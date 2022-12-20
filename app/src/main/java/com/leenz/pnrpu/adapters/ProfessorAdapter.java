@@ -82,7 +82,7 @@ public class ProfessorAdapter extends RecyclerView.Adapter<ProfessorAdapter.View
         });
     }
     private void fragmentJump(Professor mItemSelected) {
-        ProfessorSingleFragment mFragment = ProfessorSingleFragment.newInstance(mItemSelected.getImageBmp(), mItemSelected.getName(), mItemSelected.getPosition(), mItemSelected.getDepartment());
+        ProfessorSingleFragment mFragment = ProfessorSingleFragment.newInstance(mItemSelected.getImageBmp(), mItemSelected.getName(), mItemSelected.getPosition(), mItemSelected.getDepartment(), mItemSelected.getId());
 
         MainActivity mainActivity = (MainActivity) mContext;
         mainActivity.pushFragment(mFragment);

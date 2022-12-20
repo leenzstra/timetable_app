@@ -2,12 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-             android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <LinearLayout android:id="@+id/linearComment"
     android:layout_gravity="top|start"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="@dimen/_10pxv"
     android:layout_width="match_parent"
     android:orientation="vertical" style="@style/groupStylewhite_1">
     <LinearLayout android:gravity="start"
@@ -46,9 +45,9 @@
         android:layout_marginTop="@dimen/_17pxv"
         android:layout_width="match_parent"
         android:letterSpacing="0.01"
-        android:lineSpacingExtra="@dimen/_11pxh"
+        android:lineSpacingExtra="@dimen/_1pxh"
         android:text="@{teacherinfopageVM.teacherinfopageModel.txtDescription}"
-        style="@style/txtRobotoregular13" tools:text="@string/msg_lorem_ipsum_dol"/>
+        style="@style/txtRobotoregular13" tools:text="sum"/>
 </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

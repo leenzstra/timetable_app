@@ -19,6 +19,7 @@ import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.entity.S
 import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.impl.client.DefaultHttpClient;
 import com.leenz.pnrpu.R;
 import com.leenz.pnrpu.models.payloadmodels.SetMarkBody;
+import com.leenz.pnrpu.models.timetablemodels.Comment;
 import com.leenz.pnrpu.models.timetablemodels.Day;
 import com.leenz.pnrpu.models.timetablemodels.Group;
 import com.leenz.pnrpu.models.timetablemodels.Professor;
@@ -62,12 +63,12 @@ public class JSONReader {
 
     }
 
-    private static String readText(Context context, int resId) throws IOException{
+    private static String readText(Context context, int resId) throws IOException {
         InputStream is = context.getResources().openRawResource(resId);
         BufferedReader br = new BufferedReader(new InputStreamReader(is));
         StringBuilder sb = new StringBuilder();
         String s;
-        while((s = br.readLine()) != null){
+        while ((s = br.readLine()) != null) {
             sb.append(s);
             sb.append("\n");
         }
@@ -79,7 +80,7 @@ public class JSONReader {
     }
 
     public static Timetable getTimetable(String group, String type) throws IOException, JSONException {
-        URL baseUrl = new URL(host+"/timetable/timetables/");
+        URL baseUrl = new URL(host + "/timetable/timetables/");
         URL url = new URL(baseUrl, encodeValue(group) + "/" + encodeValue(type));
 
         JSONObject root = getRequest(url.toString());
@@ -96,8 +97,8 @@ public class JSONReader {
         return null;
     }
 
-    public static List<Group> getGroupList(){
-        JSONObject root = getRequest(host+"/timetable/groups/");
+    public static List<Group> getGroupList() {
+        JSONObject root = getRequest(host + "/timetable/groups/");
         try {
             JSONArray data = root.getJSONArray("data");
             ObjectMapper objectMapper = new ObjectMapper();
@@ -110,7 +111,7 @@ public class JSONReader {
     }
 
     public static List<Professor> getProfessorList(String group) throws IOException {
-        URL baseUrl = new URL(host+"/teachers/group/");
+        URL baseUrl = new URL(host + "/teachers/group/");
         URL url = new URL(baseUrl, encodeValue(group));
 
         JSONObject root = getRequest(url.toString());
@@ -126,22 +127,32 @@ public class JSONReader {
     }
 
     public static ProfessorEvaluation getProfessorEvaluation(int teacher_id) throws IOException {
-        URL baseUrl = new URL(host+"/teachers/eval/");
+        URL baseUrl = new URL(host + "/teachers/eval/");
         URL url = new URL(baseUrl, Integer.toString(teacher_id));
 
         JSONObject root = getRequest(url.toString());
+        //System.out.println(root.toString());
         try {
-            JSONArray data = root.getJSONArray("data");
+            JSONObject data = root.getJSONObject("data");
+            JSONArray commentsJSONArr = data.getJSONArray("evaluations");
             ObjectMapper objectMapper = new ObjectMapper();
-            return objectMapper.readValue(data.toString(), ProfessorEvaluation.class);
-        } catch (JSONException | JsonProcessingException e) {
+            Comment[] commentsArray = objectMapper.readValue(commentsJSONArr.toString(), Comment[].class);
+            Double mark = data.getDouble("average_mark");
+            int marksCount = data.getInt("count");
+            ProfessorEvaluation p = ProfessorEvaluation.builder().averageMark(mark).markCount(marksCount).comments(commentsArray).build();
+
+            //ProfessorEvaluation p = objectMapper.readValue(root.toString(), ProfessorEvaluation.class);
+            return p;
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
             e.printStackTrace();
         }
         return null;
     }
 
     public static Response setMark(SetMarkBody payload) throws IOException {
-        URL url = new URL(host+"/teachers/set_mark/");
+        URL url = new URL(host + "/teachers/set_mark/");
         ObjectMapper mapper = new ObjectMapper();
         String json = mapper.writeValueAsString(payload);
 
@@ -155,13 +166,13 @@ public class JSONReader {
     }
 
     @SneakyThrows
-    private static JSONObject getRequest(String urlString){
+    private static JSONObject getRequest(String urlString) {
         AsyncTask<String, String, String> t = new GetRequestTask().execute(urlString);
         return new JSONObject(t.get());
     }
 
     @SneakyThrows
-    private static JSONObject postRequest(String url, String payload){
+    private static JSONObject postRequest(String url, String payload) {
         AsyncTask<String, Void, String> t = new PostRequestTask().execute(url, payload);
         return new JSONObject(t.get());
     }
@@ -176,12 +187,12 @@ public class JSONReader {
             try {
                 response = httpclient.execute(new HttpGet(uri[0]));
                 StatusLine statusLine = response.getStatusLine();
-                if(statusLine.getStatusCode() == HttpStatus.SC_OK){
+                if (statusLine.getStatusCode() == HttpStatus.SC_OK) {
                     ByteArrayOutputStream out = new ByteArrayOutputStream();
                     response.getEntity().writeTo(out);
                     responseString = out.toString();
                     out.close();
-                } else{
+                } else {
                     //Closes the connection.
                     response.getEntity().getContent().close();
                     throw new IOException(statusLine.getReasonPhrase());
@@ -217,12 +228,12 @@ public class JSONReader {
 
                 response = httpclient.execute(post);
                 StatusLine statusLine = response.getStatusLine();
-                if(statusLine.getStatusCode() == HttpStatus.SC_OK){
+                if (statusLine.getStatusCode() == HttpStatus.SC_OK) {
                     ByteArrayOutputStream out = new ByteArrayOutputStream();
                     response.getEntity().writeTo(out);
                     responseString = out.toString();
                     out.close();
-                } else{
+                } else {
                     //Closes the connection.
                     response.getEntity().getContent().close();
                     throw new IOException(statusLine.getReasonPhrase());

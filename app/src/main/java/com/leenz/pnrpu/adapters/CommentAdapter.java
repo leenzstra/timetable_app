@@ -35,7 +35,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull CommentAdapter.ViewHolder holder, int position) {
 
-        holder.getMarkTextView().setText(comments[position].getMark());
+        holder.getMarkTextView().setText(Integer.toString(comments[position].getMark()));
         holder.getCommentSection().setText(comments[position].getComment());
     }
 

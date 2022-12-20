@@ -112,11 +112,10 @@
                         android:id="@+id/markView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_2pxv"
                         android:orientation="vertical"
-
                         app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toLeftOf="@id/palochka">
+                        app:layout_constraintRight_toLeftOf="@id/palochka"
+                        app:layout_constraintTop_toTopOf="parent">
 
                         <LinearLayout
                             android:id="@+id/linearRowvector"
@@ -228,6 +227,35 @@
 
             </LinearLayout>
         </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_10pxh"
+            android:layout_marginStart="@dimen/_10pxh"
+            android:layout_marginTop="@dimen/_21pxv"
+            app:layout_constraintTop_toBottomOf="@id/linearColumnstatusbar">
+            <TextView android:ellipsize="end"
+                android:id="@+id/commentTV"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_14pxv"
+                android:layout_marginTop="@dimen/_1pxv"
+                android:layout_weight="0.22"
+                android:layout_width="wrap_content"
+                android:letterSpacing="0.01"
+                android:lineSpacingExtra="@dimen/_1pxh"
+                android:singleLine="true"
+                android:text="@string/lbl12"
+                style="@style/txtRobotoromanbold14" tools:text="@string/lbl13"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/commentsRecycleView"
+                android:layout_width="match_parent"
+                tools:listitem="@layout/row_comment"
+                android:lineSpacingExtra="@dimen/_1pxh"
+                android:layout_height="wrap_content">
+            </androidx.recyclerview.widget.RecyclerView>
+
+        </LinearLayout>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/openDialogButton"
         android:layout_width="wrap_content"
@@ -237,7 +265,6 @@
         android:layout_margin="@dimen/_15pxh"
         android:src="@drawable/img_vector_black_900"
         android:background="@drawable/rectangle_bg_blue_50_radius_16">
-
     </com.google.android.material.floatingactionbutton.FloatingActionButton>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
