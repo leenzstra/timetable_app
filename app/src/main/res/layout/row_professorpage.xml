@@ -6,8 +6,6 @@
     <LinearLayout android:gravity="start"
         android:id="@+id/linearTeacherCard"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/_12pxh"
-        android:layout_marginStart="@dimen/_21pxh"
         android:layout_marginTop="@dimen/_5pxv"
         android:layout_width="match_parent"
         android:orientation="horizontal" style="@style/groupStylewhite_1">
