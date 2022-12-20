@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.leenz.pnrpu.R;
 import com.leenz.pnrpu.adapters.GroupAdapter;
 import com.leenz.pnrpu.adapters.LessonAdapter;
+import com.leenz.pnrpu.adapters.TimetableTypeAdapter;
 import com.leenz.pnrpu.models.timetablemodels.Day;
 import com.leenz.pnrpu.models.timetablemodels.Group;
 import com.leenz.pnrpu.models.timetablemodels.Lesson;
@@ -31,6 +32,8 @@ import com.leenz.pnrpu.utils.JSONReader;
 import org.json.JSONException;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -172,52 +175,9 @@ public class TimetableFragment extends Fragment implements View.OnClickListener 
         layoutInflater = inflater;
         // DatePicker
         selectedGroupTV = rootView.findViewById(R.id.groupNameTV);
-        selectedGroupTV.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                View popupView = inflater.inflate(R.layout.group_select_menu, null);
-                int width = LinearLayout.LayoutParams.WRAP_CONTENT;
-                int height = LinearLayout.LayoutParams.MATCH_PARENT;
-                boolean focusable = true;
-                List<Group> groupList = JSONReader.getGroupList();
-                GroupAdapter searchGroupAdapter = new GroupAdapter(groupList, sharedPreferences);
-                RecyclerView rv = popupView.findViewById(R.id.groupSelectRecyclerView);
-                SearchView sv = popupView.findViewById(R.id.groupSelectSearchView);
-
-                rv.setAdapter(searchGroupAdapter);
-                PopupWindow pw = new PopupWindow(popupView,width,height,focusable);
-                sv.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-                    @Override
-                    public boolean onQueryTextSubmit(String query) {
-                        pw.dismiss();
-                        return true;
-                    }
-
-                    private void filter(String text) {
-                        List<Group> filteredList = new ArrayList<>();
-                        for (Group item : groupList) {
-                            if (item.getGroup_name().toLowerCase().startsWith(text.toLowerCase())) {
-                                filteredList.add(item);
-                            }
-                        }
-                        searchGroupAdapter.filterList(filteredList);
-                    }
-
-                    @Override
-                    public boolean onQueryTextChange(String newText) {
-                        filter(newText);
-                        return false;
-                    }
-                });
-
-                pw.showAtLocation(v, Gravity.CENTER, 0,0);
-                popupView.setOnTouchListener((v1, event) -> {
-                    pw.dismiss();
-                    return true;
-                });
-            }
-        });
+        selectedGroupTV.setOnClickListener(selectGroupTVClickListener);
         selectedTimetableTypeTV = rootView.findViewById(R.id.timetableTypeTV);
+        selectedTimetableTypeTV.setOnClickListener(selectTimetableTypeTVClickListener);
         ImageButton prevButton = rootView.findViewById(R.id.btnArrowleft);
         ImageButton nextButton = rootView.findViewById(R.id.btnArrowright);
         prevButton.setOnClickListener(this::onPrevButtonClick);
@@ -231,6 +191,83 @@ public class TimetableFragment extends Fragment implements View.OnClickListener 
         return rootView;
     }
 
+    private final View.OnClickListener selectGroupTVClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            View popupView = layoutInflater.inflate(R.layout.group_select_menu, null);
+            int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+            int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+            boolean focusable = true;
+            List<Group> groupList = JSONReader.getGroupList();
+            GroupAdapter searchGroupAdapter = new GroupAdapter(groupList, sharedPreferences);
+            RecyclerView rv = popupView.findViewById(R.id.groupSelectRecyclerView);
+            SearchView sv = popupView.findViewById(R.id.groupSelectSearchView);
+
+            rv.setAdapter(searchGroupAdapter);
+            PopupWindow pw = new PopupWindow(popupView,width,height,focusable);
+            sv.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                @Override
+                public boolean onQueryTextSubmit(String query) {
+                    pw.dismiss();
+                    return true;
+                }
+
+                private void filter(String text) {
+                    List<Group> filteredList = new ArrayList<>();
+                    for (Group item : groupList) {
+                        if (item.getGroup_name().toLowerCase().startsWith(text.toLowerCase())) {
+                            filteredList.add(item);
+                        }
+                    }
+                    searchGroupAdapter.filterList(filteredList);
+                }
+
+                @Override
+                public boolean onQueryTextChange(String newText) {
+                    filter(newText);
+                    return false;
+                }
+            });
+
+            pw.showAsDropDown(v,0,0, Gravity.CENTER_HORIZONTAL);
+//            pw.showAtLocation(v, Gravity.CENTER, 0,0);
+            popupView.setOnTouchListener((v1, event) -> {
+                pw.dismiss();
+                return true;
+            });
+        }
+    };
+
+    private final View.OnClickListener selectTimetableTypeTVClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            View popupView = layoutInflater.inflate(R.layout.timetabletype_select_menu, null);
+            int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+            int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+            boolean focusable = true;
+            try {
+                String[] timetableTypes = JSONReader.getTimetableTypes(selectedGroupName);
+                RecyclerView rv = popupView.findViewById(R.id.timetableTypeSelectRecyclerView);
+                TimetableTypeAdapter adapter = new TimetableTypeAdapter(timetableTypes);
+                rv.setAdapter(adapter);
+
+                PopupWindow pw = new PopupWindow(popupView,width,height,focusable);
+                pw.showAsDropDown(v, 0,0, Gravity.CENTER_HORIZONTAL);
+                popupView.setOnTouchListener(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        pw.dismiss();
+                        return true;
+                    }
+                });
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+        }
+    };
     private void updateDateTextView(){
         TextView currentDateTV = rootView.findViewById(R.id.dateTV);
         TextView todayTV = rootView.findViewById(R.id.todayStringTV);

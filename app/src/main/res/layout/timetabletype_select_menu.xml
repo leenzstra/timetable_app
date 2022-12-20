@@ -5,18 +5,13 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/rectangle_bg_blue_50_radius_11_5">
-    <SearchView
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/groupSelectSearchView"/>
     <androidx.recyclerview.widget.RecyclerView
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/groupSelectRecyclerView"
-        tools:listitem="@layout/group_view"
+        tools:listitem="@layout/timetabletype_view"
+        android:id="@+id/timetableTypeSelectRecyclerView"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintTop_toBottomOf="@id/groupSelectSearchView"/>
+        app:layout_constraintTop_toTopOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

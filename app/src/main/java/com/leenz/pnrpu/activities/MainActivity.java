@@ -53,6 +53,12 @@ public class MainActivity extends AppCompatActivity {
         timetableFragment.setTimetableByGroupName(selectedGroupName);
     }
 
+    public void setSelectedTimetableType(String selectedTimetableType){
+        this.selectedTimetableType = selectedTimetableType;
+        timetableFragment.setTimetableByTimetableType(selectedTimetableType);
+    }
+
+    String selectedTimetableType;
     String selectedGroupName;
 
     @Override

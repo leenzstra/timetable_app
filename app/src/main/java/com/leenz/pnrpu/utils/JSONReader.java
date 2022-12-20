@@ -36,6 +36,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
@@ -108,6 +109,25 @@ public class JSONReader {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static String[] getTimetableTypes(String groupName) throws MalformedURLException, UnsupportedEncodingException {
+        URL baseUrl = new URL(host + "/timetable/types/");
+        URL url = new URL(baseUrl, encodeValue(groupName));
+        String[] result = null;
+        JSONObject root = getRequest(url.toString());
+        try{
+            JSONArray data = root.getJSONArray("data");
+            Integer len = data.length();
+            result = new String[len];
+            for (int i = 0; i < len; i++){
+                JSONObject item = data.getJSONObject(i);
+                result[i] = item.getString("name");
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 
     public static List<Professor> getProfessorList(String group) throws IOException {
@@ -253,6 +273,4 @@ public class JSONReader {
         }
 
     }
-
-
 }
