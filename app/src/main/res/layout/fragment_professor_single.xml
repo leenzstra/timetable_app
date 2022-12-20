@@ -73,9 +73,9 @@
                 android:layout_marginEnd="@dimen/_2pxh"
                 android:layout_marginStart="@dimen/_2pxh"
                 android:layout_width="match_parent" android:orientation="vertical">
-                <View
+                <ImageView
                     android:background="@drawable/rectangle_bg_bluegray_100_radius_45"
-                    android:id="@+id/viewEllipseOne"
+                    android:id="@+id/professorImageAvatar"
                     android:layout_gravity="center_horizontal"
                     android:layout_height="@dimen/_90pxh"
                     android:layout_marginEnd="@dimen/_10pxh"
@@ -147,18 +147,19 @@
                         android:layout_height="@dimen/_32pxv"
                         android:layout_marginBottom="@dimen/_3pxv"
                         android:layout_marginTop="@dimen/_3pxv"
-                        android:layout_weight="0.0" android:layout_width="0dp"/>
+                        android:layout_weight="0.005" android:layout_width="0dp"/>
                     <TextView android:ellipsize="end"
                         android:id="@+id/teacherInfoPositionTV"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_weight="0.43"
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:letterSpacing="0.01"
                         android:lineSpacingExtra="@dimen/_1pxh"
                         android:singleLine="true"
+                        tools:text="@string/lbl7"
                         android:text="@{teacherinfopageVM.teacherinfopageModel.teacherPosition}"
-                        style="@style/txtSolidRounded_1" tools:text="@string/lbl7"/>
+                        style="@style/txtSolidRounded_1" />
                 </LinearLayout>
                 <LinearLayout android:gravity="start"
                     android:id="@+id/linearRowthirtysix"
@@ -177,7 +178,7 @@
                         android:letterSpacing="0.01"
                         android:lineSpacingExtra="@dimen/_1pxh"
                         android:singleLine="true"
-                        android:text="@string/string_lbl12"
+                        android:text="@string/lbl12"
                         style="@style/txtRobotoromanbold14" tools:text="@string/lbl12"/>
                     <TextView android:id="@+id/teacherInfoDepartmentTV"
                         android:layout_height="wrap_content"

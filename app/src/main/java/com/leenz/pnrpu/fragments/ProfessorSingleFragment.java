@@ -1,5 +1,6 @@
 package com.leenz.pnrpu.fragments;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.leenz.pnrpu.R;
@@ -23,11 +25,13 @@ public class ProfessorSingleFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private static final String ARG_PARAM3 = "param3";
+    private static final String ARG_PARAM4 = "param4";
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
+    private Bitmap mParam1;
     private String mParam2;
     private String mParam3;
+    private String mParam4;
 
     public ProfessorSingleFragment() {
         // Required empty public constructor
@@ -42,12 +46,15 @@ public class ProfessorSingleFragment extends Fragment {
      * @return A new instance of fragment ProfessorSingleFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ProfessorSingleFragment newInstance(String param1, String param2, String param3) {
+    public static ProfessorSingleFragment newInstance(Bitmap param1, String param2, String param3, String param4) {
         ProfessorSingleFragment fragment = new ProfessorSingleFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
+
+        args.putParcelable(ARG_PARAM1,param1);
         args.putString(ARG_PARAM2, param2);
         args.putString(ARG_PARAM3, param3);
+        args.putString(ARG_PARAM4, param4);
+
 
         fragment.setArguments(args);
         return fragment;
@@ -57,8 +64,11 @@ public class ProfessorSingleFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam1 = getArguments().getParcelable(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+            mParam3 = getArguments().getString(ARG_PARAM3);
+            mParam4 = getArguments().getString(ARG_PARAM4);
+
         }
     }
     private View rootView;
@@ -68,14 +78,18 @@ public class ProfessorSingleFragment extends Fragment {
         // Inflate the layout for this fragment
 
         rootView = inflater.inflate(R.layout.fragment_professor_single, container, false);
-        TextView myAwesomeTextView = (TextView)rootView.findViewById(R.id.professorNameTV);
-        myAwesomeTextView.setText(mParam1);
 
-        myAwesomeTextView = (TextView)rootView.findViewById(R.id.professorPositionTV);
+        ImageView myAwesomeImageView = (ImageView)rootView.findViewById(R.id.professorImageAvatar);
+        myAwesomeImageView.setImageBitmap(mParam1);
+
+        TextView myAwesomeTextView = (TextView)rootView.findViewById(R.id.teacherInfoNameTV);
         myAwesomeTextView.setText(mParam2);
 
-        myAwesomeTextView = (TextView)rootView.findViewById(R.id.professorsDepartmentTV);
+        myAwesomeTextView = (TextView)rootView.findViewById(R.id.teacherInfoPositionTV);
         myAwesomeTextView.setText(mParam3);
+
+        myAwesomeTextView = (TextView)rootView.findViewById(R.id.teacherInfoDepartmentTV);
+        myAwesomeTextView.setText(mParam4);
         return  rootView;
     }
 }

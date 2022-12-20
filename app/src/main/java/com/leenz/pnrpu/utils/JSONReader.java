@@ -72,7 +72,7 @@ public class JSONReader {
     }
 
     public static Timetable getTimetable(String group, String type) throws IOException, JSONException {
-        URL baseUrl = new URL(host+"/timetable/timetables/");
+        URL baseUrl = new URL("http://192.168.1.3:3000/timetable/timetables/");
         URL url = new URL(baseUrl, encodeValue(group) + "/" + encodeValue(type));
 
         JSONObject root = getJSONObjectByUrl(url.toString());
@@ -81,7 +81,6 @@ public class JSONReader {
             System.out.println(data);
             ObjectMapper objectMapper = new ObjectMapper();
             Day[] daysArray = objectMapper.readValue(data.toString(), Day[].class);
-            System.out.println("bebra");
 //            System.out.println(daysArray[0].toString());
             return new Timetable(daysArray);
         } catch (JSONException | JsonProcessingException e) {
@@ -91,7 +90,7 @@ public class JSONReader {
     }
 
     public static List<Group> getGroupList(){
-        JSONObject root = getJSONObjectByUrl(host+"/timetable/groups/");
+        JSONObject root = getJSONObjectByUrl("http://192.168.1.3:3000/timetable/groups/");
         try {
             JSONArray data = root.getJSONArray("data");
             ObjectMapper objectMapper = new ObjectMapper();
@@ -103,8 +102,11 @@ public class JSONReader {
         return null;
     }
 
-    public static List<Professor> getProfessorList(){
-        JSONObject root = getJSONObjectByUrl(host+"/teachers");
+    public static List<Professor> getProfessorList(String group) throws IOException, JSONException{
+        URL baseUrl = new URL("http://192.168.1.3:3000/teachers/group/");
+        URL url = new URL(baseUrl, encodeValue(group));
+
+        JSONObject root = getJSONObjectByUrl(url.toString());
         try {
             JSONArray data = root.getJSONArray("data");
             ObjectMapper objectMapper = new ObjectMapper();
@@ -122,7 +124,7 @@ public class JSONReader {
         return new JSONObject(t.get());
     }
 
-    static class RequestTask extends AsyncTask<String, String, String> {
+    public static class RequestTask extends AsyncTask<String, String, String> {
 
         @Override
         protected String doInBackground(String... uri) {
