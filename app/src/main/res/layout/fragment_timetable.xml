@@ -1,64 +1,365 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/design_default_color_surface"
-    tools:context=".fragments.TimetableFragment">
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="timetablepageVM"
+            type="com.leenz.pnrpu.viewmodels.TimetablepageVM" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearTimetableLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:gravity="start"
+        android:orientation="vertical">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/timetableRecyclerView"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/linearColumnstatusbar"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/datePickerFrameLayout"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:orientation="vertical">
 
-        <FrameLayout
-            android:id="@+id/datePickerFrameLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent">
-
-            <Button
-                android:id="@+id/previousDayButton"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/topAppBar"
+                style="@style/groupStylewhite_A700"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:layout_marginStart="24dp"
-                android:layout_marginBottom="12dp"
-                android:layout_marginTop="12dp"
-                android:onClick="previousDayAction"
-                android:text="@string/navigate_before_text" />
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/monthYearTV"
-                android:layout_width="wrap_content"
+                <LinearLayout
+                    android:id="@+id/linearRowlabeltext"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_16pxh"
+                    android:layout_marginTop="@dimen/_12pxv"
+                    android:layout_marginEnd="@dimen/_16pxh"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/linearFAB"
+                        style="@style/groupStyleblue_50cornerRadius"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_weight="0.49"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/groupNameTV"
+                            style="@style/txtRobotomedium14"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:ellipsize="end"
+                            android:gravity="center"
+                            android:letterSpacing="0.01"
+                            android:lineSpacingExtra="@dimen/_1pxh"
+                            android:singleLine="true"
+                            android:text="@{timetablepageVM.timetablepageModel.groupName}"
+                            tools:text="@string/lbl_19_1" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/imageGroupTwo"
+                        android:layout_width="@dimen/_6pxh"
+                        android:layout_height="@dimen/_40pxh"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/img_group2"
+                        tools:ignore="ContentDescription"
+                        tools:src="@drawable/img_group2" />
+
+                    <LinearLayout
+                        android:id="@+id/linearFAB1"
+                        style="@style/groupStyleblue_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_weight="0.49"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/timetableTypeTV"
+                            style="@style/txtRobotomedium12"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:clickable="true"
+                            android:gravity="center"
+                            android:letterSpacing="0.01"
+                            android:lineSpacingExtra="@dimen/_1pxh"
+                            android:text="@{timetablepageVM.timetablepageModel.timetableTypeName}"
+                            tools:text="@string/msg" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearRowheadline"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_16pxh"
+                    android:layout_marginTop="@dimen/_11pxv"
+                    android:layout_marginEnd="@dimen/_16pxh"
+                    android:layout_marginBottom="@dimen/_24pxv"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/timetableLabelTV"
+                        style="@style/txtRobotoromanmedium24"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.71"
+                        android:ellipsize="end"
+                        android:lineSpacingExtra="@dimen/_1pxh"
+                        android:singleLine="true"
+                        android:text="@string/TimetablePageHeader"
+                        tools:text="@string/lbl" />
+
+                    <TextView
+                        android:id="@+id/weekNumberTV"
+                        style="@style/txtRobotoromanregular13"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.29"
+                        android:ellipsize="end"
+                        android:gravity="end"
+                        android:lineSpacingExtra="@dimen/_1pxh"
+                        android:singleLine="true"
+                        android:text="@{timetablepageVM.timetablepageModel.weekNumber}"
+                        tools:text="@string/lbl_1" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerTimetablepage"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginStart="@dimen/_16pxh"
+                android:layout_marginEnd="@dimen/_16pxh"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/buttons_bar"
+                app:layout_constraintTop_toBottomOf="@id/topAppBar"
+                tools:itemCount="6"
+                tools:listitem="@layout/row_timetablepage" />
+
+            <RelativeLayout
+                android:id="@+id/buttons_bar"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="14dp"
-                android:layout_marginTop="14dp"
-                android:text="@string/currentDateText" />
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="40dp"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
 
-            <Button
-                android:id="@+id/nextDayButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_marginBottom="12dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="24dp"
-                android:onClick="nextDayAction"
-                android:text="@string/navigate_next_text" />
+                app:layout_constraintStart_toStartOf="parent">
 
-        </FrameLayout>
+
+                <ImageButton
+                    android:id="@+id/btnArrowleft"
+                    android:layout_width="@dimen/_40pxh"
+                    android:layout_height="@dimen/_40pxh"
+                    android:layout_alignParentStart="true"
+                    android:layout_gravity="start"
+                    android:background="@drawable/rectangle_bg_blue_800_radius_20"
+                    android:paddingHorizontal="@dimen/_12pxh"
+                    android:paddingVertical="@dimen/_12pxv"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/img_arrowleft"
+                    tools:ignore="ContentDescription" />
+
+
+                <LinearLayout
+                    android:id="@+id/linearColumnthirteen"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:layout_centerInParent="true"
+                    android:layout_marginTop="@dimen/_3pxv"
+                    android:layout_marginBottom="@dimen/_3pxv"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/todayStringTV"
+                        style="@style/txtRobotoromanbold16"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:letterSpacing="0.01"
+                        android:singleLine="true"
+                        android:text="@{timetablepageVM.timetablepageModel.todayString}"
+                        tools:text="@string/lbl4" />
+
+                    <TextView
+                        android:id="@+id/dateTV"
+                        style="@style/txtRobotomedium14_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:letterSpacing="0.01"
+                        android:singleLine="true"
+                        android:text="@{timetablepageVM.timetablepageModel.currentDate}"
+                        tools:text="@string/lbl_24_12_22" />
+                </LinearLayout>
+
+                <ImageButton
+                    android:id="@+id/btnArrowright"
+                    android:layout_width="@dimen/_40pxh"
+                    android:layout_height="@dimen/_40pxh"
+
+                    android:layout_alignParentEnd="true"
+                    android:background="@drawable/rectangle_bg_blue_800_radius_20"
+                    android:paddingHorizontal="@dimen/_12pxh"
+                    android:paddingVertical="@dimen/_12pxv"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/img_arrowright"
+                    tools:ignore="ContentDescription" />
+            </RelativeLayout>
+
+            <!--            <FrameLayout-->
+            <!--                android:id="@+id/bottomBar"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                app:layout_constraintBottom_toBottomOf="parent">-->
+
+            <!--                <LinearLayout-->
+            <!--                    android:id="@+id/linearRowperson"-->
+            <!--                    android:layout_width="match_parent"-->
+            <!--                    android:layout_height="match_parent"-->
+            <!--                    android:layout_marginTop="@dimen/_12pxv"-->
+            <!--                    android:layout_marginBottom="@dimen/_16pxv"-->
+            <!--                    android:orientation="horizontal"-->
+            <!--                    android:baselineAligned="false">-->
+
+            <!--                    <LinearLayout-->
+            <!--                        android:id="@+id/linearItem"-->
+            <!--                        android:layout_width="0dp"-->
+            <!--                        android:layout_height="wrap_content"-->
+            <!--                        android:layout_marginTop="@dimen/_8pxv"-->
+            <!--                        android:layout_weight="1"-->
+            <!--                        android:orientation="vertical">-->
+
+            <!--                        <ImageView-->
+            <!--                            android:id="@+id/imagePerson"-->
+            <!--                            android:layout_width="@dimen/_16pxh"-->
+            <!--                            android:layout_height="@dimen/_16pxh"-->
+            <!--                            android:layout_gravity="center"-->
+            <!--                            android:scaleType="fitXY"-->
+            <!--                            android:src="@drawable/img_person"-->
+            <!--                            tools:ignore="ContentDescription"-->
+            <!--                            tools:src="@drawable/img_person" />-->
+
+            <!--                        <TextView-->
+            <!--                            android:id="@+id/professorsButtonLabelTV"-->
+            <!--                            style="@style/txtRobotomedium12_1"-->
+            <!--                            android:layout_width="match_parent"-->
+            <!--                            android:layout_height="wrap_content"-->
+            <!--                            android:layout_marginStart="@dimen/_2pxh"-->
+            <!--                            android:layout_marginTop="@dimen/_15pxv"-->
+            <!--                            android:layout_marginEnd="@dimen/_2pxh"-->
+            <!--                            android:ellipsize="end"-->
+            <!--                            android:gravity="center_horizontal"-->
+            <!--                            android:letterSpacing="0.03"-->
+            <!--                            android:lineSpacingExtra="@dimen/_1pxh"-->
+            <!--                            android:singleLine="true"-->
+            <!--                            android:text="@{timetablepageVM.timetablepageModel.professorsLabel}"-->
+            <!--                            tools:text="@string/lbl5" />-->
+            <!--                    </LinearLayout>-->
+
+            <!--                    <LinearLayout-->
+            <!--                        android:id="@+id/linearItem1"-->
+            <!--                        android:layout_width="0dp"-->
+            <!--                        android:layout_height="wrap_content"-->
+            <!--                        android:layout_marginBottom="@dimen/_2pxv"-->
+            <!--                        android:layout_weight="1"-->
+            <!--                        android:orientation="vertical">-->
+
+            <!--                        <FrameLayout-->
+            <!--                            android:id="@+id/frameIcon"-->
+            <!--                            style="@style/groupStyleblue_2"-->
+            <!--                            android:layout_width="@dimen/_64pxh"-->
+            <!--                            android:layout_height="@dimen/_32pxv"-->
+            <!--                            android:layout_gravity="center_horizontal">-->
+
+            <!--                            <ImageView-->
+            <!--                                android:id="@+id/imageVector"-->
+            <!--                                android:layout_width="@dimen/_16pxh"-->
+            <!--                                android:layout_height="@dimen/_20pxh"-->
+            <!--                                android:layout_gravity="center"-->
+            <!--                                android:layout_marginTop="@dimen/_5pxv"-->
+            <!--                                android:layout_marginBottom="@dimen/_6pxv"-->
+            <!--                                android:scaleType="fitXY"-->
+            <!--                                android:src="@drawable/img_vector"-->
+            <!--                                tools:ignore="ContentDescription"-->
+            <!--                                tools:src="@drawable/img_vector" />-->
+            <!--                        </FrameLayout>-->
+
+            <!--                        <TextView-->
+            <!--                            android:id="@+id/timetableButtonLabelTV"-->
+            <!--                            style="@style/txtRobotomedium12_1"-->
+            <!--                            android:layout_width="match_parent"-->
+            <!--                            android:layout_height="wrap_content"-->
+            <!--                            android:layout_marginStart="@dimen/_2pxh"-->
+            <!--                            android:layout_marginTop="@dimen/_5pxv"-->
+            <!--                            android:layout_marginEnd="@dimen/_2pxh"-->
+            <!--                            android:ellipsize="end"-->
+            <!--                            android:gravity="center_horizontal"-->
+            <!--                            android:letterSpacing="0.03"-->
+            <!--                            android:lineSpacingExtra="@dimen/_1pxh"-->
+            <!--                            android:singleLine="true"-->
+            <!--                            android:text="@{timetablepageVM.timetablepageModel.timetableLabel}"-->
+            <!--                            tools:text="@string/lbl" />-->
+            <!--                    </LinearLayout>-->
+
+            <!--                    <LinearLayout-->
+            <!--                        android:id="@+id/linearItem2"-->
+            <!--                        android:layout_width="0dp"-->
+            <!--                        android:layout_height="wrap_content"-->
+            <!--                        android:layout_marginTop="@dimen/_9pxv"-->
+            <!--                        android:layout_marginBottom="@dimen/_2pxv"-->
+            <!--                        android:layout_weight="1"-->
+            <!--                        android:orientation="vertical">-->
+
+            <!--                        <ImageView-->
+            <!--                            android:id="@+id/imageVectorOne"-->
+            <!--                            android:layout_width="@dimen/_18pxh"-->
+            <!--                            android:layout_height="@dimen/_13pxh"-->
+            <!--                            android:layout_gravity="center"-->
+            <!--                            android:scaleType="fitXY"-->
+            <!--                            android:src="@drawable/img_vector_gray_911"-->
+            <!--                            tools:ignore="ContentDescription"-->
+            <!--                            tools:src="@drawable/img_vector_gray_911" />-->
+
+            <!--                        <TextView-->
+            <!--                            android:id="@+id/menuButtonLabelTV"-->
+            <!--                            style="@style/txtRobotomedium12_1"-->
+            <!--                            android:layout_width="match_parent"-->
+            <!--                            android:layout_height="wrap_content"-->
+            <!--                            android:layout_marginStart="@dimen/_2pxh"-->
+            <!--                            android:layout_marginTop="@dimen/_15pxv"-->
+            <!--                            android:layout_marginEnd="@dimen/_2pxh"-->
+            <!--                            android:ellipsize="end"-->
+            <!--                            android:gravity="center_horizontal"-->
+            <!--                            android:letterSpacing="0.03"-->
+            <!--                            android:lineSpacingExtra="@dimen/_1pxh"-->
+            <!--                            android:singleLine="true"-->
+            <!--                            android:text="@{timetablepageVM.timetablepageModel.menuLabel}"-->
+            <!--                            tools:text="@string/lbl6" />-->
+            <!--                    </LinearLayout>-->
+            <!--                </LinearLayout>-->
+            <!--            </FrameLayout>-->
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-</FrameLayout>
+</layout>

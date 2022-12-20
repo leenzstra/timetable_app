@@ -1,64 +1,65 @@
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <com.leenz.pnrpu.views.LessonView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/lessons_layout_bg"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-            <TextView
-                android:id="@+id/subjectNameTV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:text="@string/subjectNameTV_placeholder"
-                app:layout_constraintStart_toEndOf="@id/timeTV"
-                app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/locationTV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:text="@string/locationTV_placeholder"
-                app:layout_constraintStart_toStartOf="@id/subjectNameTV"
-                app:layout_constraintTop_toBottomOf="@id/subjectNameTV" />
+        <TextView
+            android:id="@+id/subjectNameTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/subjectNameTV_placeholder"
+            app:layout_constraintStart_toEndOf="@id/timeTV"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/teacherTV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:text="@string/teacherTV_placeholder"
-                app:layout_constraintStart_toEndOf="@+id/locationTV"
-                app:layout_constraintTop_toBottomOf="@+id/subjectTypeTV" />
+        <TextView
+            android:id="@+id/locationTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/locationTV_placeholder"
+            app:layout_constraintStart_toStartOf="@id/subjectNameTV"
+            app:layout_constraintTop_toBottomOf="@id/subjectNameTV" />
 
-            <TextView
-                android:id="@+id/subjectTypeTV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:text="@string/subjectTypeTV_placeholder"
-                app:layout_constraintStart_toEndOf="@+id/subjectNameTV"
-                app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/teacherTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/teacherTV_placeholder"
+            app:layout_constraintStart_toEndOf="@+id/locationTV"
+            app:layout_constraintTop_toBottomOf="@+id/subjectTypeTV" />
 
-            <TextView
-                android:id="@+id/timeTV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:text="@string/timeTV_placeholder"
-                app:layout_constraintBottom_toTopOf="@id/locationTV"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/subjectNameTV" />
+        <TextView
+            android:id="@+id/subjectTypeTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/subjectTypeTV_placeholder"
+            app:layout_constraintStart_toEndOf="@+id/subjectNameTV"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/timeTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/timeTV_placeholder"
+            app:layout_constraintBottom_toTopOf="@id/locationTV"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/subjectNameTV" />
     </com.leenz.pnrpu.views.LessonView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,60 +3,56 @@ package com.leenz.pnrpu.fragments;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.leenz.pnrpu.R;
+import com.leenz.pnrpu.adapters.ProfessorAdapter;
+import com.leenz.pnrpu.models.timetablemodels.Professor;
+import com.leenz.pnrpu.utils.JSONReader;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ProfessorFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import org.json.JSONException;
+
+import java.io.IOException;
+import java.util.List;
+
 public class ProfessorFragment extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-
     public ProfessorFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ProfessorFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ProfessorFragment newInstance(String param1, String param2) {
-        ProfessorFragment fragment = new ProfessorFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-        }
     }
+
+    private LayoutInflater layoutInflater;
+
+    private void generateObjects() throws JSONException, IOException {
+        RecyclerView recyclerView = rootView.findViewById(R.id.recyclerProfessorpage);
+        List<Professor> professors = JSONReader.getProfessorList("РИС-19-1б");
+        recyclerView.setAdapter(new ProfessorAdapter(professors, this.getActivity()));
+        recyclerView.setLayoutManager(new LinearLayoutManager(layoutInflater.getContext()));
+    }
+
+    private View rootView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_professor, container, false);
+        rootView = inflater.inflate(R.layout.fragment_professor, container, false);
+        layoutInflater = inflater;
+        try {
+            generateObjects();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return rootView;
     }
 }

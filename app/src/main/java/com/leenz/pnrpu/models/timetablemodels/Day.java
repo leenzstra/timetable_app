@@ -1,4 +1,4 @@
-package com.leenz.pnrpu.models;
+package com.leenz.pnrpu.models.timetablemodels;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -19,7 +19,7 @@ public class Day {
     private int groupId;
 
     @JsonProperty("day")
-    private String dayName;
+    private int day;
 
     @JsonProperty("week_num")
     private int weekNum;
@@ -28,25 +28,29 @@ public class Day {
     private Lesson[] lessons;
 
     public int getDayOfWeekNumber(){
-        int curDayOfWeek = 0;
-        switch (dayName) {
-            case "ПОНЕДЕЛЬНИК":
-                curDayOfWeek = 2;
+        return day;
+    }
+
+    public String getDayName(){
+        String curDayOfWeek = "";
+        switch (day) {
+            case 1:
+                curDayOfWeek = "ПОНЕДЕЛЬНИК";
                 break;
-            case "ВТОРНИК":
-                curDayOfWeek = 3;
+            case 2:
+                curDayOfWeek = "ВТОРНИК";
                 break;
-            case "СРЕДА":
-                curDayOfWeek = 4;
+            case 3:
+                curDayOfWeek = "СРЕДА";
                 break;
-            case "ЧЕТВЕРГ":
-                curDayOfWeek = 5;
+            case 4:
+                curDayOfWeek = "ЧЕТВЕРГ";
                 break;
-            case "ПЯТНИЦА":
-                curDayOfWeek = 6;
+            case 5:
+                curDayOfWeek = "ПЯТНИЦА";
                 break;
-            case "СУББОТА":
-                curDayOfWeek = 7;
+            case 6:
+                curDayOfWeek = "СУББОТА";
                 break;
         }
         return curDayOfWeek;

@@ -1,4 +1,6 @@
-package com.leenz.pnrpu.models;
+package com.leenz.pnrpu.models.timetablemodels;
+
+import android.annotation.SuppressLint;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -13,7 +15,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Lesson {
     @JsonProperty("time")
-    private String time;
+    private int time;
 
     @JsonProperty("subject_name")
     private String subjectName;
@@ -27,4 +29,10 @@ public class Lesson {
     @JsonProperty("location")
     private String location;
 
+    @SuppressLint("DefaultLocale")
+    public String getTimeString(){
+        int hours = time / 3600;
+        int minutes = (time - hours * 3600) / 60;
+        return String.format("%d:%02d", hours, minutes);
+    }
 }
