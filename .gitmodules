@@ -4,6 +4,6 @@
 [submodule "timetable_parser"]
 	path = timetable_parser
 	url = https://github.com/leenzstra/timetable_parser.git
-[submodule "teacher_parser"]
-	path = teacher_parser
-	url = https://github.com/leenzstra/teacher_parser.git
+[submodule "timetable_teacher_parser"]
+	path = timetable_teacher_parser
+	url = https://github.com/leenzstra/timetable_teacher_parser.git
