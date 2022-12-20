@@ -42,7 +42,6 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ViewHolder> 
                 editor.putString("groupName", groupName);
                 editor.apply();
                 MainActivity ctx = (MainActivity)parent.getContext();
-                ctx.getGroupSearchLayout().setVisibility(View.GONE);
                 ctx.setSelectedGroupName(groupName);
             }
         });

@@ -61,11 +61,13 @@ public class MainActivity extends AppCompatActivity {
         activityMainBinding = ActivityMainBinding.inflate(getLayoutInflater());
         rootView = activityMainBinding.getRoot();
         setContentView(rootView);
-        timetableFragment = new TimetableFragment();
-        professorFragment = new ProfessorFragment();
-        replaceFragment(timetableFragment);
         groupList = JSONReader.getGroupList();
         sharedPreferences = this.getSharedPreferences("currentGroup", Context.MODE_PRIVATE);
+
+        timetableFragment = new TimetableFragment(sharedPreferences);
+        professorFragment = new ProfessorFragment();
+        replaceFragment(timetableFragment);
+
 
 //        getActionBar().setDisplayHomeAsUpEnabled(true);
 //        groupSearchLayout = rootView.findViewById(R.id.groupSearchLayout);
@@ -132,14 +134,6 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 
-    private void filter(String text) {
-        List<Group> filteredList = new ArrayList<>();
-        for (Group item : groupList) {
-            if (item.getGroup_name().toLowerCase().startsWith(text.toLowerCase())) {
-                filteredList.add(item);
-            }
-        }
-        searchGroupAdapter.filterList(filteredList);
-    }
+
 
 }
