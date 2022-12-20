@@ -3,11 +3,13 @@ package com.leenz.pnrpu.fragments;
 import android.app.Dialog;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
@@ -113,6 +115,8 @@ public class ProfessorSingleFragment extends Fragment {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         //The user will be able to cancel the dialog bu clicking anywhere outside the dialog.
         dialog.setCancelable(true);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
         //Mention the name of the layout of your custom dialog.
         dialog.setContentView(R.layout.professor_dialog);
 
@@ -211,7 +215,12 @@ public class ProfessorSingleFragment extends Fragment {
         ProfessorEvaluation professorEval = JSONReader.getProfessorEvaluation(mParam5);
 
         recyclerView.setAdapter(new CommentAdapter(professorEval.getComments()));
-        recyclerView.setLayoutManager(new LinearLayoutManager(layoutInflater.getContext())
+        recyclerView.setLayoutManager(new LinearLayoutManager(layoutInflater.getContext()){
+            @Override
+            public boolean canScrollVertically() {
+                return false;
+            }
+                                      }
 
         );
         TextView commentTV = rootView.findViewById(R.id.commentTV);
