@@ -18,7 +18,7 @@
         android:id="@+id/markEditText"
         android:hint="Оценка"
 
-        android:inputType="numberDecimal"
+        android:inputType="number"
         android:layout_height="wrap_content">
     </EditText>
 

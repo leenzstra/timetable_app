@@ -1,4 +1,5 @@
 package com.leenz.pnrpu.models.timetablemodels;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
@@ -14,6 +15,11 @@ public class Response {
     @JsonProperty("result")
     private boolean result;
 
+
     @JsonProperty("message")
     private String message;
+
+    @JsonIgnore
+    @JsonProperty("data")
+    private String data;
 }

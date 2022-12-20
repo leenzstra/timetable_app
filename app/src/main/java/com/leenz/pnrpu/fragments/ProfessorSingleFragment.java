@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,14 +24,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.leenz.pnrpu.R;
 import com.leenz.pnrpu.activities.MainActivity;
 import com.leenz.pnrpu.adapters.CommentAdapter;
 import com.leenz.pnrpu.adapters.ProfessorAdapter;
+import com.leenz.pnrpu.models.payloadmodels.SetMarkBody;
 import com.leenz.pnrpu.models.timetablemodels.Professor;
 import com.leenz.pnrpu.models.timetablemodels.ProfessorEvaluation;
+import com.leenz.pnrpu.models.timetablemodels.Response;
 import com.leenz.pnrpu.utils.ImageUtil;
 import com.leenz.pnrpu.utils.JSONReader;
 
@@ -38,6 +42,7 @@ import org.json.JSONException;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Set;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -52,7 +57,7 @@ public class ProfessorSingleFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
     private static final String ARG_PARAM3 = "param3";
     private static final String ARG_PARAM4 = "param4";
-    private static final String ARG_PARAM5 = "param5";
+    private static final String ARG_PARAM5 = "param5"; //teacher_id
 
     // TODO: Rename and change types of parameters
     private Bitmap mParam1;
@@ -121,8 +126,31 @@ public class ProfessorSingleFragment extends Fragment {
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                SetMarkBody body = SetMarkBody.builder().teacherId(mParam5).mark(Integer.parseInt(mark.getText().toString())).comment(comment.getText().toString()).build();
+                try {
+                    Response resp = JSONReader.setMark(body);
+                    if (resp.isResult()) {
+                        Toast toast = Toast.makeText(layoutInflater.getContext(), "Успешно",Toast.LENGTH_LONG);
+                        toast.show();
+                        generateObjects();
+                    }
+                    else{
+                        Toast toast = Toast.makeText(layoutInflater.getContext(), resp.getMessage(),Toast.LENGTH_LONG);
+                        toast.show();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 dialog.dismiss();
+                try {
+                    generateObjects();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -183,7 +211,14 @@ public class ProfessorSingleFragment extends Fragment {
         ProfessorEvaluation professorEval = JSONReader.getProfessorEvaluation(mParam5);
 
         recyclerView.setAdapter(new CommentAdapter(professorEval.getComments()));
-        recyclerView.setLayoutManager(new LinearLayoutManager(layoutInflater.getContext()));
+        recyclerView.setLayoutManager(new LinearLayoutManager(layoutInflater.getContext())
 
+        );
+        TextView commentTV = rootView.findViewById(R.id.commentTV);
+        commentTV.setText("Комментарии (" + Integer.toString(professorEval.getComments().length) + ")");
+        commentTV = rootView.findViewById(R.id.teacherInfoPageScoreCountTV);
+        commentTV.setText(Integer.toString(professorEval.getComments().length) + " оценки");
+        commentTV = rootView.findViewById(R.id.teacherInfoPageScoreTV);
+        commentTV.setText(Double.toString(Math.round(professorEval.getAverageMark() * 100.0) / 100.0));
     }
 }
