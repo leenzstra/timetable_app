@@ -132,7 +132,7 @@
 
                                 <ImageView
                                     android:id="@+id/imageVector"
-                                    android:layout_width="@dimen/_25pxh"
+                                    android:layout_width="@dimen/_18pxh"
                                     android:layout_height="@dimen/_18pxh"
                                     android:scaleType="fitXY"
                                     android:src="@drawable/img_vector_black_900"
@@ -254,13 +254,13 @@
                             android:layout_height="wrap_content"
                             app:layout_constraintTop_toBottomOf="@+id/commentTV"
                             android:descendantFocusability="blocksDescendants">
+
                             <androidx.recyclerview.widget.RecyclerView
                                 android:id="@+id/commentsRecycleView"
                                 android:layout_width="match_parent"
-                                tools:listitem="@layout/row_comment"
+                                android:layout_height="wrap_content"
                                 android:lineSpacingExtra="@dimen/_1pxh"
-                                android:layout_height="wrap_content">
-                            </androidx.recyclerview.widget.RecyclerView>
+                                tools:listitem="@layout/row_comment" />
                         </RelativeLayout>
                     </LinearLayout>
                 </LinearLayout>
@@ -275,6 +275,7 @@
             app:layout_constraintRight_toRightOf="parent"
             android:layout_margin="@dimen/_15pxh"
             android:src="@drawable/img_vector_black_900"
+            app:backgroundTint="@color/blue_50"
             android:background="@color/blue_50">
         </com.google.android.material.floatingactionbutton.FloatingActionButton>
 
