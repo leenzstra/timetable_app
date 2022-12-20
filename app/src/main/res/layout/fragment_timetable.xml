@@ -133,10 +133,12 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerTimetablepage"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_marginStart="@dimen/_16pxh"
                 android:layout_marginEnd="@dimen/_16pxh"
                 app:layout_constraintTop_toBottomOf="@id/topAppBar"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/buttons_bar"
                 android:gravity="center_horizontal"
                 android:orientation="vertical"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -144,14 +146,13 @@
                 tools:listitem="@layout/row_timetablepage" />
 
             <LinearLayout
-                android:id="@+id/linearArrowRow"
+                android:id="@+id/buttons_bar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintBottom_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 

@@ -1,17 +1,22 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Timetable_test" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Theme.Timetable_test" parent="Theme.Material3.Light">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/PNRPU_primary</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/PNRPU_background</item>
+        <item name="colorPrimary">@color/white_A700</item>
+        <item name="colorPrimaryVariant">@color/blue_50</item>
+        <item name="colorOnPrimary">@color/white_A700</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/PNRPU_secondary</item>
         <item name="colorSecondaryVariant">@color/teal_700</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+<!--        <item name="android:statusBarColor" >@color/white_A700</item>-->
+<!--        <item name="android:windowLightStatusBar" />-->
         <!-- Customize your theme here. -->
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:navigationBarColor">@color/white_A700</item>
+
+        <item name="android:windowLightNavigationBar">true</item>
     </style>
 
     <style name="Theme.Timetable_test.NoActionBar">
