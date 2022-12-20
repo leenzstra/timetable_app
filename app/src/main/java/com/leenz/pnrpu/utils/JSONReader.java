@@ -48,7 +48,7 @@ import lombok.SneakyThrows;
 
 public class JSONReader {
 
-    public static String host = "http://192.168.1.3:3000";
+    public static String host = "host";
 
     private static String readText(Context context, int resId) throws IOException {
         InputStream is = context.getResources().openRawResource(resId);

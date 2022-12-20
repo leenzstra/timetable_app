@@ -1,5 +1,6 @@
 package com.leenz.pnrpu.fragments;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.leenz.pnrpu.R;
 import com.leenz.pnrpu.adapters.ProfessorAdapter;
@@ -22,6 +24,13 @@ import java.util.List;
 
 public class ProfessorFragment extends Fragment {
     public ProfessorFragment() {
+        sharedPreferences = null;
+    }
+
+    private final SharedPreferences sharedPreferences;
+
+    public ProfessorFragment(SharedPreferences sharedPreferences) {
+        this.sharedPreferences = sharedPreferences;
     }
 
     @Override
@@ -33,7 +42,10 @@ public class ProfessorFragment extends Fragment {
 
     private void generateObjects() throws JSONException, IOException {
         RecyclerView recyclerView = rootView.findViewById(R.id.recyclerProfessorpage);
-        List<Professor> professors = JSONReader.getProfessorList("РИС-19-1б");
+        String groupName = sharedPreferences.getString(getString(R.string.SharedPrefGroupName), "");
+        TextView groupTV = rootView.findViewById(R.id.groupTV);
+        groupTV.setText(groupName);
+        List<Professor> professors = JSONReader.getProfessorList(groupName);
         recyclerView.setAdapter(new ProfessorAdapter(professors, this.getActivity()));
         recyclerView.setLayoutManager(new LinearLayoutManager(layoutInflater.getContext()));
     }

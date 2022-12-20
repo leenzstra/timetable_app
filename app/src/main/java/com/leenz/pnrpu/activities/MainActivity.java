@@ -51,10 +51,10 @@ public class MainActivity extends AppCompatActivity {
         rootView = activityMainBinding.getRoot();
         setContentView(rootView);
         groupList = JSONReader.getGroupList();
-        sharedPreferences = this.getSharedPreferences("currentGroup", Context.MODE_PRIVATE);
+        sharedPreferences = this.getSharedPreferences("timetableAppInfo", Context.MODE_PRIVATE);
 
         timetableFragment = new TimetableFragment(sharedPreferences);
-        professorFragment = new ProfessorFragment();
+        professorFragment = new ProfessorFragment(sharedPreferences);
         replaceFragment(timetableFragment);
         activityMainBinding.bottomNavigation.setOnItemSelectedListener(item -> {
 

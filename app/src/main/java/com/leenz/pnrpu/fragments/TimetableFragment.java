@@ -84,7 +84,9 @@ public class TimetableFragment extends Fragment implements View.OnClickListener 
         currentDate = new Date();
         calendar.set(2022, 9, 1, 0, 0);
         calendar.setFirstDayOfWeek(Calendar.MONDAY);
-        setTimetableByGroupNameAndTimetableType("АСУ-19-1б", "Бакалавр (осенний, после смены)");
+        String groupName = sharedPreferences.getString(getString(R.string.SharedPrefGroupName), "РИС-19-1б");
+        String tableType = sharedPreferences.getString(getString(R.string.SharedPrefTableType), "Бакалавр (осенний, после смены)");
+        setTimetableByGroupNameAndTimetableType(groupName, tableType);
     }
 
     public void setTimetableByGroupName(String groupName) {
@@ -107,6 +109,10 @@ public class TimetableFragment extends Fragment implements View.OnClickListener 
                 if (timetableType != null)
                     selectedTimetableType = timetableType;
                 updateGroupNameAndTimetableTextViews();
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString(getString(R.string.SharedPrefGroupName), selectedGroupName);
+                editor.putString(getString(R.string.SharedPrefTableType), selectedTimetableType);
+                editor.apply();
             }
         } catch (IOException | JSONException e) {
             e.printStackTrace();

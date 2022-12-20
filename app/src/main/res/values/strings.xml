@@ -68,4 +68,6 @@
     <string name="professorSinglePageHeader">Преподаватель</string>
     <string name="professorPageHeader">Преподаватели</string>
     <string name="TimetablePageHeader">Расписание</string>
+    <string name="SharedPrefGroupName">SharedPrefGroupName</string>
+    <string name="SharedPrefTableType">SharedPrefTableType</string>
 </resources>
