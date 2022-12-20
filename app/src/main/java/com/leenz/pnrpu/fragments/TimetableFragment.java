@@ -153,6 +153,7 @@ public class TimetableFragment extends Fragment implements View.OnClickListener 
 
     private void updateDateTextView(){
         TextView currentDateTV = rootView.findViewById(R.id.dateTV);
+        TextView todayTV = rootView.findViewById(R.id.todayStringTV);
         @SuppressLint("WeekBasedYear") SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yy", Locale.getDefault());
         String currentDateString = sdf.format(currentDate);
 
@@ -168,7 +169,8 @@ public class TimetableFragment extends Fragment implements View.OnClickListener 
         if(currentDay != null) {
             currentDayName = currentDay.getDayName();
         }
-        currentDateTV.setText(String.format("%s\n%s",currentDateString,currentDayName));
+        currentDateTV.setText(currentDateString);
+        todayTV.setText(currentDayName);
     }
 
     private Date currentDate;
