@@ -59,16 +59,18 @@
                     android:text="@string/professorPageHeader"
                     style="@style/txtRobotoromanmedium24" tools:text="@string/lbl5"/>
             </LinearLayout>
+
             <androidx.recyclerview.widget.RecyclerView
-                android:gravity="center_horizontal"
                 android:id="@+id/recyclerProfessorpage"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_14pxh"
-                android:layout_marginStart="@dimen/_16pxh"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_16pxh"
+                android:layout_marginEnd="@dimen/_14pxh"
+                android:gravity="center_horizontal"
                 android:orientation="vertical"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:itemCount="6" tools:listitem="@layout/row_professorpage"/>
+                tools:itemCount="6"
+                tools:listitem="@layout/row_professorpage" />
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

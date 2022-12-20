@@ -84,6 +84,7 @@
                     android:background="@drawable/rectangle_bg_bluegray_100_radius_45"
                     android:id="@+id/professorImageAvatar"
                     android:layout_gravity="center_horizontal"
+                    android:scaleType="centerCrop"
                     android:layout_height="@dimen/_90pxh"
                     android:layout_marginEnd="@dimen/_10pxh"
                     android:layout_marginStart="@dimen/_10pxh" android:layout_width="@dimen/_90pxh"/>

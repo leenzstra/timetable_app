@@ -20,6 +20,7 @@ import com.leenz.pnrpu.activities.MainActivity;
 import com.leenz.pnrpu.fragments.ProfessorSingleFragment;
 import com.leenz.pnrpu.models.timetablemodels.Professor;
 import com.leenz.pnrpu.utils.ImageReader;
+import com.leenz.pnrpu.utils.ImageUtil;
 
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -61,11 +62,12 @@ public class ProfessorAdapter extends RecyclerView.Adapter<ProfessorAdapter.View
             } catch (ExecutionException | InterruptedException e) {
                 e.printStackTrace();
             }
-
-            holder.getImageView().setImageBitmap(professors.get(position).getImageBmp());
+            if (professors.get(position).getImageBmp() != null) {
+                holder.getImageView().setImageBitmap(ImageUtil.getCroppedBitmap(professors.get(position).getImageBmp()));
+            }
         }
         else{
-            holder.getImageView().setImageResource(R.drawable.ic_baseline_professor_24);
+            //holder.getImageView().setImageResource(R.drawable.ic_baseline_professor_24);
         }
 
         holder.getNameView().setText(professors.get(position).getName());

@@ -1,6 +1,13 @@
 package com.leenz.pnrpu.fragments;
 
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -12,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.leenz.pnrpu.R;
+import com.leenz.pnrpu.utils.ImageUtil;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -71,6 +79,7 @@ public class ProfessorSingleFragment extends Fragment {
 
         }
     }
+
     private View rootView;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -80,7 +89,13 @@ public class ProfessorSingleFragment extends Fragment {
         rootView = inflater.inflate(R.layout.fragment_professor_single, container, false);
 
         ImageView myAwesomeImageView = (ImageView)rootView.findViewById(R.id.professorImageAvatar);
-        myAwesomeImageView.setImageBitmap(mParam1);
+
+        BitmapDrawable ob = new BitmapDrawable(getResources(), mParam1);
+        myAwesomeImageView.setImageBitmap(ImageUtil.getCroppedBitmap(mParam1));
+
+        //myAwesomeImageView.setBackground(getCroppedBitmap(ob));
+
+
 
         TextView myAwesomeTextView = (TextView)rootView.findViewById(R.id.teacherInfoNameTV);
         myAwesomeTextView.setText(mParam2);
