@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Оценка преподавателя"
+        android:textSize="22sp"
+        android:textColor="@color/black"
+        android:layout_marginBottom="16dp"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:id="@+id/markEditText"
+        android:hint="Оценка"
+
+        android:inputType="numberDecimal"
+        android:layout_height="wrap_content">
+    </EditText>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:hint="Комментарий"
+        android:gravity="top"
+        android:lines="10"
+        android:inputType="textMultiLine"
+        android:imeOptions="actionNext"
+        android:id="@+id/commentEditText"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:text="Оценить"
+        android:textSize="@dimen/_18pxh"
+        android:textColor="@color/black"
+        android:backgroundTint="@color/blue_50"
+        android:id="@+id/submit_button"/>
+</LinearLayout>

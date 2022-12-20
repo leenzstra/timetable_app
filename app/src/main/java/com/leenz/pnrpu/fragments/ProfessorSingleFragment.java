@@ -1,5 +1,6 @@
 package com.leenz.pnrpu.fragments;
 
+import android.app.Dialog;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -15,10 +16,15 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.leenz.pnrpu.R;
+import com.leenz.pnrpu.activities.MainActivity;
 import com.leenz.pnrpu.utils.ImageUtil;
 
 /**
@@ -67,7 +73,7 @@ public class ProfessorSingleFragment extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
-
+    FloatingActionButton openDialog;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,8 +82,35 @@ public class ProfessorSingleFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
             mParam3 = getArguments().getString(ARG_PARAM3);
             mParam4 = getArguments().getString(ARG_PARAM4);
-
         }
+
+    }
+
+    void showCustomDialog() {
+        final Dialog dialog = new Dialog((MainActivity) getActivity());
+        //We have added a title in the custom layout. So let's disable the default title.
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        //The user will be able to cancel the dialog bu clicking anywhere outside the dialog.
+        dialog.setCancelable(true);
+        //Mention the name of the layout of your custom dialog.
+        dialog.setContentView(R.layout.professor_dialog);
+
+
+        //Initializing the views of the dialog.
+        final EditText mark = dialog.findViewById(R.id.markEditText);
+        final EditText comment = dialog.findViewById(R.id.commentEditText);
+        Button submitButton = dialog.findViewById(R.id.submit_button);
+
+
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
     }
 
     private View rootView;
@@ -87,6 +120,16 @@ public class ProfessorSingleFragment extends Fragment {
         // Inflate the layout for this fragment
 
         rootView = inflater.inflate(R.layout.fragment_professor_single, container, false);
+
+
+        openDialog = rootView.findViewById(R.id.openDialogButton);
+
+        openDialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showCustomDialog();
+            }
+        });
 
         ImageView myAwesomeImageView = (ImageView)rootView.findViewById(R.id.professorImageAvatar);
 

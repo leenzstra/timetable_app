@@ -225,8 +225,19 @@
                         android:text="@{teacherinfopageVM.teacherinfopageModel.teacherDepartment}"
                         style="@style/txtRobotoromanregular14" tools:text="@string/msg6"/>
                 </LinearLayout>
+
             </LinearLayout>
         </LinearLayout>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/openDialogButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_margin="@dimen/_15pxh"
+        android:src="@drawable/img_vector_black_900"
+        android:background="@drawable/rectangle_bg_blue_50_radius_16">
 
+    </com.google.android.material.floatingactionbutton.FloatingActionButton>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
