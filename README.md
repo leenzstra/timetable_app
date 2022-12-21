@@ -36,7 +36,7 @@
 * На странице преподавателя должна быть представлена его средняя оценка, список комментариев и кнопка для оценивания, которая открывает форму для заполнения
 
 ## Дополнительные сервисы
-1. [Парсер преподавателей](https://github.com/leenzstra/timetable_parser/tree/master)
+1. [Парсер преподавателей](https://github.com/leenzstra/timetable_teacher_parser)
 2. [Парсер расписания](https://github.com/leenzstra/timetable_parser)
 3. [Сервер (REST API)](https://github.com/leenzstra/timetable_server)
 
