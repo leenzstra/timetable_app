@@ -48,7 +48,7 @@ import lombok.SneakyThrows;
 
 public class JSONReader {
 
-    public static String host = "host";
+    public static String host = "http://__ip__";
 
     private static String readText(Context context, int resId) throws IOException {
         InputStream is = context.getResources().openRawResource(resId);
@@ -104,7 +104,7 @@ public class JSONReader {
         JSONObject root = getRequest(url.toString());
         try {
             JSONArray data = root.getJSONArray("data");
-            Integer len = data.length();
+            int len = data.length();
             result = new String[len];
             for (int i = 0; i < len; i++) {
                 JSONObject item = data.getJSONObject(i);
@@ -143,15 +143,13 @@ public class JSONReader {
             JSONArray commentsJSONArr = data.getJSONArray("evaluations");
             ObjectMapper objectMapper = new ObjectMapper();
             Comment[] commentsArray = objectMapper.readValue(commentsJSONArr.toString(), Comment[].class);
-            Double mark = data.getDouble("average_mark");
+            double mark = data.getDouble("average_mark");
             int marksCount = data.getInt("count");
             ProfessorEvaluation p = ProfessorEvaluation.builder().averageMark(mark).markCount(marksCount).comments(commentsArray).build();
 
             //ProfessorEvaluation p = objectMapper.readValue(root.toString(), ProfessorEvaluation.class);
             return p;
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
+        } catch (JsonProcessingException | JSONException e) {
             e.printStackTrace();
         }
         return null;
@@ -203,10 +201,8 @@ public class JSONReader {
                     response.getEntity().getContent().close();
                     throw new IOException(statusLine.getReasonPhrase());
                 }
-            } catch (ClientProtocolException e) {
-                //TODO Handle problems..
             } catch (IOException e) {
-                //TODO Handle problems..
+                e.printStackTrace();
             }
             return responseString;
         }
@@ -242,10 +238,8 @@ public class JSONReader {
                     response.getEntity().getContent().close();
                     throw new IOException(statusLine.getReasonPhrase());
                 }
-            } catch (ClientProtocolException e) {
-                //TODO Handle problems..
             } catch (IOException e) {
-                //TODO Handle problems..
+                e.printStackTrace();
             }
             return responseString;
         }
